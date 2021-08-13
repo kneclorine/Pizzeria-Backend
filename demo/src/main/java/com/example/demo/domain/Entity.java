@@ -11,7 +11,7 @@ public abstract class Entity {
     }
 
     public UUID getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(UUID id){
@@ -19,9 +19,9 @@ public abstract class Entity {
     }
 
     public boolean validate(UUID id){
-        if(id != null){
+        if(this.id != null){
             try {
-                UUID.fromString(id.toString());
+                UUID.fromString(this.id.toString());
                 return true;
              } catch (Exception ex) {
                 return false;
