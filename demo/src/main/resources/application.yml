@@ -1,0 +1,3 @@
+# Cambia el puerto de Tomcat a 9999
+server:
+    port: 9999
