@@ -1,8 +1,6 @@
-package com.example.demo.domain.commentDomain;
+package com.example.demo.domain;
 
 import java.util.UUID;
-
-import com.example.demo.domain.Entity;
 
 public class Comment extends Entity{
     private String text;

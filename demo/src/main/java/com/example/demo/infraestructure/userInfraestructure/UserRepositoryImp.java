@@ -3,8 +3,8 @@ package com.example.demo.infraestructure.userInfraestructure;
 import java.util.List;
 import java.util.UUID;
 
-import com.example.demo.domain.repositoryDomain.Repository;
-import com.example.demo.domain.userDomain.User;
+import com.example.demo.domain.Repository;
+import com.example.demo.domain.User;
 
 public class UserRepositoryImp implements Repository<User> {
 

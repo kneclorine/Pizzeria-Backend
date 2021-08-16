@@ -3,8 +3,8 @@ package com.example.demo.infraestructure.commentInfraestructure;
 import java.util.List;
 import java.util.UUID;
 
-import com.example.demo.domain.commentDomain.Comment;
-import com.example.demo.domain.repositoryDomain.Repository;
+import com.example.demo.domain.Comment;
+import com.example.demo.domain.Repository;
 
 public class CommentRepositoryImp implements Repository<Comment> {
 

@@ -1,6 +1,4 @@
-package com.example.demo.domain.ingredientDomain;
-
-import com.example.demo.domain.Entity;
+package com.example.demo.domain;
 
 public class Ingredient extends Entity{
     private String name;

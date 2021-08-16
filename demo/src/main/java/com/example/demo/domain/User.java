@@ -1,6 +1,4 @@
-package com.example.demo.domain.userDomain;
-
-import com.example.demo.domain.Entity;
+package com.example.demo.domain;
 
 public class User extends Entity{
     private String name;

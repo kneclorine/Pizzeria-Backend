@@ -3,8 +3,8 @@ package com.example.demo.infraestructure.pizzaInfraestructure;
 import java.util.List;
 import java.util.UUID;
 
-import com.example.demo.domain.pizzaDomain.Pizza;
-import com.example.demo.domain.repositoryDomain.Repository;
+import com.example.demo.domain.Pizza;
+import com.example.demo.domain.Repository;
 
 public class PizzaRepositoryImp implements Repository<Pizza> {
 

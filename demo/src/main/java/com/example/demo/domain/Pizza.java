@@ -1,12 +1,6 @@
-package com.example.demo.domain.pizzaDomain;
-
+package com.example.demo.domain;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.example.demo.domain.Entity;
-import com.example.demo.domain.commentDomain.Comment;
-import com.example.demo.domain.ingredientDomain.Ingredient;
-
 import java.util.Iterator;
 
 public class Pizza extends Entity{
