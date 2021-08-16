@@ -1,4 +1,5 @@
 package com.example.demo.domain;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,11 +37,10 @@ public class Pizza extends Entities{
     @OneToMany(mappedBy = "pizza")
     private final Set<Comment> comments = new HashSet<Comment>();
 
-    @Transient
-    private final double profit = 1.20d;
+    
 
     @Transient
-    private double price;
+    private BigDecimal price;
 
     public Pizza(String name, String url){
         this.name = name;
@@ -55,14 +55,14 @@ public class Pizza extends Entities{
         return this.url;
     }
 
-    public double getPrice(){
-        double finalPrice = 0d;
+    public BigDecimal getPrice(){
+        BigDecimal sumPrice = new BigDecimal(0);
         Iterator<Ingredient> it = ingredients.iterator();
 
         while(it.hasNext()){
-            finalPrice += it.next().getPrice();
+            sumPrice.add(it.next().getPrice());
         }
-        this.price = Math.ceil((finalPrice * this.profit)*100)/100;
+        this.price = sumPrice.multiply(new BigDecimal(1.2));
         return  this.price;
     }
 

@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
@@ -13,9 +15,9 @@ public class Ingredient extends Entities{
 
     @NotNull
     @Column(nullable = false)
-    private double price;
+    private BigDecimal price;
 
-    public Ingredient(String name, double price){
+    public Ingredient(String name, BigDecimal price){
         this.name = name;
         this.price = price;
     }
@@ -24,7 +26,7 @@ public class Ingredient extends Entities{
         return this.name;
     }
 
-    public double getPrice(){
+    public BigDecimal getPrice(){
         return this.price;
     }
 
@@ -32,7 +34,7 @@ public class Ingredient extends Entities{
         this.name = name;
     }
 
-    public void setPrice(double price){
+    public void setPrice(BigDecimal price){
         this.price = price;
     }
 }
