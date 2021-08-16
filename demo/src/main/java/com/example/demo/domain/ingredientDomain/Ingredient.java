@@ -1,10 +1,17 @@
-package com.example.demo.domain;
+package com.example.demo.domain.ingredientDomain;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+
+import com.example.demo.domain.Entities;
+import com.example.demo.domain.PizzaIngredient;
 
 @Entity
 public class Ingredient extends Entities{
@@ -14,8 +21,15 @@ public class Ingredient extends Entities{
     private String name;
 
     @NotNull
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 5, scale = 2)
+    @Digits(integer = 5, fraction = 2)
     private BigDecimal price;
+    
+    @OneToMany(mappedBy = "ingredient")
+    private Set<PizzaIngredient> pizzaIngredients = new HashSet<PizzaIngredient>();
+
+    public Ingredient() {
+    }
 
     public Ingredient(String name, BigDecimal price){
         this.name = name;

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.example.demo.domain.Repository;
-import com.example.demo.domain.User;
+import com.example.demo.domain.userDomain.User;
 
 public class UserRepositoryImp implements Repository<User> {
 

@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.domain.pizzaDomain;
 
 import java.math.BigDecimal;
 import java.util.List;

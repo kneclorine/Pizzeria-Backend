@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.domain.userDomain;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import com.example.demo.domain.Entities;
+import com.example.demo.domain.commentDomain.Comment;
 
 @Entity
 public class User extends Entities{
@@ -30,6 +33,9 @@ public class User extends Entities{
     @NotNull
     @OneToMany(mappedBy = "user")
     private Set<Comment> comments = new HashSet<>();
+
+    public User() {
+    }
 
     public User(String name, String lastName, String email, String password){
         this.name = name;

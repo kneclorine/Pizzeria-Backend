@@ -1,16 +1,18 @@
-package com.example.demo.domain;
+package com.example.demo.domain.pizzaDomain;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
+import com.example.demo.domain.Entities;
+import com.example.demo.domain.PizzaIngredient;
+import com.example.demo.domain.commentDomain.Comment;
+import com.example.demo.domain.ingredientDomain.Ingredient;
 
 import java.util.Iterator;
 
@@ -25,22 +27,21 @@ public class Pizza extends Entities{
     private String url;
 
     @NotNull
-    @ManyToMany
-    @JoinTable(
-        name = "pizza_ingredient",
-        joinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id")
-    )
+    @OneToMany(mappedBy = "pizza")
+    private final Set<PizzaIngredient> pizzaIngredients = new HashSet<PizzaIngredient>();
+
+    @Transient
     private final Set<Ingredient> ingredients = new HashSet<Ingredient>();
 
     @NotNull
     @OneToMany(mappedBy = "pizza")
     private final Set<Comment> comments = new HashSet<Comment>();
 
-    
-
     @Transient
     private BigDecimal price;
+    
+    public Pizza() {
+    }
 
     public Pizza(String name, String url){
         this.name = name;

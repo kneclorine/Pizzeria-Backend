@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.domain.commentDomain;
 
 import java.util.UUID;
 
@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+
+import com.example.demo.domain.Entities;
+import com.example.demo.domain.pizzaDomain.Pizza;
+import com.example.demo.domain.userDomain.User;
 
 @Entity
 public class Comment extends Entities{
@@ -20,31 +24,32 @@ public class Comment extends Entities{
     private float rating;
 
     @NotNull
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "char(10)")
     private String date;
 
-    @NotNull
-    @Column(name = "user_id", nullable = false)
-    private UUID userID;
-
-    @NotNull
-    @Column(name = "pizza_id", nullable = false)
-    private UUID pizzaID;
-
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(
+        name = "user_id", insertable = false,
+        updatable = false, columnDefinition = "binary(16)"
+        )
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "pizza_id", insertable = false, updatable = false)
+    @JoinColumn(
+        name = "pizza_id", insertable = false,
+        updatable = false, columnDefinition = "binary(16)"
+        )
     private Pizza pizza;
+    
+    public Comment() {
+    }
 
-    public Comment(String text, float rating, String date, UUID userID, UUID pizzaID){
+    public Comment(String text, float rating, String date, User user, Pizza pizza){
         this.text = text;
         this.rating = rating;
         this.date = date;
-        this.userID = userID;
-        this.pizzaID = pizzaID;
+        this.user = user;
+        this.pizza = pizza;
     }
 
     public String getText(){
@@ -60,11 +65,11 @@ public class Comment extends Entities{
     }
 
     public UUID getUserID(){
-        return this.userID;
+        return this.user.getId();
     }
 
     public UUID getPizzaID(){
-        return this.pizzaID;
+        return this.pizza.getId();
     }
 
     public void setText(String text){
@@ -79,11 +84,11 @@ public class Comment extends Entities{
         this.date = date;
     }
 
-    public void setUser(UUID userID) {
-        this.userID = userID;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setPizza(UUID pizzaID) {
-        this.pizzaID = pizzaID;
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
     }
 }

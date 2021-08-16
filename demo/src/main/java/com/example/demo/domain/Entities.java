@@ -3,14 +3,14 @@ package com.example.demo.domain;
 import java.util.UUID;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
-@Entity
+@MappedSuperclass
 public abstract class Entities {
     
     @Id

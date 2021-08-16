@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.domain.userDomain;
 
 import java.util.List;
 import java.util.UUID;
