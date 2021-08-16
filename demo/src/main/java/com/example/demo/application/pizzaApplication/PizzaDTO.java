@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import com.example.demo.application.commentApplication.CommentDTO;
 import com.example.demo.application.ingredientApplication.IngredientDTO;
 
 public class PizzaDTO implements Serializable{
@@ -13,4 +14,5 @@ public class PizzaDTO implements Serializable{
     public String name;
     public double price;
     public Set<IngredientDTO> ingredients = new HashSet<IngredientDTO>();
+    public Set<CommentDTO> comments = new HashSet<CommentDTO>();
 }
