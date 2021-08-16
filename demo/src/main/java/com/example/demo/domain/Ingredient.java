@@ -1,7 +1,18 @@
 package com.example.demo.domain;
 
-public class Ingredient extends Entity{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
+
+@Entity
+public class Ingredient extends Entities{
+
+    @NotNull
+    @Column(nullable = false, unique = true)
     private String name;
+
+    @NotNull
+    @Column(nullable = false)
     private double price;
 
     public Ingredient(String name, double price){

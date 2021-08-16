@@ -1,10 +1,35 @@
 package com.example.demo.domain;
 
-public class User extends Entity{
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+
+@Entity
+public class User extends Entities{
+
+    @NotNull
+    @Column(nullable = false)
     private String name;
+
+    @NotNull
+    @Column(nullable = false)
     private String lastName;
+
+    @NotNull
+    @Column(nullable = false)
     private String email;
+
+    @NotNull
+    @Column(nullable = false)
     private String password;
+
+    @NotNull
+    @OneToMany(mappedBy = "user")
+    private Set<Comment> comments = new HashSet<>();
 
     public User(String name, String lastName, String email, String password){
         this.name = name;
@@ -43,5 +68,17 @@ public class User extends Entity{
 
     public void setPassword(String password){
         this.password = password;
+    }
+
+    public Set<Comment> getComments(){
+        return this.comments;
+    }
+
+    public void addComment(Comment comment){
+        this.comments.add(comment);
+    }
+
+    public void removeComment(Comment comment){
+        this.comments.remove(comment);
     }
 }

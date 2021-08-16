@@ -2,12 +2,42 @@ package com.example.demo.domain;
 
 import java.util.UUID;
 
-public class Comment extends Entity{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+@Entity
+public class Comment extends Entities{
+
+    @NotNull
+    @Column(nullable = false)
     private String text;
+
+    @NotNull
+    @Column(nullable = false)
     private float rating;
+
+    @NotNull
+    @Column(nullable = false)
     private String date;
+
+    @NotNull
+    @Column(name = "user_id", nullable = false)
     private UUID userID;
+
+    @NotNull
+    @Column(name = "pizza_id", nullable = false)
     private UUID pizzaID;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "pizza_id", insertable = false, updatable = false)
+    private Pizza pizza;
 
     public Comment(String text, float rating, String date, UUID userID, UUID pizzaID){
         this.text = text;
