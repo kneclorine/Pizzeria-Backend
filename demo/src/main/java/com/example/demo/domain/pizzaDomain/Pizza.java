@@ -27,6 +27,10 @@ public class Pizza extends Entities{
     private String url;
 
     @NotNull
+    @Column(nullable = false)
+    private BigDecimal price;
+
+    @NotNull
     @OneToMany(mappedBy = "pizza")
     private final Set<PizzaIngredient> pizzaIngredients = new HashSet<PizzaIngredient>();
 
@@ -36,9 +40,6 @@ public class Pizza extends Entities{
     @NotNull
     @OneToMany(mappedBy = "pizza")
     private final Set<Comment> comments = new HashSet<Comment>();
-
-    @Transient
-    private BigDecimal price;
     
     public Pizza() {
     }
