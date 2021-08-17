@@ -26,5 +26,5 @@ public interface CommentJPARepository extends CrudRepository<Comment, UUID>{
             """)
     List<Comment> findByCriteria(
         @Param("date") String date, @Param("user") User user,
-        @Param("pizza_id") Pizza pizza, Pageable pageable);
+        @Param("pizza") Pizza pizza, Pageable pageable);
 }

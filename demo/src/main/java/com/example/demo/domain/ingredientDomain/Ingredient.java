@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.example.demo.domain.Entities;
 import com.example.demo.domain.PizzaIngredient;
@@ -16,7 +17,7 @@ import com.example.demo.domain.PizzaIngredient;
 @Entity
 public class Ingredient extends Entities{
 
-    @NotNull
+    @NotNull @Size(min=2, max=255)
     @Column(nullable = false, unique = true)
     private String name;
 

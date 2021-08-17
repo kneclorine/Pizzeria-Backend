@@ -1,11 +1,13 @@
 package com.example.demo.domain.commentDomain;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import com.example.demo.domain.Entities;
@@ -16,12 +18,13 @@ import com.example.demo.domain.userDomain.User;
 public class Comment extends Entities{
 
     @NotNull
-    @Column(nullable = false)
+    @Column(columnDefinition = "text",nullable = false)
     private String text;
 
     @NotNull
-    @Column(nullable = false)
-    private float rating;
+    @Column(nullable = false, precision = 3, scale = 1)
+    @Digits(integer = 3, fraction = 1)
+    private BigDecimal rating;
 
     @NotNull
     @Column(nullable = false, columnDefinition = "char(10)")
@@ -44,7 +47,7 @@ public class Comment extends Entities{
     public Comment() {
     }
 
-    public Comment(String text, float rating, String date, User user, Pizza pizza){
+    public Comment(String text, BigDecimal rating, String date, User user, Pizza pizza){
         this.text = text;
         this.rating = rating;
         this.date = date;
@@ -56,7 +59,7 @@ public class Comment extends Entities{
         return this.text;
     }
 
-    public float getRating(){
+    public BigDecimal getRating(){
         return this.rating;
     }
 
@@ -76,8 +79,8 @@ public class Comment extends Entities{
         this.text = text;
     }
 
-    public void setPunctuation(float punctuation){
-        this.rating = punctuation;
+    public void setPunctuation(BigDecimal rating){
+        this.rating = rating;
     }
 
     public void setDate(String date) {

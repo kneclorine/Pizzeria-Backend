@@ -4,11 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.example.demo.domain.Entities;
 import com.example.demo.domain.PizzaIngredient;
@@ -20,16 +21,16 @@ import java.util.Iterator;
 @Entity
 public class Pizza extends Entities{
 
-    @NotNull
+    @NotNull @Size(min=2, max=255)
     @Column(nullable = false, unique = true)
     private String name;
 
-    //TODO: arreglar esto
-    @Embedded
+    @Transient
     private String url;
 
     @NotNull
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 5, scale = 2)
+    @Digits(integer = 5, fraction = 2)
     private BigDecimal price;
 
     @NotNull
