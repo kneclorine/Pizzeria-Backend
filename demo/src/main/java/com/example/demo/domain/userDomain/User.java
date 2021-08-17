@@ -8,29 +8,32 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.example.demo.application.userApplication.UserFullValidation;
 import com.example.demo.domain.Entities;
 import com.example.demo.domain.commentDomain.Comment;
+
 
 @Entity
 public class User extends Entities{
 
-    @NotNull
+
+    @NotNull @Size(min=2, max=255)
     @Column(nullable = false)
     private String name;
 
-    @NotNull
+    @NotNull @Size(min=2, max=255)
     @Column(nullable = false)
     private String lastName;
 
-    @NotNull
+    @NotNull @Size(min=2, max=255) @Email(groups = {UserFullValidation.class})
     @Column(nullable = false)
     private String email;
 
-    @NotNull
+    @NotNull @Size(min=2, max=255)
     @Column(nullable = false)
     private String password;
 
-    @NotNull
+    @NotNull @Size(min=2, max=255)
     @OneToMany(mappedBy = "user")
     private Set<Comment> comments = new HashSet<>();
 
