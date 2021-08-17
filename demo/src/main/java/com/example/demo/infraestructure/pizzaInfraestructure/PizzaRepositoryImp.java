@@ -1,33 +1,50 @@
 package com.example.demo.infraestructure.pizzaInfraestructure;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.example.demo.domain.pizzaDomain.Pizza;
-import com.example.demo.domain.Repository;
+import com.example.demo.domain.pizzaDomain.PizzaRepository;
 
-public class PizzaRepositoryImp implements Repository<Pizza> {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 
-    @Override
-    public void add(Pizza type) {
+public class PizzaRepositoryImp implements PizzaRepository {
+
+    private PizzaJPARepository pizzaJPARepository;
+
+    @Autowired
+    public PizzaRepositoryImp(PizzaJPARepository pizzaJPARepository){
+        this.pizzaJPARepository = pizzaJPARepository;
     }
 
     @Override
-    public void update(Pizza type) {
+    public void add(Pizza pizza) {
+        this.pizzaJPARepository.save(pizza);
     }
 
     @Override
-    public void delete(Pizza type) {
+    public void update(Pizza pizza) {
+        this.pizzaJPARepository.save(pizza);        
     }
 
     @Override
-    public Pizza get(UUID id) {
-        return null;
+    public void delete(Pizza pizza) {
+        this.pizzaJPARepository.delete(pizza);
     }
 
     @Override
-    public List<Pizza> getAll() {
-        return null;
+    public Optional<Pizza> get(UUID id) {
+        return this.pizzaJPARepository.findById(id);
     }
-    
+
+    @Override
+    public List<Pizza> getAll(String name, BigDecimal price, int page, int size) {
+        return this.pizzaJPARepository.findByCriteria(
+            name, price,
+            PageRequest.of(page, size)
+            );
+    }
 }

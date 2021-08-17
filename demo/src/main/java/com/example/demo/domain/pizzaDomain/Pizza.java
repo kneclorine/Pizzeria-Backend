@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -23,7 +24,8 @@ public class Pizza extends Entities{
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Transient
+    //TODO: arreglar esto
+    @Embedded
     private String url;
 
     @NotNull
