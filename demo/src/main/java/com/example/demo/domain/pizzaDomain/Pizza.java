@@ -1,16 +1,48 @@
-package com.example.demo.domain;
+package com.example.demo.domain.pizzaDomain;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+
+import com.example.demo.domain.Entities;
+import com.example.demo.domain.PizzaIngredient;
+import com.example.demo.domain.commentDomain.Comment;
+import com.example.demo.domain.ingredientDomain.Ingredient;
+
 import java.util.Iterator;
 
-public class Pizza extends Entity{
+@Entity
+public class Pizza extends Entities{
+
+    @NotNull
+    @Column(nullable = false, unique = true)
     private String name;
+
+    @Transient
     private String url;
+
+    @NotNull
+    @Column(nullable = false)
+    private BigDecimal price;
+
+    @NotNull
+    @OneToMany(mappedBy = "pizza")
+    private final Set<PizzaIngredient> pizzaIngredients = new HashSet<PizzaIngredient>();
+
+    @Transient
     private final Set<Ingredient> ingredients = new HashSet<Ingredient>();
+
+    @NotNull
+    @OneToMany(mappedBy = "pizza")
     private final Set<Comment> comments = new HashSet<Comment>();
     
-    private final double profit = 1.20d;
-    private double price;
+    public Pizza() {
+    }
 
     public Pizza(String name, String url){
         this.name = name;
@@ -25,14 +57,14 @@ public class Pizza extends Entity{
         return this.url;
     }
 
-    public double getPrice(){
-        double finalPrice = 0d;
+    public BigDecimal getPrice(){
+        BigDecimal sumPrice = new BigDecimal(0);
         Iterator<Ingredient> it = ingredients.iterator();
 
         while(it.hasNext()){
-            finalPrice += it.next().getPrice();
+            sumPrice.add(it.next().getPrice());
         }
-        this.price = Math.ceil((finalPrice * this.profit)*100)/100;
+        this.price = sumPrice.multiply(new BigDecimal(1.2));
         return  this.price;
     }
 

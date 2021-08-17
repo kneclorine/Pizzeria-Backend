@@ -2,8 +2,22 @@ package com.example.demo.domain;
 
 import java.util.UUID;
 
-public abstract class Entity {
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
+@MappedSuperclass
+public abstract class Entities {
     
+    @Id
+    @Type(type = "uuid-binary")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GeneratedValue(generator = "uuid2")
+    @Column(columnDefinition = "binary(16)")
     private UUID id;
 
     public void generateID(UUID id){
@@ -34,11 +48,11 @@ public abstract class Entity {
     @Override
     public boolean equals (Object obj) {
 
-        if (!(obj instanceof Entity)){
+        if (!(obj instanceof Entities)){
             return false;
         }
 
-        Entity tmpEntity = (Entity) obj;
+        Entities tmpEntity = (Entities) obj;
 
         return this.getId().equals(tmpEntity.getId());
     }

@@ -3,7 +3,7 @@ package com.example.demo.infraestructure.ingredientInfraestructure;
 import java.util.List;
 import java.util.UUID;
 
-import com.example.demo.domain.Ingredient;
+import com.example.demo.domain.ingredientDomain.Ingredient;
 import com.example.demo.domain.Repository;
 
 public class IngredientRepositoryImp implements Repository<Ingredient> {
