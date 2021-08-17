@@ -2,12 +2,13 @@ package com.example.demo.domain.pizzaDomain;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface PizzaRepository extends PagingAndSortingRepository<Pizza, Long> {
+public interface PizzaRepository extends PagingAndSortingRepository<Pizza, UUID> {
 
   Pizza findByName(@Param("name") String name);
 
