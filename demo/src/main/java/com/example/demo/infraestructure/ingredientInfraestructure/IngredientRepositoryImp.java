@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.example.demo.domain.ingredientDomain.Ingredient;
+import com.example.demo.domain.ingredientDomain.IngredientProyection;
 import com.example.demo.domain.ingredientDomain.IngredientRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class IngredientRepositoryImp implements IngredientRepository {
     }
 
     @Override
-    public List<Ingredient> getAll(String name, BigDecimal price, int page, int size) {
+    public List<IngredientProyection> getAll(String name, BigDecimal price, int page, int size) {
         return this.ingredientJPARepository.findByCriteria(
             name, price,
             PageRequest.of(page, size, Sort.by("name").descending())

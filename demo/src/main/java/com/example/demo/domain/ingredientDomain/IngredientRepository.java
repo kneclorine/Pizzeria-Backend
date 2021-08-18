@@ -11,5 +11,5 @@ public interface IngredientRepository {
     public void update(Ingredient ingredient);
     public void delete(Ingredient ingredient);
     public Optional<Ingredient> get(UUID id);
-    public List<Ingredient> getAll(String name, BigDecimal price, int page, int size);
+    public List<IngredientProyection> getAll(String name, BigDecimal price, int page, int size);
 }
