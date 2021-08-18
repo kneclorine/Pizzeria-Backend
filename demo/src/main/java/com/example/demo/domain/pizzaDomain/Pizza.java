@@ -21,11 +21,12 @@ import java.util.Iterator;
 @Entity
 public class Pizza extends Entities{
 
-    @NotNull @Size(min=2, max=255)
+    @NotNull @Size(min = 2, max = 255)
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Transient
+    @NotNull @Size(max = 255)
+    @Column(nullable = false)
     private String url;
 
     @NotNull
