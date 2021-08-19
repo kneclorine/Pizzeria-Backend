@@ -12,9 +12,10 @@ import com.example.demo.domain.ingredientDomain.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class IngredientRepositoryImp implements IngredientRepository {
-
     
     private final IngredientJPARepository ingredientJPARepository;
 

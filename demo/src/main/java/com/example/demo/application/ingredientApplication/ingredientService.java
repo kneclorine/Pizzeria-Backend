@@ -11,8 +11,8 @@ public class IngredientService {
 
         ModelMapper modelMapper = new ModelMapper();
         Ingredient ingredient = modelMapper.map(dto, Ingredient.class);
-        modelMapper.validate();
-        DemoApplication.logger.info("Ingredient Mapped from IngredientDTO!!!!");
+
+        DemoApplication.logger.info("Ingredient Mapped from IngredientDTO.");
 
         return ingredient;
     }
@@ -21,8 +21,8 @@ public class IngredientService {
 
         ModelMapper modelMapper = new ModelMapper();
         IngredientDTO ingredientDTO = modelMapper.map(ingredient, IngredientDTO.class);
-        modelMapper.validate();
-        DemoApplication.logger.info("IngredientDTO Mapped from Ingredient!!!!");
+
+        DemoApplication.logger.info("IngredientDTO Mapped from Ingredient.");
 
         return ingredientDTO;
     }

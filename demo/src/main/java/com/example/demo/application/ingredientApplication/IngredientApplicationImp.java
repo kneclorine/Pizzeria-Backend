@@ -50,8 +50,8 @@ public class IngredientApplicationImp implements IngredientApplication {
     public void update(@Valid UUID id, @Valid CreateOrUpdateIngredientDTO dto) {
 
         Ingredient ingredient = this.ingredientRepository.get(id).orElseThrow();
-        ingredient.setName(dto.name);
-        ingredient.setPrice(dto.price);
+        ingredient.setName(dto.getName());
+        ingredient.setPrice(dto.getPrice());
         this.ingredientRepository.update(ingredient);
         DemoApplication.logger.info("Ingredient updated!!!!");
     }

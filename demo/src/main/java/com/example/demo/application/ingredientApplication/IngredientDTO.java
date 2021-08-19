@@ -6,7 +6,32 @@ import java.util.UUID;
 
 public class IngredientDTO implements Serializable{
     
-    public UUID id;
-    public String name;
-    public BigDecimal price;
+    private UUID id;
+    private String name;
+    private BigDecimal price;
+
+    public UUID getId(){
+        return this.id;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public BigDecimal getPrice(){
+        return this.price;
+    }
+
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 }
