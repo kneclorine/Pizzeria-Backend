@@ -3,6 +3,7 @@ package com.example.demo.application.ingredientApplication;
 import java.math.BigDecimal;
 
 public class CreateOrUpdateIngredientDTO {
+    
     private String name;
     private BigDecimal price;
 

@@ -1,11 +1,17 @@
 package com.example.demo.domain;
 
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import javax.validation.ConstraintViolationException;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -32,17 +38,16 @@ public abstract class Entities {
         this.id = id;
     }
 
-    public boolean validate(UUID id){
-        if(this.id != null){
-            try {
-                UUID.fromString(this.id.toString());
-                return true;
-             } catch (Exception ex) {
-                return false;
-             }
-        }
+    public void validate(){
         
-        return false;
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator= factory.getValidator();
+        
+        Set<ConstraintViolation<Entities>> violations = validator.validate(this);
+
+        if (!violations.isEmpty()) {
+            throw new ConstraintViolationException(violations);
+        }
     }
 
     @Override
