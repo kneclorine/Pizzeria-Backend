@@ -34,11 +34,11 @@ public class ImageController {
             ImageEntity imageEntity = imageService.save(file);
 
             return ResponseEntity.status(HttpStatus.OK)
-                                 .body(String.format("File uploaded successfully: %s, uuid=%s", file.getOriginalFilename(), imageEntity.getId()));
+                                 .body(String.format("Archivo subido correctamente: %s, uuid=%s", file.getOriginalFilename(), imageEntity.getId()));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body(String.format("Could not upload the file: %s!", file.getOriginalFilename()));
+                                 .body(String.format("No se pudo encontrar el archivo: %s!", file.getOriginalFilename()));
         }
     }
 
