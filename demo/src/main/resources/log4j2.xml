@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info">
     <Properties>
-        <Property name="logFilePath">./logs</Property>
+        <Property name="logFilePath">./src/logs</Property>
         <Property name="logFileName">pizzeria</Property>
     </Properties>
     <Appenders>
