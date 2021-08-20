@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.core;
 
 import java.util.Set;
 import java.util.UUID;
@@ -16,8 +16,11 @@ import javax.validation.ConstraintViolationException;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @MappedSuperclass
-public abstract class Entities {
+public @Getter @Setter abstract class Entities {
     
     @Id
     @Type(type = "uuid-binary")
@@ -25,18 +28,6 @@ public abstract class Entities {
     @GeneratedValue(generator = "uuid2")
     @Column(columnDefinition = "binary(16)")
     private UUID id;
-
-    public void generateID(UUID id){
-        this.id = id;
-    }
-
-    public UUID getId() {
-        return this.id;
-    }
-
-    public void setId(UUID id){
-        this.id = id;
-    }
 
     public void validate(){
         
@@ -59,11 +50,11 @@ public abstract class Entities {
 
         Entities tmpEntity = (Entities) obj;
 
-        return this.getId().equals(tmpEntity.getId());
+        return this.id.equals(tmpEntity.id);
     }
 
     @Override
     public int hashCode(){
-        return this.getId().hashCode();
+        return this.id.hashCode();
     }
 }

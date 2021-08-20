@@ -2,27 +2,11 @@ package com.example.demo.application.ingredientApplication;
 
 import java.math.BigDecimal;
 
-public class CreateOrUpdateIngredientDTO {
-    
-    private String name;
-    private BigDecimal price;
+import lombok.Getter;
+import lombok.Setter;
 
-    public String getName() {
-        return name;
-    }
+public @Getter @Setter class CreateOrUpdateIngredientDTO {
     
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    
+    public String name;
+    public BigDecimal price;
 }
