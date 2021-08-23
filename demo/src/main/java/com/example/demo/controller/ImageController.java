@@ -1,12 +1,10 @@
 package com.example.demo.controller;
 
 import java.io.File;
-import java.util.Optional;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.infraestructure.ImageRepositoryImp;
 import com.cloudinary.Cloudinary;
+import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.application.CloudinaryConfiguration;
 import com.example.demo.domain.imageDomain.ImageEntity;
@@ -26,6 +25,7 @@ import com.example.demo.domain.imageDomain.ImageEntity;
 @RequestMapping("images")
 public class ImageController {
     private final ImageRepositoryImp imageRepositoryImp;
+    private Cloudinary cloudinary = CloudinaryConfiguration.buildConnection();
 
     @Autowired
     public ImageController(ImageRepositoryImp imageRepositoryImp) {
@@ -36,12 +36,14 @@ public class ImageController {
     public ResponseEntity<String> upload(@RequestParam("image") MultipartFile file) {
         try {
             ImageEntity imageEntity = imageRepositoryImp.save(file);
-
-            Cloudinary cloudinary = CloudinaryConfiguration.buildConnection();
+            
+            
             File fileSave = imageRepositoryImp.convert(file);
             
-            cloudinary.uploader().upload(fileSave, ObjectUtils.emptyMap());
+            Map result = cloudinary.uploader().upload(fileSave, ObjectUtils.emptyMap());
+            imageEntity.setId((String)result.get("public_id"));
             fileSave.delete();
+
             return ResponseEntity.status(HttpStatus.OK)
                                  .body(String.format("Archivo subido correctamente: %s, uuid=%s", file.getOriginalFilename(), imageEntity.getId()));
         } catch (Exception e) {
@@ -52,18 +54,19 @@ public class ImageController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<byte[]> getFile(@PathVariable String id) {
-        Optional<ImageEntity> imageEntityOptional = imageRepositoryImp.getFile(id);
+    public ResponseEntity<String> getFile(@PathVariable String id) {
+        String format = "png";
+        Transformation transformation = new Transformation().crop("fill");
+        
+        String cloudUrl = cloudinary.url().secure(true).format(format)
+                .transformation(transformation)
+                .publicId(id)
+                .generate();
+        System.out.println(cloudUrl);
 
-        if (!imageEntityOptional.isPresent()) {
-            return ResponseEntity.notFound()
-                                 .build();
-        }
-
-        ImageEntity imageEntity = imageEntityOptional.get();
-        return ResponseEntity.ok()
-                             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imageEntity.getName() + "\"")
-                             .contentType(MediaType.valueOf(imageEntity.getContentType()))
-                             .body(imageEntity.getData());
+        ImageEntity imageEntity = new ImageEntity();
+        imageEntity.setUrl(cloudUrl);
+        return ResponseEntity.status(HttpStatus.OK)
+                             .body(String.format(imageEntity.getUrl()));
     }
 }
