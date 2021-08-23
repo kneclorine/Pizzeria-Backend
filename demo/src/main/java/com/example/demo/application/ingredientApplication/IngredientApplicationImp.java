@@ -29,8 +29,10 @@ public class IngredientApplicationImp implements IngredientApplication {
 
         Ingredient ingredient = modelMapper.map(dto, Ingredient.class);
         ingredient.setId(UUID.randomUUID());
-        
+        ingredient.validate();
+
         this.ingredientRepository.add(ingredient);
+        logger.info("Ingredient added succesfully.");
 
         return modelMapper.map(ingredient, IngredientDTO.class);
     }
