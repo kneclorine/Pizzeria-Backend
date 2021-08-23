@@ -30,8 +30,10 @@ public class PizzaApplicationImp implements PizzaApplication{
 
         Pizza pizza = modelMapper.map(dto, Pizza.class);
         pizza.setId(UUID.randomUUID());
+        pizza.validate();
         
         this.pizzaRepository.add(pizza);
+        logger.info("pizza added succesfully");
 
         return modelMapper.map(pizza, PizzaDTO.class);
     }
