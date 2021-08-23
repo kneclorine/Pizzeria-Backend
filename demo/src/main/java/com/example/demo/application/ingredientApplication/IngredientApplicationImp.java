@@ -1,8 +1,11 @@
 package com.example.demo.application.ingredientApplication;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.example.demo.domain.ingredientDomain.Ingredient;
+import com.example.demo.domain.ingredientDomain.IngredientProjection;
+import com.example.demo.domain.ingredientDomain.IngredientReadRepository;
 import com.example.demo.domain.ingredientDomain.IngredientWriteRepository;
 
 import org.modelmapper.ModelMapper;
@@ -14,15 +17,17 @@ import org.springframework.stereotype.Service;
 public class IngredientApplicationImp implements IngredientApplication {
 
     private final IngredientWriteRepository ingredientWriteRepository;
-    private final ModelMapper modelMapper;
+    private final IngredientReadRepository ingredientReadRepository;
+    private final ModelMapper modelMapper = new ModelMapper(); //TODO: Preuntar a juancarlos
     private final Logger logger;
 
     @Autowired
     public IngredientApplicationImp(final IngredientWriteRepository ingredientWriteRepository,
+                                    final IngredientReadRepository ingredientReadRepository,
                                     final Logger logger){
 
         this.ingredientWriteRepository = ingredientWriteRepository;
-        this.modelMapper = new ModelMapper(); // No insertar aqui, preuntar a juancarlos
+        this.ingredientReadRepository = ingredientReadRepository;
         this.logger = logger;
     }
 
@@ -44,8 +49,35 @@ public class IngredientApplicationImp implements IngredientApplication {
     @Override
     public IngredientDTO get(UUID id) {
 
-        Ingredient ingredient = this.ingredientWriteRepository.findById(id).orElseThrow();
+        Ingredient ingredient = this.ingredientReadRepository.findById(id).orElseThrow();
 
         return this.modelMapper.map(ingredient, IngredientDTO.class);
+    }
+
+    @Override
+    public void update(UUID id, CreateOrUpdateIngredientDTO dtos) {
+
+        Ingredient ingredient = this.ingredientReadRepository.findById(id).orElseThrow();
+        ingredient.setId(id);
+        ingredient.setName(dtos.getName());
+        ingredient.setPrice(dtos.getPrice());
+
+        // TODO: Validar nombre no duplicado || Select count(*) from ingredients where name = ? || Si devuelve 1 o mas, metemos un throw propio.
+
+        this.ingredientWriteRepository.update(ingredient);
+        logger.info("Ingredient"+"updated succesfully."); 
+    }
+
+    @Override
+    public void delete(UUID id) {
+
+        Ingredient ingredient = this.ingredientReadRepository.findById(id).orElseThrow();
+        this.ingredientWriteRepository.delete(ingredient);
+        logger.info("Ingredient"+"deleted succesfully."); 
+    }
+
+    @Override
+    public List<IngredientProjection> getAll(String name, int page, int size) {
+        return this.getAll(name, page, size);
     }
 }

@@ -15,6 +15,6 @@ public interface IngredientJPARepository extends JpaRepository<Ingredient, UUID>
     
     Ingredient findByName(@Param("name") String name);
 
-    @Query("SELECT i FROM Ingredient i WHERE (:name IS NULL OR i.name LIKE :name)")
+    @Query("SELECT i.id as id, i.name as name, i.price as price FROM Ingredient i WHERE (:name is NULL OR name LIKE %:name%)")
     List<IngredientProjection> findByCriteria(@Param("name") String name, Pageable pageable);
 }
