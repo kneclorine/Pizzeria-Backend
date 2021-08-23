@@ -1,5 +1,7 @@
-package com.example.demo.application;
+package com.example.demo.infraestructure;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
@@ -15,12 +17,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
-public class ImageService {
+public class ImageRepositoryImp {
 
     private final ImageRepository imageRepository;
 
     @Autowired
-    public ImageService(ImageRepository imageRepository) {
+    public ImageRepositoryImp(ImageRepository imageRepository) {
         this.imageRepository = imageRepository;
     }
 
@@ -37,5 +39,13 @@ public class ImageService {
 
     public Optional<ImageEntity> getFile(String id) {
         return imageRepository.findById(id);
+    }
+
+    public File convert(MultipartFile multipartFile) throws IOException {
+        File file = new File(multipartFile.getOriginalFilename());
+        FileOutputStream fo = new FileOutputStream(file);
+        fo.write(multipartFile.getBytes());
+        fo.close();
+        return file;
     }
 }

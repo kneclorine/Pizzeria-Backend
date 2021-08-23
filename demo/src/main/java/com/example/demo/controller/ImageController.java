@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.File;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,24 +16,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.application.ImageService;
+import com.example.demo.infraestructure.ImageRepositoryImp;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import com.example.demo.application.CloudinaryConfiguration;
 import com.example.demo.domain.imageDomain.ImageEntity;
 
 @RestController
 @RequestMapping("images")
 public class ImageController {
-    private final ImageService imageService;
+    private final ImageRepositoryImp imageRepositoryImp;
 
     @Autowired
-    public ImageController(ImageService imageService) {
-        this.imageService = imageService;
+    public ImageController(ImageRepositoryImp imageRepositoryImp) {
+        this.imageRepositoryImp = imageRepositoryImp;
     }
 
     @PostMapping
     public ResponseEntity<String> upload(@RequestParam("image") MultipartFile file) {
         try {
-            ImageEntity imageEntity = imageService.save(file);
+            ImageEntity imageEntity = imageRepositoryImp.save(file);
 
+            Cloudinary cloudinary = CloudinaryConfiguration.buildConnection();
+            File fileSave = imageRepositoryImp.convert(file);
+            
+            cloudinary.uploader().upload(fileSave, ObjectUtils.emptyMap());
+            fileSave.delete();
             return ResponseEntity.status(HttpStatus.OK)
                                  .body(String.format("Archivo subido correctamente: %s, uuid=%s", file.getOriginalFilename(), imageEntity.getId()));
         } catch (Exception e) {
@@ -44,7 +53,7 @@ public class ImageController {
 
     @GetMapping("{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable String id) {
-        Optional<ImageEntity> imageEntityOptional = imageService.getFile(id);
+        Optional<ImageEntity> imageEntityOptional = imageRepositoryImp.getFile(id);
 
         if (!imageEntityOptional.isPresent()) {
             return ResponseEntity.notFound()
