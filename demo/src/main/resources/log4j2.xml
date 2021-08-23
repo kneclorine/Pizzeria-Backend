@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="info">
+<Configuration status="off">
     <Properties>
-        <Property name="logFilePath">./src/logs</Property>
-        <Property name="logFileName">pizzeria</Property>
+        <Property name="logFilePath">./demo/src/logs</Property>
+        <Property name="logFileName">testLog</Property>
     </Properties>
     <Appenders>
         <Console name="ConsolePrint" target="SYSTEM_OUT">
@@ -11,37 +11,26 @@
         <RollingFile name="RollingFileDebug" fileName="${logFilePath}/${logFileName}-debug.log"
                      filePattern="${logFilePath}/$${date:yyyy-MM}/${logFileName}-%d{yyyy-MM-dd}_%i.log.gz">
             <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss z}  %msg%xEx%n"/> 
-            <Filters> 
-                <ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL"/>
-                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
-            </Filters>
+            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
             <Policies> 
-                <TimeBasedTriggeringPolicy/> 
                 <SizeBasedTriggeringPolicy size="2MB"/>
             </Policies>
         </RollingFile>
 
         <RollingFile name="RollingFileInfo" fileName="${logFilePath}/${logFileName}-info.log"
                      filePattern="${logFilePath}/$${date:yyyy-MM}/${logFileName}-%d{yyyy-MM-dd}_%i.log.gz">
-            <Filters>
-                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
-                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
-            </Filters>
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss z} -%msg%xEx%n"/>
             <Policies>
-                <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="2MB"/>
             </Policies>
         </RollingFile>
 
         <RollingFile name="RollingFileError" fileName="${logFilePath}/${logFileName}-error.log"
                      filePattern="${logFilePath}/$${date:yyyy-MM}/${logFileName}-%d{yyyy-MM-dd}_%i.log.gz">
-            <Filters>
-                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
-            </Filters>
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss z} %msg%xEx%n"/>
             <Policies>
-                <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="2MB"/>
             </Policies>
         </RollingFile>
@@ -49,7 +38,7 @@
     </Appenders>
     <Loggers>
         <Root level="DEBUG" includeLocation="true">
-            <Appender-ref level="ERROR" ref="ConsolePrint"/>
+            <Appender-ref level="INFO" ref="ConsolePrint"/>
             <Appender-ref ref="RollingFileDebug"/>
             <Appender-ref ref="RollingFileInfo"/>
             <Appender-ref ref="RollingFileError"/>
