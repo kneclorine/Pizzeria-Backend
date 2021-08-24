@@ -1,6 +1,6 @@
 package com.example.demo.domain.pizzaDomain;
 
-public interface PizzaRepository {
+public interface PizzaWriteRepository {
 
     public void add(Pizza pizza); 
     

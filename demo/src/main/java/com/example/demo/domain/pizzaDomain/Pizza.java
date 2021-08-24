@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,7 +31,7 @@ public @NoArgsConstructor @AllArgsConstructor @Getter @Setter class Pizza extend
     private String url;
 
     @NotNull
-    @Column(nullable = false, precision = 5, scale = 2)
+    @Column(nullable = false, precision = 5, scale = 2) @DecimalMin(value = "0.0", inclusive = false)
     @Digits(integer = 5, fraction = 2)
     private BigDecimal price;
 

@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import javax.validation.Valid;
+
 import com.example.demo.application.pizzaApplication.CreateOrUpdatePizzaDTO;
 import com.example.demo.application.pizzaApplication.PizzaApplication;
 import com.example.demo.application.pizzaApplication.PizzaDTO;
@@ -23,7 +25,7 @@ public class PizzaController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@RequestBody final CreateOrUpdatePizzaDTO dto){
+    public ResponseEntity<?> create(@Valid @RequestBody final CreateOrUpdatePizzaDTO dto){
         PizzaDTO PizzaDTO = this.pizzaApplication.add(dto);
 
         return ResponseEntity.status(201).body(PizzaDTO);
