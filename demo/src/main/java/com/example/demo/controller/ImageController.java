@@ -15,24 +15,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.infraestructure.ImageRepositoryImp;
+import com.example.demo.application.ImageApplicationImp;
 import com.example.demo.domain.imageDomain.ImageEntity;
 
 @RestController
-@RequestMapping("images")
+@RequestMapping("/api/v1/images")
 public class ImageController {
-    private final ImageRepositoryImp imageRepositoryImp;
+    private final ImageApplicationImp imageApplicationImp;
 
     @Autowired
-    public ImageController(ImageRepositoryImp imageRepositoryImp) {
-        this.imageRepositoryImp = imageRepositoryImp;
+    public ImageController(ImageApplicationImp imageApplicationImp) {
+        this.imageApplicationImp = imageApplicationImp;
     }
 
     @PostMapping
     public ResponseEntity<String> upload(@RequestParam("image") MultipartFile file) {
         try {
-            ImageEntity imageEntity = imageRepositoryImp.save(file);
-
+            ImageEntity imageEntity = imageApplicationImp.save(file);
+            //añadir imageEntity.getId() a image_id de pizza
             return ResponseEntity.status(HttpStatus.OK)
                                  .body(String.format("Archivo subido correctamente: %s, uuid=%s", file.getOriginalFilename(), imageEntity.getId()));
         } catch (Exception e) {
@@ -42,9 +42,9 @@ public class ImageController {
         }
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable String id) {
-        Optional<ImageEntity> imageEntityOptional = imageRepositoryImp.getFile(id);
+        Optional<ImageEntity> imageEntityOptional = imageApplicationImp.getFile(id);
 
         if (!imageEntityOptional.isPresent()) {
             return ResponseEntity.notFound()

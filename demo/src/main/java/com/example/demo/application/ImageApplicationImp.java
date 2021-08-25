@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure;
+package com.example.demo.application;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,21 +9,23 @@ import java.util.UUID;
 import com.example.demo.domain.imageDomain.ImageEntity;
 import com.example.demo.domain.imageDomain.ImageRepository;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 
-
 @Service
-public class ImageRepositoryImp {
+public class ImageApplicationImp {
 
     private final ImageRepository imageRepository;
+    private final Logger logger;
 
     @Autowired
-    public ImageRepositoryImp(ImageRepository imageRepository) {
+    public ImageApplicationImp(final ImageRepository imageRepository,final Logger logger) {
         this.imageRepository = imageRepository;
+        this.logger = logger;
     }
 
     public ImageEntity save(MultipartFile file) throws IOException {
@@ -34,6 +36,7 @@ public class ImageRepositoryImp {
         imageEntity.setData(file.getBytes());
         imageEntity.setSize(file.getSize());
 
+        logger.info("Image "+"added succesfully.");
         return imageRepository.save(imageEntity);
     }
 
