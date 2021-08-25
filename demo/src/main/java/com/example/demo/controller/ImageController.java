@@ -2,9 +2,12 @@ package com.example.demo.controller;
 
 import java.io.File;
 import java.util.Map;
+import java.util.Optional;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,13 +39,6 @@ public class ImageController {
     public ResponseEntity<String> upload(@RequestParam("image") MultipartFile file) {
         try {
             ImageEntity imageEntity = imageRepositoryImp.save(file);
-            
-            
-            File fileSave = imageRepositoryImp.convert(file);
-            
-            Map result = cloudinary.uploader().upload(fileSave, ObjectUtils.emptyMap());
-            imageEntity.setId((String)result.get("public_id"));
-            fileSave.delete();
 
             return ResponseEntity.status(HttpStatus.OK)
                                  .body(String.format("Archivo subido correctamente: %s, uuid=%s", file.getOriginalFilename(), imageEntity.getId()));
@@ -54,19 +50,18 @@ public class ImageController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<String> getFile(@PathVariable String id) {
-        String format = "png";
-        Transformation transformation = new Transformation().crop("fill");
-        
-        String cloudUrl = cloudinary.url().secure(true).format(format)
-                .transformation(transformation)
-                .publicId(id)
-                .generate();
-        System.out.println(cloudUrl);
+    public ResponseEntity<byte[]> getFile(@PathVariable String id) {
+        Optional<ImageEntity> imageEntityOptional = imageRepositoryImp.getFile(id);
 
-        ImageEntity imageEntity = new ImageEntity();
-        imageEntity.setUrl(cloudUrl);
-        return ResponseEntity.status(HttpStatus.OK)
-                             .body(String.format(imageEntity.getUrl()));
+        if (!imageEntityOptional.isPresent()) {
+            return ResponseEntity.notFound()
+                                 .build();
+        }
+
+        ImageEntity imageEntity = imageEntityOptional.get();
+        return ResponseEntity.ok()
+                             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imageEntity.getName() + "\"")
+                             .contentType(MediaType.valueOf(imageEntity.getContentType()))
+                             .body(imageEntity.getData());
     }
 }
