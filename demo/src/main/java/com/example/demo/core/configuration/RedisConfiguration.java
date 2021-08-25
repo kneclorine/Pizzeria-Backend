@@ -1,4 +1,4 @@
-package com.example.demo.core;
+package com.example.demo.core.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
