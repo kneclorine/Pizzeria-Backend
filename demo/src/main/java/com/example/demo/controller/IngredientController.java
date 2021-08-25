@@ -29,7 +29,7 @@ public class IngredientController{
     private final IngredientApplication ingredientApplication;
 
     @Autowired
-    public IngredientController(IngredientApplication ingredientApplication){
+    public IngredientController(final IngredientApplication ingredientApplication){
         this.ingredientApplication = ingredientApplication;
     }
 
