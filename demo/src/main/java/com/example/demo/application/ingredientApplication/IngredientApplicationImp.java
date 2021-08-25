@@ -44,8 +44,7 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
         ingredient.validate("name", ingredient.getName(), (name)-> this.ingredientWriteRepository.exists(name));
 
         this.ingredientWriteRepository.add(ingredient);
-        //TODO: Serializar el ingrediente y pasarlo en el info
-        logger.info("Ingredient added succesfully.");
+        logger.info(this.serializeObject(ingredient, "added"));
 
         return modelMapper.map(ingredient, IngredientDTO.class);
     }
@@ -54,7 +53,6 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
     public IngredientDTO get(UUID id) {
 
         Ingredient ingredient = this.findById(id);
-
         return this.modelMapper.map(ingredient, IngredientDTO.class);
     }
 
@@ -66,7 +64,7 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
         ingredient.validate("name", ingredient.getName(), (name)-> this.ingredientWriteRepository.exists(name));
 
         this.ingredientWriteRepository.update(ingredient);
-        logger.info("Ingredient updated succesfully.");
+        logger.info(this.serializeObject(ingredient, "updated"));
     }
 
     @Override
@@ -74,11 +72,23 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
 
         Ingredient ingredient = this.findById(id);
         this.ingredientWriteRepository.delete(ingredient);
-        logger.info("Ingredient deleted succesfully.");
+        logger.info(this.serializeObject(ingredient, "deleted"));
     }
 
     @Override
     public List<IngredientProjection> getAll(String name, int page, int size) {
         return this.ingredientReadRepository.getAll(name, page, size);
+    }
+
+    private String serializeObject(Ingredient ingredient, String messege){
+        StringBuilder stringBuilder = new StringBuilder("Ingredient {id: ").append(ingredient.getId())
+                                                                           .append(", name: ")
+                                                                           .append(ingredient.getName())
+                                                                           .append(", price: ")
+                                                                           .append(ingredient.getPrice())
+                                                                           .append("} ")
+                                                                           .append(messege)
+                                                                           .append(" succesfully.");
+        return stringBuilder.toString();
     }
 }
