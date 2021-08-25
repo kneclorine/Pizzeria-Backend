@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.io.File;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.HttpHeaders;
@@ -18,17 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.infraestructure.ImageRepositoryImp;
-import com.cloudinary.Cloudinary;
-import com.cloudinary.Transformation;
-import com.cloudinary.utils.ObjectUtils;
-import com.example.demo.application.CloudinaryConfiguration;
 import com.example.demo.domain.imageDomain.ImageEntity;
 
 @RestController
 @RequestMapping("images")
 public class ImageController {
     private final ImageRepositoryImp imageRepositoryImp;
-    private Cloudinary cloudinary = CloudinaryConfiguration.buildConnection();
 
     @Autowired
     public ImageController(ImageRepositoryImp imageRepositoryImp) {
