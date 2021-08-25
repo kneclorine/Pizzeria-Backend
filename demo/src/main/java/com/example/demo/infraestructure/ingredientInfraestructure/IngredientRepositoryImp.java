@@ -23,15 +23,13 @@ public class IngredientRepositoryImp implements IngredientWriteRepository, Ingre
         this.ingredientJPARepository = ingredientJPARepository;
     }
 
-// TODO: Se capturan excepciones en cada metodo.
-
     @Override
     public void add(Ingredient ingredient) {
         this.ingredientJPARepository.save(ingredient);
     }
 
     @Override
-    public Optional<Ingredient> findById(UUID id) {
+    public Optional<Ingredient>findById(UUID id) {
         return this.ingredientJPARepository.findById(id);
     }
 
@@ -49,5 +47,10 @@ public class IngredientRepositoryImp implements IngredientWriteRepository, Ingre
     public List<IngredientProjection> getAll(String name, int page, int size) {
         return this.ingredientJPARepository.findByCriteria(name,
         PageRequest.of(page, size));
+    }
+
+    @Override
+    public boolean exists(String name) {
+        return this.ingredientJPARepository.exists(name);
     }
 }
