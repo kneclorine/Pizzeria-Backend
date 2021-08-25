@@ -10,14 +10,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.example.demo.core.Entities;
+import com.example.demo.core.EntityBase;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
 @Entity
-public @NoArgsConstructor @Getter @Setter class Ingredient extends Entities{
+public @NoArgsConstructor @Getter @Setter class Ingredient extends EntityBase{
 
     @NotBlank @Size(min=2, max=255)
     @Column(nullable = false, unique = true)
