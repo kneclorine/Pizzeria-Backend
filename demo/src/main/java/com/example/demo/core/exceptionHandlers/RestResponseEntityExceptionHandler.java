@@ -34,14 +34,11 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                 Map<String, String> errors = new HashMap<String, String>();
 
                 for(ObjectError error : ex.getBindingResult().getAllErrors()){
-                    errors.put(error.toString(), error.getDefaultMessage());
+                    errors.put(error.getCodes()[error.getCodes().length - 3].substring(error.getCode().length()+1), error.getDefaultMessage());
                 }
 
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append(ex.getMessage());
-                stringBuilder.append(ex.getStackTrace().toString());
-                
-                logger.warn(stringBuilder.toString());
+                //TODO: Mostrar el mensaje y el stackTrace
+                logger.warn("");
 
 		return ResponseEntity.status(400).body(errors);
 	}
