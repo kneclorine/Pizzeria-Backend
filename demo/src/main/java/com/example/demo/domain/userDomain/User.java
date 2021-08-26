@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.example.demo.core.EntityBase;
@@ -31,4 +32,8 @@ public @NoArgsConstructor @Getter @Setter class User extends EntityBase{
     @NotBlank @Size(min=8, max=255)
     @Column(nullable = false)
     private String password;
+
+    @NotNull
+    @Column(nullable = false)
+    private Rol rol = Rol.USER;
 }
