@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 import org.springframework.http.HttpHeaders;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.application.ImageApplicationImp;
+import com.example.demo.application.imageApplication.ImageApplicationImp;
 import com.example.demo.domain.imageDomain.ImageEntity;
 
 @RestController
@@ -30,6 +32,8 @@ public class ImageController {
 
     @PostMapping
     public ResponseEntity<String> upload(@RequestParam("image") MultipartFile file) {
+
+        
         try {
             ImageEntity imageEntity = imageApplicationImp.save(file);
             //añadir imageEntity.getId() a image_id de pizza
@@ -53,7 +57,7 @@ public class ImageController {
 
         ImageEntity imageEntity = imageEntityOptional.get();
         return ResponseEntity.ok()
-                             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imageEntity.getName() + "\"")
+                             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; timestamp=\"" + imageEntity.getTimestamp() + "\"")
                              .contentType(MediaType.valueOf(imageEntity.getContentType()))
                              .body(imageEntity.getData());
     }
