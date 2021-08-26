@@ -24,12 +24,11 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
 
     @Autowired
     public IngredientApplicationImp(final IngredientWriteRepository ingredientWriteRepository,
-                                    final IngredientReadRepository ingredientReadRepository,
-                                    final ModelMapper modelMapper,
-                                    final Logger logger){
+            final IngredientReadRepository ingredientReadRepository, final ModelMapper modelMapper,
+            final Logger logger) {
 
         super((id) -> ingredientWriteRepository.findById(id));
-        
+
         this.ingredientWriteRepository = ingredientWriteRepository;
         this.ingredientReadRepository = ingredientReadRepository;
         this.modelMapper = modelMapper;
@@ -41,7 +40,7 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
 
         Ingredient ingredient = modelMapper.map(dto, Ingredient.class);
         ingredient.setId(UUID.randomUUID());
-        ingredient.validate("name", ingredient.getName(), (name)-> this.ingredientWriteRepository.exists(name));
+        ingredient.validate("name", ingredient.getName(), (name) -> this.ingredientWriteRepository.exists(name));
 
         this.ingredientWriteRepository.add(ingredient);
         logger.info(this.serializeObject(ingredient, "added"));
@@ -57,15 +56,17 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
     }
 
     @Override
-    public void update(UUID id, CreateOrUpdateIngredientDTO dtos) {
-       
-        //TODO: Actualizar un ingrediente sin cambiarle el nombre
-        Ingredient ingredient = modelMapper.map(dtos, Ingredient.class);
+    public IngredientDTO update(UUID id, CreateOrUpdateIngredientDTO dto) {
+
+        // TODO: Actualizar un ingrediente sin cambiarle el nombre
+        Ingredient ingredient = modelMapper.map(dto, Ingredient.class);
         ingredient.setId(this.findById(id).getId());
         ingredient.validate();
 
         this.ingredientWriteRepository.update(ingredient);
         logger.info(this.serializeObject(ingredient, "updated"));
+
+        return this.modelMapper.map(ingredient, IngredientDTO.class);
     }
 
     @Override
@@ -81,11 +82,9 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
         return this.ingredientReadRepository.getAll(name, page, size);
     }
 
-    private String serializeObject(Ingredient ingredient, String messege){
-        
-        return String.format("Ingredient {id: %s, name: %s, price: %s} %s succesfully.",
-                            ingredient.getId(), ingredient.getName(),
-                            ingredient.getPrice().toString(),
-                            messege);
+    private String serializeObject(Ingredient ingredient, String messege) {
+
+        return String.format("Ingredient {id: %s, name: %s, price: %s} %s succesfully.", ingredient.getId(),
+                ingredient.getName(), ingredient.getPrice().toString(), messege);
     }
 }

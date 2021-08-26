@@ -30,6 +30,11 @@ public class UserRepositoryImp implements UserWriteRepository{
     }
 
     @Override
+    public void update(User user) {
+        this.userJPARepository.save(user);
+    }
+
+    @Override
     public boolean exists(String email) {
         return this.userJPARepository.exists(email);
     }
