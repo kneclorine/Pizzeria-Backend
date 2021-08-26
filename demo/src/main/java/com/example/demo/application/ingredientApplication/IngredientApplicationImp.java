@@ -59,8 +59,10 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
     public IngredientDTO update(UUID id, CreateOrUpdateIngredientDTO dto) {
 
         // TODO: Actualizar un ingrediente sin cambiarle el nombre
-        Ingredient ingredient = modelMapper.map(dto, Ingredient.class);
-        ingredient.setId(this.findById(id).getId());
+        Ingredient ingredient = this.findById(id);
+        ingredient = modelMapper.map(dto, Ingredient.class);
+        ingredient.setId(id);
+
         ingredient.validate();
 
         this.ingredientWriteRepository.update(ingredient);

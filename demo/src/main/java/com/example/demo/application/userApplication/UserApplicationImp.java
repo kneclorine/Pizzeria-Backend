@@ -55,9 +55,10 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
     public UserDTO update(UUID id, CreateOrUpdateUserDTO dto) {
 
         // TODO: Actualizar un usuario sin cambiarle el nombre
-        User user = modelMapper.map(dto, User.class);
-        user.setId(this.findById(id).getId());
-        user.setPassword(BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt()));
+        User user = this.findById(id);
+        user = modelMapper.map(dto, User.class);
+        user.setId(id);
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         user.validate();
 
         this.userWriteRepository.update(user);

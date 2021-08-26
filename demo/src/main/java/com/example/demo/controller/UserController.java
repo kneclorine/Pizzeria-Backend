@@ -37,7 +37,7 @@ public class UserController {
         return ResponseEntity.status(201).body(userDTO);
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,  path = "/get/{id}")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,  path = "/{id}")
     public ResponseEntity<?> get(@Valid @PathVariable UUID id) {
         UserDTO userDTO = this.userApplication.get(id);
         return ResponseEntity.ok(userDTO);
