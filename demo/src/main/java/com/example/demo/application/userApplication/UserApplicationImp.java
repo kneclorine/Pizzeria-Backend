@@ -2,6 +2,7 @@ package com.example.demo.application.userApplication;
 
 import java.util.UUID;
 
+import com.example.demo.core.ApplicationBase;
 import com.example.demo.domain.userDomain.User;
 import com.example.demo.domain.userDomain.UserWriteRepository;
 
@@ -12,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserApplicationImp implements UserApplication{
+public class UserApplicationImp extends ApplicationBase<User, UUID> implements UserApplication{
 
     private final UserWriteRepository userWriteRepository;
     private final ModelMapper modelMapper;
@@ -22,6 +23,8 @@ public class UserApplicationImp implements UserApplication{
     public UserApplicationImp(final UserWriteRepository userWriteRepository,
                               final ModelMapper modelMapper,
                               final Logger logger){
+
+        super((id) -> userWriteRepository.findById(id));
 
         this.userWriteRepository = userWriteRepository;
         this.modelMapper = modelMapper;
@@ -40,6 +43,13 @@ public class UserApplicationImp implements UserApplication{
         logger.info(this.serializeObject(user, "added"));
 
         return modelMapper.map(user, UserDTO.class);
+    }
+
+    @Override
+    public UserDTO get(UUID id) {
+
+        User ingredient = this.findById(id);
+        return this.modelMapper.map(ingredient, UserDTO.class);
     }
 
     private String serializeObject(User user, String messege){

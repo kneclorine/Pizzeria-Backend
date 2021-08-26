@@ -59,9 +59,10 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
     @Override
     public void update(UUID id, CreateOrUpdateIngredientDTO dtos) {
        
+        //TODO: Actualizar un ingrediente sin cambiarle el nombre
         Ingredient ingredient = modelMapper.map(dtos, Ingredient.class);
         ingredient.setId(this.findById(id).getId());
-        ingredient.validate("name", ingredient.getName(), (name)-> this.ingredientWriteRepository.exists(name));
+        ingredient.validate();
 
         this.ingredientWriteRepository.update(ingredient);
         logger.info(this.serializeObject(ingredient, "updated"));

@@ -1,8 +1,11 @@
 package com.example.demo.domain.userDomain;
 
 import com.example.demo.core.functionalInterfaces.ExistsByField;
+import com.example.demo.core.functionalInterfaces.FindById;
 
-public interface UserWriteRepository extends ExistsByField{
+import java.util.UUID;
+
+public interface UserWriteRepository extends FindById<User, UUID>,ExistsByField{
 
     public void add(User user);
 }
