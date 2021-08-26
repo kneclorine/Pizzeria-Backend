@@ -41,7 +41,7 @@ public class IngredientController{
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,  path = "/{id}")
-    public ResponseEntity<?> get(@PathVariable UUID id) {
+    public ResponseEntity<?> get(@Valid @PathVariable UUID id) {
         IngredientDTO ingredientDTO = this.ingredientApplication.get(id);
         return ResponseEntity.ok(ingredientDTO);
     }
@@ -66,6 +66,4 @@ public class IngredientController{
     ){
         return ResponseEntity.status(200).body(this.ingredientApplication.getAll(name, page, size));
     }
-    
-    
 }

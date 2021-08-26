@@ -1,4 +1,6 @@
-package com.example.demo.core.configuration;
+package com.example.demo.core.configurationBeans;
+
+import java.util.UUID;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
@@ -11,8 +13,8 @@ public class RedisConfiguration {
     }
 
     @Bean
-    public RedisTemplate<String, Object> redisTemplate() {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
+    public RedisTemplate<UUID, Byte[]> redisTemplate() {
+        RedisTemplate<UUID, Byte[]> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory());
         return template;
     }
