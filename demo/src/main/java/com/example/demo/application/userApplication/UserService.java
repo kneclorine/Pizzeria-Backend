@@ -1,22 +1,34 @@
 package com.example.demo.application.userApplication;
 
 import javax.validation.Valid;
-import javax.validation.groups.Default;
 
 import com.example.demo.domain.userDomain.User;
-
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import org.modelmapper.ModelMapper;
 
 @Service
 @Validated
 public class UserService {
-    public void createUser(@Valid User user) {
-        //TODO: lógica para el servicio del usuario
-      }
+    public static User createUser(@Valid CreateOrUpdateUser userDTO) {
+        
+      ModelMapper modelMapper = new ModelMapper();
+      User user = modelMapper.map(userDTO, User.class);
 
-      @Validated(value = {Default.class, UserFullValidation.class})
-      public void createFullClient(@Valid User user) {
-         //TODO: lógica para el servicio completo
-      }
-}
+      modelMapper.validate();
+      return user;
+        
+    }
+
+    public static UserDTO createDTO(@Valid User user) {
+        
+      ModelMapper modelMapper = new ModelMapper();
+      UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+
+      modelMapper.validate();
+      return userDTO;
+    }
+  }
+
+      
+

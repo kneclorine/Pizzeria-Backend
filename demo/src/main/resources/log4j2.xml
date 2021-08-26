@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="OFF">
+    <Properties>
+        <Property name="logFilePath">/logs</Property>
+        <Property name="logFileName">testLog</Property>
+    </Properties>
+    <Appenders>
+        <Console name="ConsolePrint" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss z} %t %-7level %class{36} %L %M - %msg%xEx%n"/>
+        </Console>
+        <RollingFile name="RollingFileDebug" fileName="${logFilePath}/${logFileName}-debug.log"
+                     filePattern="${logFilePath}/$${date:yyyy-MM}/${logFileName}-%d{yyyy-MM-dd}_%i.log.gz">
+            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss z}  %msg%xEx%n"/> 
+            <Filters> 
+                <ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies> 
+                <TimeBasedTriggeringPolicy/> 
+                <SizeBasedTriggeringPolicy size="30MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="RollingFileInfo" fileName="${logFilePath}/${logFileName}-info.log"
+                     filePattern="${logFilePath}/$${date:yyyy-MM}/${logFileName}-%d{yyyy-MM-dd}_%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss z} -%msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="30MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="RollingFileError" fileName="${logFilePath}/${logFileName}-error.log"
+                     filePattern="${logFilePath}/$${date:yyyy-MM}/${logFileName}-%d{yyyy-MM-dd}_%i.log.gz">
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss z} %msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="30MB"/>
+            </Policies>
+        </RollingFile>
+        
+    </Appenders>
+    <Loggers>
+        <Root level="DEBUG" includeLocation="true">
+            <Appender-ref level="ERROR" ref="ConsolePrint"/>
+            <Appender-ref ref="RollingFileDebug"/>
+            <Appender-ref ref="RollingFileInfo"/>
+            <Appender-ref ref="RollingFileError"/>
+        </Root>
+    </Loggers>
+</Configuration>
