@@ -5,6 +5,7 @@ import java.util.UUID;
 import com.example.demo.domain.userDomain.User;
 import com.example.demo.domain.userDomain.UserWriteRepository;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class UserApplicationImp implements UserApplication{
         User user = modelMapper.map(dto, User.class);
         user.setId(UUID.randomUUID());
         user.validate("email", user.getEmail(), (email) -> this.userWriteRepository.exists(email));
+        user.setPassword(BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt()));
 
         this.userWriteRepository.add(user);
         logger.info(this.serializeObject(user, "added"));
