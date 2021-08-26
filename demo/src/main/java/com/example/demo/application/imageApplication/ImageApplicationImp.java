@@ -3,7 +3,6 @@ package com.example.demo.application.imageApplication;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -13,7 +12,6 @@ import com.example.demo.infraestructure.imageInfraestructure.ImageRepositoryImp;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -31,7 +29,7 @@ public class ImageApplicationImp implements ImageApplication{
 
     public ImageEntity save(ImageDTO dto) {
         ImageEntity imageEntity = new ImageEntity();
-        imageEntity.setId(UUID.randomUUID().toString());
+        imageEntity.setId(UUID.randomUUID());
         imageEntity.setData(dto.getData());
         
         imageRepositoryImp.add(imageEntity);
@@ -39,8 +37,8 @@ public class ImageApplicationImp implements ImageApplication{
         return null;
     }
 
-    public Optional<ImageEntity> getFile(String id) {
-        return imageRepositoryImp.findById(id);
+    public Optional<ImageEntity> getFile(UUID id) {
+        return imageRepositoryImp.get(id);
     }
 
     public File convert(MultipartFile multipartFile) throws IOException {
