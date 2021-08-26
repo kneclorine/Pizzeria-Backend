@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Scope;
 public class LoggerConfiguration {
 
     @Bean
-    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public Logger logger(InjectionPoint injectionPoint){
         return LoggerFactory.getLogger(injectionPoint.getMethodParameter().getContainingClass());
     }

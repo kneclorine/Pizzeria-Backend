@@ -17,28 +17,28 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    //TODO: ConstraintViolationException, IllegalArgumentException
+    // TODO: ConstraintViolationException, IllegalArgumentException
 
     private final Logger logger;
 
     @Autowired
-    public RestResponseEntityExceptionHandler(final Logger logger){
+    public RestResponseEntityExceptionHandler(final Logger logger) {
         this.logger = logger;
     }
 
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(
-			MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+            HttpHeaders headers, HttpStatus status, WebRequest request) {
+                
+       Map<String, String> errors = new HashMap<String, String>();
 
-                //TODO:Me teine que dar lo mismo que la BadRequest.
-                Map<String, String> errors = new HashMap<String, String>();
+        for (ObjectError error : ex.getBindingResult().getAllErrors()) {
+            errors.put(error.getCodes()[error.getCodes().length - 3].substring(error.getCode().length() + 1),
+                    error.getDefaultMessage());
+        }
 
-                for(ObjectError error : ex.getBindingResult().getAllErrors()){
-                    errors.put(error.getCodes()[error.getCodes().length - 3].substring(error.getCode().length()+1), error.getDefaultMessage());
-                }
-
-                logger.warn(String.format("%s , StackTrace: %s", ex.getMessage(), ex.getStackTrace().toString()));
-
-		return ResponseEntity.status(400).body(errors);
-	}
+        logger.warn(String.format("%s , StackTrace: %s", ex.getMessage(), ex.getStackTrace().toString()));
+        
+        return ResponseEntity.status(400).body(errors);
+    }
 }
