@@ -41,6 +41,7 @@ public class ImageController {
     
     }
 
+    
     @GetMapping("/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable UUID id) {
         Optional<ImageEntity> imageEntityOptional = imageApplicationImp.getFile(id);
