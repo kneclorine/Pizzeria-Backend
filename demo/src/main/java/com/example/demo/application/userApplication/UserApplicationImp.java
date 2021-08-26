@@ -41,18 +41,11 @@ public class UserApplicationImp implements UserApplication{
     }
 
     private String serializeObject(User user, String messege){
-        StringBuilder stringBuilder = new StringBuilder("Ingredient {id: ").append(user.getId())
-                                                                           .append(", name: ")
-                                                                           .append(user.getName())
-                                                                           .append(", lastName: ")
-                                                                           .append(user.getLastName())
-                                                                           .append(", email: ")
-                                                                           .append(user.getEmail())
-                                                                           .append(", password: ")
-                                                                           .append(user.getPassword())
-                                                                           .append("} ")
-                                                                           .append(messege)
-                                                                           .append(" succesfully.");
-        return stringBuilder.toString();
+
+        return String.format("User {id: %s, name: %s, lastName: %s, email: %s} %s succesfully.",
+                            user.getId(), user.getName(),
+                            user.getLastName(),
+                            user.getEmail(),
+                            messege);
     }
 }

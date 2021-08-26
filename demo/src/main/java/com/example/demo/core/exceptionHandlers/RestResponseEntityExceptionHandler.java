@@ -37,8 +37,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                     errors.put(error.getCodes()[error.getCodes().length - 3].substring(error.getCode().length()+1), error.getDefaultMessage());
                 }
 
-                //TODO: Mostrar el mensaje y el stackTrace
-                logger.warn("");
+                logger.warn(String.format("%s , StackTrace: %s", ex.getMessage(), ex.getStackTrace().toString()));
 
 		return ResponseEntity.status(400).body(errors);
 	}

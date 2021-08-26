@@ -81,14 +81,10 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
     }
 
     private String serializeObject(Ingredient ingredient, String messege){
-        StringBuilder stringBuilder = new StringBuilder("Ingredient {id: ").append(ingredient.getId())
-                                                                           .append(", name: ")
-                                                                           .append(ingredient.getName())
-                                                                           .append(", price: ")
-                                                                           .append(ingredient.getPrice())
-                                                                           .append("} ")
-                                                                           .append(messege)
-                                                                           .append(" succesfully.");
-        return stringBuilder.toString();
+        
+        return String.format("Ingredient {id: %s, name: %s, price: %s} %s succesfully.",
+                            ingredient.getId(), ingredient.getName(),
+                            ingredient.getPrice().toString(),
+                            messege);
     }
 }
