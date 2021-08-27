@@ -4,9 +4,10 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
-import com.example.demo.application.ingredientApplication.CreateOrUpdateIngredientDTO;
-import com.example.demo.application.ingredientApplication.IngredientApplication;
-import com.example.demo.application.ingredientApplication.IngredientDTO;
+import com.example.demo.application.userApplication.CreateUserDTO;
+import com.example.demo.application.userApplication.UpdateUserDTO;
+import com.example.demo.application.userApplication.UserApplication;
+import com.example.demo.application.userApplication.UserDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,48 +22,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
-@RequestMapping("/api/v1/ingredients")
-public class IngredientController{
-    
-    private final IngredientApplication ingredientApplication;
+@RequestMapping("/api/v1/users")
+public class UserController {
+
+    private final UserApplication userApplication;
 
     @Autowired
-    public IngredientController(final IngredientApplication ingredientApplication){
-        this.ingredientApplication = ingredientApplication;
+    public UserController(final UserApplication userApplication){
+        this.userApplication = userApplication;
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@Valid @RequestBody CreateOrUpdateIngredientDTO dto){
-        IngredientDTO ingredientDTO = this.ingredientApplication.add(dto);
+    public ResponseEntity<?> create(@Valid @RequestBody CreateUserDTO dto){
+        UserDTO userDTO = this.userApplication.add(dto);
 
-        return ResponseEntity.status(201).body(ingredientDTO);
+        return ResponseEntity.status(201).body(userDTO);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,  path = "/{id}")
     public ResponseEntity<?> get(@Valid @PathVariable UUID id) {
-        IngredientDTO ingredientDTO = this.ingredientApplication.get(id);
-        return ResponseEntity.ok(ingredientDTO);
+        UserDTO userDTO = this.userApplication.get(id);
+        return ResponseEntity.ok(userDTO);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable UUID id, @Valid @RequestBody CreateOrUpdateIngredientDTO dto) {
-        IngredientDTO ingredientDTO = this.ingredientApplication.update(id, dto);
-        return ResponseEntity.ok(ingredientDTO);
+    public ResponseEntity<?> update(@PathVariable UUID id, @Valid @RequestBody UpdateUserDTO dto) {
+        UserDTO userDTO = this.userApplication.update(id, dto);
+        return ResponseEntity.ok(userDTO);
     }
 
     @DeleteMapping(path = "/{id}")
     void delete(@PathVariable UUID id) {
-        this.ingredientApplication.delete(id);
+        this.userApplication.delete(id);
     }
-    
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAll(
         @RequestParam(required = false) String name,
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "10") int size
     ){
-        return ResponseEntity.status(200).body(this.ingredientApplication.getAll(name, page, size));
+        return ResponseEntity.status(200).body(this.userApplication.getAll(name, page, size));
     }
 }

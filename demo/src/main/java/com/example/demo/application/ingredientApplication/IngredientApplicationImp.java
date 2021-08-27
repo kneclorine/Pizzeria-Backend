@@ -3,6 +3,7 @@ package com.example.demo.application.ingredientApplication;
 import java.util.List;
 import java.util.UUID;
 
+import com.example.demo.core.ApplicationBase;
 import com.example.demo.domain.ingredientDomain.Ingredient;
 import com.example.demo.domain.ingredientDomain.IngredientProjection;
 import com.example.demo.domain.ingredientDomain.IngredientReadRepository;
@@ -14,20 +15,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class IngredientApplicationImp implements IngredientApplication {
+public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> implements IngredientApplication {
 
     private final IngredientWriteRepository ingredientWriteRepository;
     private final IngredientReadRepository ingredientReadRepository;
-    private final ModelMapper modelMapper = new ModelMapper(); //TODO: Preuntar a juancarlos
+    private final ModelMapper modelMapper;
     private final Logger logger;
 
     @Autowired
     public IngredientApplicationImp(final IngredientWriteRepository ingredientWriteRepository,
-                                    final IngredientReadRepository ingredientReadRepository,
-                                    final Logger logger){
+            final IngredientReadRepository ingredientReadRepository, final ModelMapper modelMapper,
+            final Logger logger) {
+
+        super((id) -> ingredientWriteRepository.findById(id));
 
         this.ingredientWriteRepository = ingredientWriteRepository;
         this.ingredientReadRepository = ingredientReadRepository;
+        this.modelMapper = modelMapper;
         this.logger = logger;
     }
 
@@ -36,12 +40,10 @@ public class IngredientApplicationImp implements IngredientApplication {
 
         Ingredient ingredient = modelMapper.map(dto, Ingredient.class);
         ingredient.setId(UUID.randomUUID());
-        // TODO: Validar nombre no duplicado || Select count(*) from ingredients where name = ? || Si devuelve 1 o mas, metemos un throw propio.
-        
-        ingredient.validate();
+        ingredient.validate("name", ingredient.getName(), (name) -> this.ingredientWriteRepository.exists(name));
 
         this.ingredientWriteRepository.add(ingredient);
-        logger.info("Ingredient"+"added succesfully."); // Paso datos del ingrediente en formato json
+        logger.info(this.serializeObject(ingredient, "added"));
 
         return modelMapper.map(ingredient, IngredientDTO.class);
     }
@@ -49,35 +51,38 @@ public class IngredientApplicationImp implements IngredientApplication {
     @Override
     public IngredientDTO get(UUID id) {
 
-        Ingredient ingredient = this.ingredientReadRepository.findById(id).orElseThrow();
+        Ingredient ingredient = this.findById(id);
+        return this.modelMapper.map(ingredient, IngredientDTO.class);
+    }
+
+    @Override
+    public IngredientDTO update(UUID id, CreateOrUpdateIngredientDTO dto) {
+
+        Ingredient ingredient = this.findById(id);
+        
+        if (ingredient.getName().equals(dto.getName())){
+            this.modelMapper.map(dto, ingredient);
+            ingredient.validate();
+        } else {
+            this.modelMapper.map(dto, ingredient);
+            ingredient.validate("name", ingredient.getName(), (name) -> this.ingredientWriteRepository.exists(name));
+        }
+        this.ingredientWriteRepository.update(ingredient);
+        logger.info(this.serializeObject(ingredient, "updated"));
 
         return this.modelMapper.map(ingredient, IngredientDTO.class);
     }
 
     @Override
-    public void update(UUID id, CreateOrUpdateIngredientDTO dtos) {
-
-        Ingredient ingredient = this.ingredientReadRepository.findById(id).orElseThrow();
-        ingredient.setId(id);
-        ingredient.setName(dtos.getName());
-        ingredient.setPrice(dtos.getPrice());
-
-        // TODO: Validar nombre no duplicado || Select count(*) from ingredients where name = ? || Si devuelve 1 o mas, metemos un throw propio.
-
-        this.ingredientWriteRepository.update(ingredient);
-        logger.info("Ingredient"+"updated succesfully."); 
-    }
-
-    @Override
     public void delete(UUID id) {
 
-        Ingredient ingredient = this.ingredientReadRepository.findById(id).orElseThrow();
+        Ingredient ingredient = this.findById(id);
         this.ingredientWriteRepository.delete(ingredient);
-        logger.info("Ingredient"+"deleted succesfully."); 
+        logger.info(this.serializeObject(ingredient, "deleted"));
     }
 
     @Override
     public List<IngredientProjection> getAll(String name, int page, int size) {
-        return this.getAll(name, page, size);
+        return this.ingredientReadRepository.getAll(name, page, size);
     }
 }
