@@ -1,16 +1,20 @@
 package com.example.demo.infraestructure.userInfraestructure;
 
 import com.example.demo.domain.userDomain.User;
+import com.example.demo.domain.userDomain.UserProjection;
+import com.example.demo.domain.userDomain.UserReadRepository;
 import com.example.demo.domain.userDomain.UserWriteRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserRepositoryImp implements UserWriteRepository{
+public class UserRepositoryImp implements UserWriteRepository, UserReadRepository{
 
     private final UserJPARepository userJPARepository;
 
@@ -37,6 +41,13 @@ public class UserRepositoryImp implements UserWriteRepository{
     @Override
     public void delete(User user) {
         this.userJPARepository.delete(user);
+    }
+
+    @Override
+    public List<UserProjection> getAll(String name, int page, int size) {
+        return this.userJPARepository.findByCriteria(
+            name,
+            PageRequest.of(page, size));
     }
 
     @Override

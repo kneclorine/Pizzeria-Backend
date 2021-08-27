@@ -56,7 +56,6 @@ public class IngredientController{
     void delete(@PathVariable UUID id) {
         this.ingredientApplication.delete(id);
     }
-
     
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAll(
