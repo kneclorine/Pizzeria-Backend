@@ -35,4 +35,10 @@ public @NoArgsConstructor @Getter @Setter class User extends EntityBase{
     @NotNull
     @Column(nullable = false)
     private Rol rol = Rol.USER;
+
+    @Override
+    public String toString() {
+
+        return String.format("User {id: %s, name: %s, lastName: %s, email: %s}", this.getId(), this.getName(), this.getLastName(), this.getEmail());
+    }
 }

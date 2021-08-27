@@ -87,10 +87,4 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
         this.userWriteRepository.delete(user);
         logger.info(this.serializeObject(user, "deleted"));
     }
-
-    private String serializeObject(User user, String messege) {
-
-        return String.format("User {id: %s, name: %s, lastName: %s, email: %s} %s succesfully.", user.getId(),
-                user.getName(), user.getLastName(), user.getEmail(), messege);
-    }
 }
