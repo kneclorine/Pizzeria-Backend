@@ -31,7 +31,7 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
     }
 
     @Override
-    public UserDTO add(CreateOrUpdateUserDTO dto) {
+    public UserDTO add(CreateUserDTO dto) {
 
         User user = modelMapper.map(dto, User.class);
         user.setId(UUID.randomUUID());
@@ -52,27 +52,19 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
     }
 
     @Override
-    public UserDTO update(UUID id, CreateOrUpdateUserDTO dto) {
+    public UserDTO update(UUID id, UpdateUserDTO dto) {
 
-        User userToUpdate = this.findById(id);
-        User userUpdated = modelMapper.map(dto, User.class);
-        userUpdated.setId(id);
-
-        if (userToUpdate.getEmail().equals(dto.getEmail())) {
-
-            userUpdated.validate();
+        User user = this.findById(id);
+        User userUpdated = this.modelMapper.map(dto, User.class);
+        userUpdated.setId(user.getId());
+        userUpdated.setEmail(user.getEmail());
+    
+        if(BCrypt.checkpw(userUpdated.getPassword(), user.getPassword())) {
+            userUpdated.setPassword(user.getPassword());
         } else {
-
-            userUpdated.validate("email", userUpdated.getEmail(), (email) -> this.userWriteRepository.exists(email));
-        }
-
-        if (BCrypt.checkpw(dto.getPassword(), userToUpdate.getPassword())) {
-
-            userUpdated.setPassword(userToUpdate.getPassword());            
-        }else {
-
             userUpdated.setPassword(BCrypt.hashpw(userUpdated.getPassword(), BCrypt.gensalt()));
         }
+        userUpdated.validate();
         
         this.userWriteRepository.update(userUpdated);
         logger.info(this.serializeObject(userUpdated, "updated"));

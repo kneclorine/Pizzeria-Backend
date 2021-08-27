@@ -4,7 +4,8 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
-import com.example.demo.application.userApplication.CreateOrUpdateUserDTO;
+import com.example.demo.application.userApplication.CreateUserDTO;
+import com.example.demo.application.userApplication.UpdateUserDTO;
 import com.example.demo.application.userApplication.UserApplication;
 import com.example.demo.application.userApplication.UserDTO;
 
@@ -32,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@Valid @RequestBody CreateOrUpdateUserDTO dto){
+    public ResponseEntity<?> create(@Valid @RequestBody CreateUserDTO dto){
         UserDTO userDTO = this.userApplication.add(dto);
 
         return ResponseEntity.status(201).body(userDTO);
@@ -45,7 +46,7 @@ public class UserController {
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable UUID id, @Valid @RequestBody CreateOrUpdateUserDTO dto) {
+    public ResponseEntity<?> update(@PathVariable UUID id, @Valid @RequestBody UpdateUserDTO dto) {
         UserDTO userDTO = this.userApplication.update(id, dto);
         return ResponseEntity.ok(userDTO);
     }
