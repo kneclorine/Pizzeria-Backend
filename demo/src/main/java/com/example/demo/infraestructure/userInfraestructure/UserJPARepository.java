@@ -13,8 +13,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserJPARepository extends JpaRepository<User, UUID>{
 
-    @Query("SELECT u.id as id, u.name as name, u.lastName as lastName, u.email as email FROM User u WHERE (:name is NULL OR u.name LIKE %:name%)")
-    List<UserProjection> findByCriteria(@Param("name") String name, Pageable pageable);
+    @Query("SELECT u.id as id, u.name as name, u.lastName as lastName, u.email as email FROM User u WHERE (:email is NULL OR u.email LIKE %:email%)")
+    List<UserProjection> findByCriteria(@Param("email") String email, Pageable pageable);
 
     @Query("SELECT CASE WHEN COUNT(u)>0 THEN true ELSE false END FROM User u WHERE u.email = :email")
     boolean exists(@Param("email") String email);

@@ -59,10 +59,10 @@ public class UserController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAll(
-        @RequestParam(required = false) String name,
+        @RequestParam(required = false) String email,
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "10") int size
     ){
-        return ResponseEntity.status(200).body(this.userApplication.getAll(name, page, size));
+        return ResponseEntity.status(200).body(this.userApplication.getAll(email, page, size));
     }
 }

@@ -44,9 +44,9 @@ public class UserRepositoryImp implements UserWriteRepository, UserReadRepositor
     }
 
     @Override
-    public List<UserProjection> getAll(String name, int page, int size) {
+    public List<UserProjection> getAll(String email, int page, int size) {
         return this.userJPARepository.findByCriteria(
-            name,
+            email,
             PageRequest.of(page, size));
     }
 
