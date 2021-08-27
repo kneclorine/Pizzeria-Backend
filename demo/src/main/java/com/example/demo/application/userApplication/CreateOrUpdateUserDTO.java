@@ -2,7 +2,9 @@ package com.example.demo.application.userApplication;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+
+import com.example.demo.domain.userDomain.Rol;
 
 import org.springframework.validation.annotation.Validated;
 
@@ -13,15 +15,18 @@ import lombok.Setter;
 @Validated
 public @NoArgsConstructor @Getter @Setter class CreateOrUpdateUserDTO {
 
-    @NotBlank @Size(min=2, max=255)
+    @NotBlank
     private String name;
     
-    @NotBlank @Size(min=2, max=255)
+    @NotBlank
     private String lastName;
     
-    @NotBlank @Email @Size(min=2, max=255)
+    @NotBlank @Email
     private String email;
 
-    @NotBlank @Size(min=8, max=255)
+    @NotBlank
     private String password;
+
+    @NotNull
+    private Rol rol = Rol.USER;
 }

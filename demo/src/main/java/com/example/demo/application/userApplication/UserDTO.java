@@ -2,6 +2,8 @@ package com.example.demo.application.userApplication;
 
 import java.util.UUID;
 
+import com.example.demo.domain.userDomain.Rol;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,4 +19,6 @@ public @NoArgsConstructor @Getter @Setter class UserDTO {
     private String email;
 
     private String password;
+
+    private Rol rol;
 }

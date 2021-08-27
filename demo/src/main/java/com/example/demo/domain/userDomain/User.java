@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.example.demo.core.EntityBase;
 
@@ -16,20 +15,20 @@ import lombok.Setter;
 @Entity
 public @NoArgsConstructor @Getter @Setter class User extends EntityBase{
 
-    @NotBlank @Size(min=2, max=255)
+    @NotBlank
     @Column(nullable = false)
     private String name;
 
-    @NotBlank @Size(min=2, max=255)
+    @NotBlank
     @Column(nullable = false)
     private String lastName;
 
     
-    @NotBlank @Email @Size(min=2, max=255)
+    @NotBlank @Email
     @Column(nullable = false, unique = true)
     private String email;
 
-    @NotBlank @Size(min=8, max=255)
+    @NotBlank
     @Column(nullable = false)
     private String password;
 

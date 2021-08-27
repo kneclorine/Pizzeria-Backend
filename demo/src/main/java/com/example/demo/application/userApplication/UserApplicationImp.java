@@ -54,22 +54,35 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
     @Override
     public UserDTO update(UUID id, CreateOrUpdateUserDTO dto) {
 
-        // TODO: Actualizar un usuario sin cambiarle el nombre
-        User user = this.findById(id);
-        user = modelMapper.map(dto, User.class);
-        user.setId(id);
-        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
-        user.validate();
+        User userToUpdate = this.findById(id);
+        User userUpdated = modelMapper.map(dto, User.class);
+        userUpdated.setId(id);
 
-        this.userWriteRepository.update(user);
-        logger.info(this.serializeObject(user, "updated"));
+        if (userToUpdate.getEmail().equals(dto.getEmail())) {
 
-        return modelMapper.map(user, UserDTO.class);
+            userUpdated.validate();
+        } else {
+
+            userUpdated.validate("email", userUpdated.getEmail(), (email) -> this.userWriteRepository.exists(email));
+        }
+
+        if (BCrypt.checkpw(dto.getPassword(), userToUpdate.getPassword())) {
+
+            userUpdated.setPassword(userToUpdate.getPassword());            
+        }else {
+
+            userUpdated.setPassword(BCrypt.hashpw(userUpdated.getPassword(), BCrypt.gensalt()));
+        }
+        
+        this.userWriteRepository.update(userUpdated);
+        logger.info(this.serializeObject(userUpdated, "updated"));
+
+        return modelMapper.map(userUpdated, UserDTO.class);
     }
 
     @Override
     public void delete(UUID id) {
-        
+
         User user = this.findById(id);
         this.userWriteRepository.delete(user);
         logger.info(this.serializeObject(user, "deleted"));

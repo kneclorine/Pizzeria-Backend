@@ -58,17 +58,21 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
     @Override
     public IngredientDTO update(UUID id, CreateOrUpdateIngredientDTO dto) {
 
-        // TODO: Actualizar un ingrediente sin cambiarle el nombre
-        Ingredient ingredient = this.findById(id);
-        ingredient = modelMapper.map(dto, Ingredient.class);
-        ingredient.setId(id);
+        Ingredient ingredientToUpdate = this.findById(id);
+        Ingredient ingredientUpdated = modelMapper.map(dto, Ingredient.class);
+        ingredientUpdated.setId(id);
+        
+        if (ingredientToUpdate.getName().equals(dto.getName())){
 
-        ingredient.validate();
+            ingredientUpdated.validate();
+        } else {
 
-        this.ingredientWriteRepository.update(ingredient);
-        logger.info(this.serializeObject(ingredient, "updated"));
+            ingredientUpdated.validate("name", ingredientUpdated.getName(), (name) -> this.ingredientWriteRepository.exists(name));
+        }
+        this.ingredientWriteRepository.update(ingredientUpdated);
+        logger.info(this.serializeObject(ingredientUpdated, "updated"));
 
-        return this.modelMapper.map(ingredient, IngredientDTO.class);
+        return this.modelMapper.map(ingredientUpdated, IngredientDTO.class);
     }
 
     @Override
