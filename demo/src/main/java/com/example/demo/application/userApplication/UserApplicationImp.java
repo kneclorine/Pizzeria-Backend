@@ -47,8 +47,8 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
     @Override
     public UserDTO get(UUID id) {
 
-        User ingredient = this.findById(id);
-        return this.modelMapper.map(ingredient, UserDTO.class);
+        User user = this.findById(id);
+        return this.modelMapper.map(user, UserDTO.class);
     }
 
     @Override
