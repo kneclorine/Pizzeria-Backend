@@ -67,6 +67,14 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
         return modelMapper.map(user, UserDTO.class);
     }
 
+    @Override
+    public void delete(UUID id) {
+        
+        User user = this.findById(id);
+        this.userWriteRepository.delete(user);
+        logger.info(this.serializeObject(user, "deleted"));
+    }
+
     private String serializeObject(User user, String messege) {
 
         return String.format("User {id: %s, name: %s, lastName: %s, email: %s} %s succesfully.", user.getId(),

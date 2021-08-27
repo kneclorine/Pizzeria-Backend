@@ -35,6 +35,11 @@ public class UserRepositoryImp implements UserWriteRepository{
     }
 
     @Override
+    public void delete(User user) {
+        this.userJPARepository.delete(user);
+    }
+
+    @Override
     public boolean exists(String email) {
         return this.userJPARepository.exists(email);
     }

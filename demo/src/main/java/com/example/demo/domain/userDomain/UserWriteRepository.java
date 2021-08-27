@@ -9,4 +9,5 @@ public interface UserWriteRepository extends FindById<User, UUID>,ExistsByField{
 
     public void add(User user);
     public void update(User user);
+    public void delete(User user);
 }
