@@ -9,6 +9,7 @@ import java.util.UUID;
 import com.example.demo.domain.imageDomain.ImageEntity;
 import com.example.demo.infraestructure.imageInfraestructure.ImageRepositoryImp;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,15 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImageApplicationImp implements ImageApplication{
 
     private final ImageRepositoryImp imageRepositoryImp;
+    private final ModelMapper modelMapper;
     private final Logger logger;
 
     @Autowired
-    public ImageApplicationImp(final ImageRepositoryImp imageRepositoryImp,final Logger logger) {
+    public ImageApplicationImp(final ImageRepositoryImp imageRepositoryImp,
+                                final ModelMapper modelMapper,
+                                final Logger logger) {
         this.imageRepositoryImp = imageRepositoryImp;
+        this.modelMapper = modelMapper;
         this.logger = logger;
     }
 
@@ -34,18 +39,11 @@ public class ImageApplicationImp implements ImageApplication{
         
         imageRepositoryImp.add(imageEntity);
         logger.info("Image added succesfully.");
-        return null;
+        return imageEntity;
     }
 
     public Optional<ImageEntity> getFile(UUID id) {
         return imageRepositoryImp.get(id);
     }
 
-    public File convert(MultipartFile multipartFile) throws IOException {
-        File file = new File(multipartFile.getOriginalFilename());
-        FileOutputStream fo = new FileOutputStream(file);
-        fo.write(multipartFile.getBytes());
-        fo.close();
-        return file;
-    }
 }

@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,20 +29,18 @@ public class ImageController {
         this.imageApplicationImp = imageApplicationImp;
     }
 
-    @PostMapping
-    public ResponseEntity<String> upload(@RequestParam("image") MultipartFile file) throws IOException {
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> upload(@RequestParam("image") MultipartFile file) throws IOException {
 
         ImageDTO imageDTO = new ImageDTO();
         imageDTO.setData(file.getBytes());
         ImageEntity imageEntity = imageApplicationImp.save(imageDTO);
-
-        return ResponseEntity.status(HttpStatus.OK)
-                                .body(String.format("Archivo subido correctamente: %s, uuid=%s", file.getOriginalFilename(), imageEntity.getId()));
-    
+        
+        return ResponseEntity.status(201).body(imageEntity.getId());
     }
 
     
-    @GetMapping("/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable UUID id) {
         Optional<ImageEntity> imageEntityOptional = imageApplicationImp.getFile(id);
 
