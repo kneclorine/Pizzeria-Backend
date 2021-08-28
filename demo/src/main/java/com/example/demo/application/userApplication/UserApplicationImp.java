@@ -63,6 +63,7 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
         User userUpdated = this.modelMapper.map(dto, User.class);
         userUpdated.setId(user.getId());
         userUpdated.setEmail(user.getEmail());
+        userUpdated.setRol(user.getRol());
     
         if(BCrypt.checkpw(userUpdated.getPassword(), user.getPassword())) {
             userUpdated.setPassword(user.getPassword());
@@ -86,7 +87,7 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
     }
 
     @Override
-    public List<UserProjection> getAll(String name, int page, int size) {
-        return this.userReadRepository.getAll(name, page, size);
+    public List<UserProjection> getAll(String email, int page, int size) {
+        return this.userReadRepository.getAll(email, page, size);
     }
 }

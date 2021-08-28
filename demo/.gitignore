@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Java compiled files ###
+*.class
