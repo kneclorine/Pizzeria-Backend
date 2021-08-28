@@ -1,5 +1,6 @@
 package com.example.demo.domain.pizzaDomain;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.example.demo.core.EntityBase;
@@ -24,11 +27,12 @@ import lombok.Setter;
 @Entity
 public @NoArgsConstructor @AllArgsConstructor @Getter @Setter class Pizza extends EntityBase{
 
-    @NotNull
+    @NotBlank
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Transient
+    @NotNull @Digits(integer = 3, fraction = 2) @DecimalMin(value = "0.0", inclusive = false)
+    @Column(nullable = false, precision = 3, scale = 2)
     private BigDecimal price;
 
     @Embedded
@@ -43,5 +47,24 @@ public @NoArgsConstructor @AllArgsConstructor @Getter @Setter class Pizza extend
 
     public void removeIngredient(Ingredient ingredient){
         this.ingredients.remove(ingredient);
+    }
+
+    public BigDecimal calculatePrice(){
+
+        BigDecimal totalPrice = new BigDecimal(0.00);
+        BigDecimal profit = new BigDecimal(1.20);
+
+        for(Ingredient ingredient : ingredients){
+            totalPrice = totalPrice.add(ingredient.getPrice());
+        }
+        totalPrice = totalPrice.multiply(profit);
+        totalPrice = totalPrice.setScale(2, RoundingMode.HALF_EVEN);
+
+        return totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Pizza {id: %s, name: %s, price: %s, with ingredients:[%s]}", this.getId(), this.getName(), this.getPrice(), this.getIngredients().toString());
     }
 }

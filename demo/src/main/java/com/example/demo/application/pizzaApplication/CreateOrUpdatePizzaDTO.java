@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.validation.annotation.Validated;
 
@@ -17,6 +17,6 @@ public @Getter @Setter class CreateOrUpdatePizzaDTO {
     @NotBlank
     public String name;
 
-    @NotNull
+    @NotEmpty
     public Set<UUID> Ingredients;
 }
