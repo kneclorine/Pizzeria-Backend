@@ -7,5 +7,5 @@ import com.example.demo.core.functionalInterfaces.FindById;
 
 public interface PizzaWriteRepository extends FindById<Pizza, UUID>, ExistsByField{
 
-    public void add(Pizza pizza); 
+    public void add(Pizza pizza);
 }

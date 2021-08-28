@@ -51,4 +51,11 @@ public class PizzaApplicationImp extends ApplicationBase<Pizza, UUID> implements
 
         return this.modelMapper.map(pizza, PizzaDTO.class);
     }
+
+    @Override
+    public PizzaDTO get(UUID id) {
+        
+        Pizza pizza = this.findById(id);
+        return this.modelMapper.map(pizza, PizzaDTO.class);
+    }
 }
