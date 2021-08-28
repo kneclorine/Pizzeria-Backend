@@ -40,6 +40,7 @@ public class UserController {
         return ResponseEntity.status(201).body(userDTO);
     }
 
+    // @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,  path = "/{id}")
     public ResponseEntity<?> get(@Valid @PathVariable UUID id) {
         UserDTO userDTO = this.userApplication.get(id);
@@ -53,7 +54,7 @@ public class UserController {
     }
 
     @DeleteMapping(path = "/{id}")
-    void delete(@PathVariable UUID id) {
+    void delete(@Valid @PathVariable UUID id) {
         this.userApplication.delete(id);
     }
 
@@ -65,4 +66,25 @@ public class UserController {
     ){
         return ResponseEntity.status(200).body(this.userApplication.getAll(email, page, size));
     }
+
+    // private String getJWTToken(String username) {
+	// 	String secretKey = "mySecretKey";
+	// 	List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+	// 			.commaSeparatedStringToAuthorityList("USER");
+		
+	// 	String token = Jwts
+	// 			.builder()
+	// 			.setId("softtekJWT")
+	// 			.setSubject(username)
+	// 			.claim("authorities",
+	// 					grantedAuthorities.stream()
+	// 							.map(GrantedAuthority::getAuthority)
+	// 							.collect(Collectors.toList()))
+	// 			.setIssuedAt(new Date(System.currentTimeMillis()))
+	// 			.setExpiration(new Date(System.currentTimeMillis() + 3600000))
+	// 			.signWith(SignatureAlgorithm.HS512,
+	// 					secretKey.getBytes()).compact();
+
+	// 	return "Bearer " + token;
+	// }
 }
