@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable UUID id, @Valid @RequestBody UpdateUserDTO dto) {
+    public ResponseEntity<?> update(@Valid @PathVariable UUID id, @Valid @RequestBody UpdateUserDTO dto) {
         UserDTO userDTO = this.userApplication.update(id, dto);
         return ResponseEntity.ok(userDTO);
     }

@@ -4,14 +4,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-import com.example.demo.core.Entities;
+import com.example.demo.core.EntityBase;
+import com.example.demo.domain.imageDomain.Image;
 import com.example.demo.domain.ingredientDomain.Ingredient;
 
 import lombok.AllArgsConstructor;
@@ -20,21 +22,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-public @NoArgsConstructor @AllArgsConstructor @Getter @Setter class Pizza extends Entities{
+public @NoArgsConstructor @AllArgsConstructor @Getter @Setter class Pizza extends EntityBase{
 
-    @NotNull @Size(min = 2, max = 255)
+    @NotNull
     @Column(nullable = false, unique = true)
     private String name;
 
-    @NotNull @Size(max = 255)
-    @Column(nullable = false)
-    private String url;
-
-    @NotNull
-    @Column(nullable = false, precision = 5, scale = 2) @DecimalMin(value = "0.0", inclusive = false)
-    @Digits(integer = 5, fraction = 2)
+    @Transient
     private BigDecimal price;
 
-    @Transient
+    @Embedded
+    private Image image;
+
+    @ManyToMany @JoinTable(name = "pizzaIngredient", joinColumns = @JoinColumn(name="ingredient_id"), inverseJoinColumns = @JoinColumn(name = "pizza_id"))
     private final Set<Ingredient> ingredients = new HashSet<Ingredient>();
+
+    public void addIngredient(Ingredient ingredient){
+        this.ingredients.add(ingredient);
+    }
+
+    public void removeIngredient(Ingredient ingredient){
+        this.ingredients.remove(ingredient);
+    }
 }

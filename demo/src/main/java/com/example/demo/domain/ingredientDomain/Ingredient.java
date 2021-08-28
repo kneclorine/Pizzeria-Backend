@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull;
 import com.example.demo.core.EntityBase;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 public @NoArgsConstructor @Getter @Setter class Ingredient extends EntityBase{
