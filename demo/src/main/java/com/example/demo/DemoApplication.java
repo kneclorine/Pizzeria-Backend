@@ -28,7 +28,6 @@ public class DemoApplication{
 				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
-				.antMatchers(HttpMethod.GET, "/api/v1/users").hasRole("USER")
 				.anyRequest().authenticated();
 		}
 	}

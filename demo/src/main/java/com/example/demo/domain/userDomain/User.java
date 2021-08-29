@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-public @NoArgsConstructor @Getter @Setter class User extends EntityBase{
+public @NoArgsConstructor @Getter @Setter class User extends EntityBase {
 
     @NotBlank
     @Column(nullable = false)
@@ -23,8 +23,8 @@ public @NoArgsConstructor @Getter @Setter class User extends EntityBase{
     @Column(nullable = false)
     private String lastName;
 
-    
-    @NotBlank @Email
+    @NotBlank
+    @Email
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -39,6 +39,7 @@ public @NoArgsConstructor @Getter @Setter class User extends EntityBase{
     @Override
     public String toString() {
 
-        return String.format("User {id: %s, name: %s, lastName: %s, email: %s}", this.getId(), this.getName(), this.getLastName(), this.getEmail());
+        return String.format("User {id: %s, name: %s, lastName: %s, email: %s, rol: %s}", this.getId(), this.getName(),
+                this.getLastName(), this.getEmail(), this.getRol());
     }
 }
