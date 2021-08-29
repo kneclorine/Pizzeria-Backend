@@ -25,9 +25,7 @@ public class ImageRepositoryImp implements ImageRepository {
     @Override
     public void add(ImageEntity imageEntity) {
         
-        redisTemplate.opsForValue().set(imageEntity.getId(), imageEntity.getData());
-
-        redisTemplate.expire(imageEntity.getId(), 1, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().set(imageEntity.getId(),imageEntity.getData(),10,TimeUnit.SECONDS);        
         
     }
 

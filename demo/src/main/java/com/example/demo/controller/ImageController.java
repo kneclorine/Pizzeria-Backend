@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.application.imageApplication.CreateOrUpdateImageDTO;
 import com.example.demo.application.imageApplication.ImageApplicationImp;
-import com.example.demo.application.imageApplication.ImageDTO;
 import com.example.demo.domain.imageDomain.ImageEntity;
 
 @RestController
@@ -32,9 +32,9 @@ public class ImageController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> upload(@RequestParam("image") MultipartFile file) throws IOException {
 
-        ImageDTO imageDTO = new ImageDTO();
-        imageDTO.setData(file.getBytes());
-        ImageEntity imageEntity = imageApplicationImp.save(imageDTO);
+        CreateOrUpdateImageDTO dto = new CreateOrUpdateImageDTO();
+        dto.setData(file.getBytes());
+        ImageEntity imageEntity = imageApplicationImp.save(dto);
         
         return ResponseEntity.status(201).body(imageEntity.getId());
     }

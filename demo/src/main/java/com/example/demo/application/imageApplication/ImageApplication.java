@@ -6,6 +6,6 @@ import java.util.UUID;
 import com.example.demo.domain.imageDomain.ImageEntity;
 
 public interface ImageApplication {
-    public ImageEntity save(ImageDTO dto);
+    public ImageEntity save(CreateOrUpdateImageDTO dto);
     public Optional<ImageEntity> getFile(UUID id);
 }
