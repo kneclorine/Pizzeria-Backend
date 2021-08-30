@@ -41,10 +41,9 @@ public class ImageController {
 
     
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
-    public ResponseEntity<byte[]> getFile(@PathVariable UUID id) {
+    public ResponseEntity<?> getFile(@PathVariable UUID id) {
         CloudinaryDTO cloudinaryDTO = imageApplicationImp.getFile(id);
-
-        return ResponseEntity.ok()
-                             .body(cloudinaryDTO.getData());
+        //TODO: Cloudinary
+        return ResponseEntity.ok(cloudinaryDTO);
     }
 }
