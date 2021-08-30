@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.example.demo.core.exceptions.InternalServerErrorEnum;
 import com.example.demo.core.exceptions.InternalServerErrorException;
+import com.example.demo.core.exceptions.NotFoundException;
 import com.example.demo.domain.imageDomain.ImageEntity;
 import com.example.demo.domain.imageDomain.ImageRepository;
 
@@ -28,7 +29,7 @@ public class ImageRepositoryImp implements ImageRepository {
     public void add(ImageEntity imageEntity) {
         
         try{
-            redisTemplate.opsForValue().set(imageEntity.getId().toString(),imageEntity.getData(),Duration.ofSeconds(40));
+            redisTemplate.opsForValue().set(imageEntity.getId().toString(),imageEntity.getData(),Duration.ofDays(1));
         
         }catch(Exception e){
             throw new InternalServerErrorException(InternalServerErrorEnum.REDIRECT);
@@ -42,7 +43,7 @@ public class ImageRepositoryImp implements ImageRepository {
     @Override
     public Optional<ImageEntity> get(UUID id) {
         try{
-            byte[] bytes = this.redisTemplate.opsForValue().get(id);
+            byte[] bytes = this.redisTemplate.opsForValue().get(id.toString());
             if(bytes==null){
                 return Optional.of(null);
             }
@@ -51,7 +52,7 @@ public class ImageRepositoryImp implements ImageRepository {
             imageEntity.setData(bytes);
             return Optional.of(imageEntity);
         }catch(Exception e){
-            throw new InternalServerErrorException(InternalServerErrorEnum.REDIRECT);
+            throw new NotFoundException("Not Found");
         }finally{
             if(!this.redisTemplate.getConnectionFactory().getConnection().isClosed()){
                 this.redisTemplate.getConnectionFactory().getConnection().close();
