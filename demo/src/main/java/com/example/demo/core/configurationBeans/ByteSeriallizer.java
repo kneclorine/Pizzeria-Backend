@@ -5,7 +5,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 
 import lombok.NoArgsConstructor;
 
-public @NoArgsConstructor class MySeriallizer implements RedisSerializer<byte[]>{
+public @NoArgsConstructor class ByteSeriallizer implements RedisSerializer<byte[]>{
     @Override
     public byte[] serialize(byte[] t) throws SerializationException {
         return t;
