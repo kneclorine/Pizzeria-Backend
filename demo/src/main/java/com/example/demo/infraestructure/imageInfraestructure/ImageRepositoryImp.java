@@ -1,9 +1,11 @@
 package com.example.demo.infraestructure.imageInfraestructure;
 
+import java.time.Duration;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
+import com.example.demo.core.exceptions.InternalServerErrorEnum;
+import com.example.demo.core.exceptions.InternalServerErrorException;
 import com.example.demo.domain.imageDomain.ImageEntity;
 import com.example.demo.domain.imageDomain.ImageRepository;
 
@@ -14,10 +16,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ImageRepositoryImp implements ImageRepository {
 
-    private final RedisTemplate<UUID,byte[]> redisTemplate;
+    private final RedisTemplate<String,byte[]> redisTemplate;
 
     @Autowired
-    public ImageRepositoryImp(final RedisTemplate<UUID, byte[]> redisTemplate){
+    public ImageRepositoryImp(final RedisTemplate<String,byte[]> redisTemplate){
         
         this.redisTemplate = redisTemplate;
     }
@@ -25,14 +27,36 @@ public class ImageRepositoryImp implements ImageRepository {
     @Override
     public void add(ImageEntity imageEntity) {
         
-        redisTemplate.opsForValue().set(imageEntity.getId(),imageEntity.getData(),10,TimeUnit.SECONDS);        
+        try{
+            redisTemplate.opsForValue().set(imageEntity.getId().toString(),imageEntity.getData(),Duration.ofSeconds(10));
         
+        }catch(Exception e){
+            throw new InternalServerErrorException(InternalServerErrorEnum.REDIRECT);
+        }finally{
+            if(!this.redisTemplate.getConnectionFactory().getConnection().isClosed()){
+                this.redisTemplate.getConnectionFactory().getConnection().close();
+            }
+        }
     }
 
     @Override
     public Optional<ImageEntity> get(UUID id) {
-        // TODO Auto-generated method stub
-        return null;
+        try{
+            byte[] bytes = this.redisTemplate.opsForValue().get(id);
+            if(bytes==null){
+                return Optional.of(null);
+            }
+            ImageEntity imageEntity = new ImageEntity();
+            imageEntity.setId(id);
+            imageEntity.setData(bytes);
+            return Optional.of(imageEntity);
+        }catch(Exception e){
+            throw new InternalServerErrorException(InternalServerErrorEnum.REDIRECT);
+        }finally{
+            if(!this.redisTemplate.getConnectionFactory().getConnection().isClosed()){
+                this.redisTemplate.getConnectionFactory().getConnection().close();
+            }
+        }
     }
     
 }
