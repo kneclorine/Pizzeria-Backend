@@ -28,7 +28,7 @@ public class ImageRepositoryImp implements ImageRepository {
     public void add(ImageEntity imageEntity) {
         
         try{
-            redisTemplate.opsForValue().set(imageEntity.getId().toString(),imageEntity.getData(),Duration.ofSeconds(10));
+            redisTemplate.opsForValue().set(imageEntity.getId().toString(),imageEntity.getData(),Duration.ofSeconds(40));
         
         }catch(Exception e){
             throw new InternalServerErrorException(InternalServerErrorEnum.REDIRECT);
