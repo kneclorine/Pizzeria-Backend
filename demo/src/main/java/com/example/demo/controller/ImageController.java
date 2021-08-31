@@ -42,16 +42,19 @@ public class ImageController {
         
         return ResponseEntity.status(201).body(imageDTO.getId());
     }
-    Cloudinary cloudinary = CloudinaryConfiguration.buildConnection();
     
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
     public ResponseEntity<?> getFile(@PathVariable UUID id) {
         CloudinaryDTO cloudinaryDTO = imageApplicationImp.getFile(id);
-
-        // cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
-        // String cloudUrl = cloudinary.url().secure(true).format("png").transformation(new Transformation().crop("fill")).publicId(id).generate();
-        //TODO: Cloudinary
         
+        Cloudinary cloudinary = new Cloudinary();
+        // cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+
+        String format = "png";
+        Transformation transformation= new Transformation().crop("fill");
+        String cloudUrl= cloudinary.url().secure(true).format(format)
+        .transformation(transformation).publicId(id).generate();
+
         return ResponseEntity.ok(cloudinaryDTO);
     }
 }

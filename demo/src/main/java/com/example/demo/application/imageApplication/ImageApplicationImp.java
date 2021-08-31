@@ -35,15 +35,19 @@ public class ImageApplicationImp extends ApplicationBase<ImageEntity, UUID> impl
         imageEntity.setData(dto.getData());
         
         imageRepository.add(imageEntity);
-        logger.info("Image added succesfully.");
+        this.logger.info(serializeObject(imageEntity, "added"));
 
-        ImageDTO imageDTO = new ImageDTO();
-        imageDTO.setId(imageEntity.getId());
-        return imageDTO;
+        return modelMapper.map(imageEntity, ImageDTO.class);
     }
 
     public CloudinaryDTO getFile(UUID id) {
         return modelMapper.map(this.findById(id),CloudinaryDTO.class);
+    }
+
+    private String serializeObject(ImageEntity image, String msg){
+        return String.format("Image {id: %s, data: %s} has been %s succesfully.",
+                            image.getId(), image.getData(),
+                            msg);
     }
 
 }

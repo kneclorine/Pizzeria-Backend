@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import com.example.demo.core.exceptions.InternalServerErrorEnum;
 import com.example.demo.core.exceptions.InternalServerErrorException;
-import com.example.demo.core.exceptions.NotFoundException;
 import com.example.demo.domain.imageDomain.ImageEntity;
 import com.example.demo.domain.imageDomain.ImageRepository;
 
@@ -52,7 +51,7 @@ public class ImageRepositoryImp implements ImageRepository {
             imageEntity.setData(bytes);
             return Optional.of(imageEntity);
         }catch(Exception e){
-            throw new NotFoundException("Not Found");
+            throw new InternalServerErrorException(InternalServerErrorEnum.REDIRECT);
         }finally{
             if(!this.redisTemplate.getConnectionFactory().getConnection().isClosed()){
                 this.redisTemplate.getConnectionFactory().getConnection().close();
