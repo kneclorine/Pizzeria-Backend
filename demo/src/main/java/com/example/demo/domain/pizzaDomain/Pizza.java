@@ -11,7 +11,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.example.demo.domain.Entities;
+import com.example.demo.core.EntityBase;
 import com.example.demo.domain.PizzaIngredient;
 import com.example.demo.domain.commentDomain.Comment;
 import com.example.demo.domain.ingredientDomain.Ingredient;
@@ -19,7 +19,7 @@ import com.example.demo.domain.ingredientDomain.Ingredient;
 import java.util.Iterator;
 
 @Entity
-public class Pizza extends Entities{
+public class Pizza extends EntityBase{
 
     @NotNull @Size(min = 2, max = 255)
     @Column(nullable = false, unique = true)

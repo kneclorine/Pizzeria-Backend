@@ -1,10 +1,13 @@
 package com.example.demo.application.ingredientApplication;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class IngredientDTO implements Serializable{
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+public @Getter @Setter @NoArgsConstructor class IngredientDTO {
     
     public UUID id;
     public String name;

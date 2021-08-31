@@ -3,7 +3,7 @@ package com.example.demo.application.userApplication;
 import java.util.List;
 import java.util.UUID;
 
-import com.example.demo.domain.Entities;
+import com.example.demo.core.EntityBase;
 import com.example.demo.domain.userDomain.User;
 import com.example.demo.domain.userDomain.UserProjection;
 

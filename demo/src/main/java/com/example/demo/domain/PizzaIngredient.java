@@ -4,11 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.example.demo.core.EntityBase;
 import com.example.demo.domain.ingredientDomain.Ingredient;
 import com.example.demo.domain.pizzaDomain.Pizza;
 
 @Entity
-public class PizzaIngredient extends Entities{
+public class PizzaIngredient extends EntityBase{
 
     @ManyToOne
     @JoinColumn(name = "pizza_id")

@@ -10,12 +10,12 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
-import com.example.demo.domain.Entities;
+import com.example.demo.core.EntityBase;
 import com.example.demo.domain.pizzaDomain.Pizza;
 import com.example.demo.domain.userDomain.User;
 
 @Entity
-public class Comment extends Entities{
+public class Comment extends EntityBase{
 
     @NotNull
     @Column(columnDefinition = "text",nullable = false)

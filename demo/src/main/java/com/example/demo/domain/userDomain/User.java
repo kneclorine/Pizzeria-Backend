@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size; 
 import javax.validation.constraints.NotBlank;
 
-import com.example.demo.domain.Entities;
+import com.example.demo.core.EntityBase;
 import com.example.demo.domain.commentDomain.Comment;
 
 import lombok.Getter;
@@ -19,7 +19,7 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 
 @Entity
-public @NoArgsConstructor @Getter @Setter class User extends Entities{
+public @NoArgsConstructor @Getter @Setter class User extends EntityBase{
 
 
     @NotNull @Size(min=2, max=255)

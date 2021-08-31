@@ -6,13 +6,17 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.example.demo.domain.ingredientDomain.Ingredient;
-import com.example.demo.domain.ingredientDomain.IngredientRepository;
+import com.example.demo.domain.ingredientDomain.IngredientProjection;
+import com.example.demo.domain.ingredientDomain.IngredientReadRepository;
+import com.example.demo.domain.ingredientDomain.IngredientWriteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Repository;
 
-public class IngredientRepositoryImp implements IngredientRepository {
+@Repository
+public class IngredientRepositoryImp implements IngredientWriteRepository, IngredientReadRepository {
 
     
     private final IngredientJPARepository ingredientJPARepository;
@@ -28,25 +32,29 @@ public class IngredientRepositoryImp implements IngredientRepository {
     }
 
     @Override
-    public void update(Ingredient ingredient) {
-        this.ingredientJPARepository.save(ingredient);
-    }
-
-    @Override
-    public void delete(Ingredient ingredient) {
-        this.ingredientJPARepository.delete(ingredient);
-    }
-
-    @Override
-    public Optional<Ingredient> get(UUID id) {
+    public Optional<Ingredient> findById(UUID id) {
         return this.ingredientJPARepository.findById(id);
     }
 
     @Override
-    public List<Ingredient> getAll(String name, BigDecimal price, int page, int size) {
-        return this.ingredientJPARepository.findByCriteria(
-            name, price,
-            PageRequest.of(page, size, Sort.by("name").descending())
-        );
+    public boolean exists(String name) {
+        return this.ingredientJPARepository.exists(name);
     }
+
+    @Override
+    public List<IngredientProjection> getAll(String name, int page, int size) {
+        return this.ingredientJPARepository.findByCriteria(name,
+        PageRequest.of(page, size));
+    }
+
+    @Override
+    public void update(Ingredient ingredient) {
+        this.ingredientJPARepository.save(ingredient);
+    }
+
+   @Override
+    public void delete(Ingredient ingredient) {
+        this.ingredientJPARepository.delete(ingredient);
+    }
+
 }

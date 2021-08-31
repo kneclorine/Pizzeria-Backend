@@ -1,4 +1,4 @@
-package com.example.demo.application;
+package com.example.demo.core.ConfigurationBeans;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
