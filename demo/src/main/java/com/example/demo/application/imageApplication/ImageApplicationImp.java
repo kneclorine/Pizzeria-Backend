@@ -1,5 +1,8 @@
 package com.example.demo.application.imageApplication;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.UUID;
 
 import com.example.demo.domain.imageDomain.ImageEntity;
@@ -10,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
@@ -33,7 +37,7 @@ public class ImageApplicationImp extends ApplicationBase<ImageEntity, UUID> impl
         ImageEntity imageEntity = new ImageEntity();
         imageEntity.setId(UUID.randomUUID());
         imageEntity.setData(dto.getData());
-        
+        imageEntity.validate();
         imageRepository.add(imageEntity);
         this.logger.info(serializeObject(imageEntity, "added"));
 
@@ -41,7 +45,9 @@ public class ImageApplicationImp extends ApplicationBase<ImageEntity, UUID> impl
     }
 
     public CloudinaryDTO getFile(UUID id) {
-        return modelMapper.map(this.findById(id),CloudinaryDTO.class);
+        CloudinaryDTO cloudinaryDTO = modelMapper.map(this.findById(id),CloudinaryDTO.class);
+        cloudinaryDTO.getUrl();
+        return cloudinaryDTO;
     }
 
     private String serializeObject(ImageEntity image, String msg){
@@ -50,4 +56,11 @@ public class ImageApplicationImp extends ApplicationBase<ImageEntity, UUID> impl
                             msg);
     }
 
+    public File convert(MultipartFile multipartFile) throws IOException {
+        File file = new File(multipartFile.getOriginalFilename());
+        FileOutputStream fo = new FileOutputStream(file);
+        fo.write(multipartFile.getBytes());
+        fo.close();
+        return file;
+    }
 }

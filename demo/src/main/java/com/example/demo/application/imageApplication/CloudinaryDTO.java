@@ -8,5 +8,5 @@ import lombok.Setter;
 
 public @NoArgsConstructor @Getter @Setter class CloudinaryDTO {
     @NotBlank
-    public byte[] data;
+    private String Url;
 }

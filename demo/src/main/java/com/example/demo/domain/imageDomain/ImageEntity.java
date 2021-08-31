@@ -19,5 +19,5 @@ public @NoArgsConstructor @Getter @Setter class ImageEntity extends EntityBase{
 
     @Size(min=1)
     private byte[] data;
-
+    private String url;
 }

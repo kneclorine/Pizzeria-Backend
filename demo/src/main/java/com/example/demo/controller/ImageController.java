@@ -14,14 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.cloudinary.Cloudinary;
-import com.cloudinary.Transformation;
-import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.application.imageApplication.CloudinaryDTO;
 import com.example.demo.application.imageApplication.CreateOrUpdateImageDTO;
 import com.example.demo.application.imageApplication.ImageApplicationImp;
 import com.example.demo.application.imageApplication.ImageDTO;
-import com.example.demo.core.configurationBeans.CloudinaryConfiguration;
+
 
 @RestController
 @RequestMapping("/api/v1/images")
@@ -39,22 +36,12 @@ public class ImageController {
         CreateOrUpdateImageDTO dto = new CreateOrUpdateImageDTO();
         dto.setData(file.getBytes());
         ImageDTO imageDTO = imageApplicationImp.save(dto);
-        
-        return ResponseEntity.status(201).body(imageDTO.getId());
+        return ResponseEntity.status(201).body(imageDTO);
     }
     
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
-    public ResponseEntity<?> getFile(@PathVariable UUID id) {
+    public ResponseEntity<?> getData(@PathVariable UUID id) {
         CloudinaryDTO cloudinaryDTO = imageApplicationImp.getFile(id);
-        
-        Cloudinary cloudinary = new Cloudinary();
-        // cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
-
-        String format = "png";
-        Transformation transformation= new Transformation().crop("fill");
-        String cloudUrl= cloudinary.url().secure(true).format(format)
-        .transformation(transformation).publicId(id).generate();
-
         return ResponseEntity.ok(cloudinaryDTO);
     }
 }
