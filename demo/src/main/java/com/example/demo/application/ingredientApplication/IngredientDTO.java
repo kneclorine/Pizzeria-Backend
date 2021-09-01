@@ -9,6 +9,7 @@ import lombok.Setter;
 
 public @Getter @Setter @NoArgsConstructor class IngredientDTO{
     
+    @NotBlank
     private UUID id;
     
     private String name;
