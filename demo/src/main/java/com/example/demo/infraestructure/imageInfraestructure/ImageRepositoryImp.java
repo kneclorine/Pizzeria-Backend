@@ -1,9 +1,13 @@
 package com.example.demo.infraestructure.imageInfraestructure;
 
 import java.time.Duration;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import com.example.demo.core.configurationBeans.CloudinaryConfiguration;
 import com.example.demo.core.exceptions.InternalServerErrorEnum;
 import com.example.demo.core.exceptions.InternalServerErrorException;
 import com.example.demo.domain.imageDomain.ImageEntity;
@@ -17,6 +21,7 @@ import org.springframework.stereotype.Repository;
 public class ImageRepositoryImp implements ImageRepository {
 
     private final RedisTemplate<String,byte[]> redisTemplate;
+    private final Cloudinary cloudinary = CloudinaryConfiguration.buildConnection();
 
     @Autowired
     public ImageRepositoryImp(final RedisTemplate<String,byte[]> redisTemplate){
@@ -25,11 +30,12 @@ public class ImageRepositoryImp implements ImageRepository {
     }
 
     @Override
-    public void add(ImageEntity imageEntity) {
+    public String add(ImageEntity imageEntity) {
         
         try{
             redisTemplate.opsForValue().set(imageEntity.getId().toString(),imageEntity.getData(),Duration.ofDays(1));
-            
+            Map result = cloudinary.uploader().upload(imageEntity.getData(), ObjectUtils.emptyMap());
+            return (String) result.get("public_id");
         }catch(Exception e){
             throw new InternalServerErrorException(InternalServerErrorEnum.REDIRECT);
         }finally{

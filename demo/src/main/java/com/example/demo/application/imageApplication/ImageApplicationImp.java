@@ -1,15 +1,12 @@
 package com.example.demo.application.imageApplication;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.UUID;
 
 import com.example.demo.domain.imageDomain.ImageEntity;
 import com.example.demo.domain.imageDomain.ImageRepository;
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.core.ApplicationBase;
-import com.example.demo.core.configurationBeans.CloudinaryConfiguration;
+
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -24,7 +21,7 @@ public class ImageApplicationImp extends ApplicationBase<ImageEntity, UUID> impl
     private final ImageRepository imageRepository;
     private final Logger logger;
     private final ModelMapper modelMapper;
-    private final Cloudinary cloudinary = CloudinaryConfiguration.buildConnection();
+    
 
     @Autowired
     public ImageApplicationImp(final ImageRepository imageRepository,
@@ -41,10 +38,9 @@ public class ImageApplicationImp extends ApplicationBase<ImageEntity, UUID> impl
         imageEntity.setId(UUID.randomUUID());
         imageEntity.setData(dto.getData());
         imageEntity.validate();
-        imageRepository.add(imageEntity);
-        Map result = cloudinary.uploader().upload(imageEntity.getData(), ObjectUtils.emptyMap());
         ImageDTO imageDTO = modelMapper.map(imageEntity, ImageDTO.class);
-        imageDTO.setCloudId((String) result.get("public_id"));
+        String cloudId = imageRepository.add(imageEntity);
+        imageDTO.setCloudId(cloudId);
         this.logger.info(serializeObject(imageEntity, "added"));
         return imageDTO;
     }

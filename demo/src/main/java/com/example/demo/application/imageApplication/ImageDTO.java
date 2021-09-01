@@ -8,5 +8,5 @@ import lombok.Setter;
 
 public @NoArgsConstructor @Getter @Setter class ImageDTO {
     public UUID id;
-    public String CloudId;
+    public String cloudId;
 }
