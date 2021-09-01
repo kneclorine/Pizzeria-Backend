@@ -1,9 +1,10 @@
 package com.example.demo.application.imageApplication;
 
+import java.io.IOException;
 import java.util.UUID;
 
 
 public interface ImageApplication {
-    public ImageDTO save(CreateOrUpdateImageDTO dto);
+    public ImageDTO save(CreateOrUpdateImageDTO dto) throws IOException;
     public CloudinaryDTO getFile(UUID id);
 }
