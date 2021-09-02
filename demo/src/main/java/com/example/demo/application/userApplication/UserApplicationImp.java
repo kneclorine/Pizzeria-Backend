@@ -65,10 +65,10 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
         userUpdated.setEmail(user.getEmail());
         userUpdated.setRol(user.getRol());
     
-        if(BCrypt.checkpw(userUpdated.getPassword(), user.getPassword())) {
+        if(BCrypt.checkpw(dto.getNewPassword(), user.getPassword()) && BCrypt.checkpw(userUpdated.getPassword(), user.getPassword())) {
             userUpdated.setPassword(user.getPassword());
         } else {
-            userUpdated.setPassword(BCrypt.hashpw(userUpdated.getPassword(), BCrypt.gensalt()));
+            userUpdated.setPassword(BCrypt.hashpw(dto.getNewPassword(), BCrypt.gensalt()));
         }
         userUpdated.validate();
         

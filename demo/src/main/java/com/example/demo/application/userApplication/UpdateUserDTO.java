@@ -23,6 +23,9 @@ public @NoArgsConstructor @Getter @Setter class UpdateUserDTO {
     @NotBlank
     private String password;
 
+    @NotBlank
+    private String newPassword;
+
     @NotNull
     private Rol rol = Rol.USER;
 }

@@ -18,7 +18,5 @@ public @NoArgsConstructor @Getter @Setter class UserDTO {
     
     private String email;
 
-    private String password;
-
     private Rol rol;
 }
