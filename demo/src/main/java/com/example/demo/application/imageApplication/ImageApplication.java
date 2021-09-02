@@ -6,5 +6,5 @@ import java.util.UUID;
 
 public interface ImageApplication {
     public ImageDTO save(CreateOrUpdateImageDTO dto) throws IOException;
-    public CloudinaryDTO getFile(UUID id);
+    public BytesDTO getFile(UUID id);
 }

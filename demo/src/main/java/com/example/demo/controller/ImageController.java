@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.application.imageApplication.CloudinaryDTO;
+import com.example.demo.application.imageApplication.BytesDTO;
 import com.example.demo.application.imageApplication.CreateOrUpdateImageDTO;
 import com.example.demo.application.imageApplication.ImageApplicationImp;
 import com.example.demo.application.imageApplication.ImageDTO;
@@ -41,7 +41,7 @@ public class ImageController {
     
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
     public ResponseEntity<?> getData(@PathVariable UUID id) {
-        CloudinaryDTO cloudinaryDTO = imageApplicationImp.getFile(id);
+        BytesDTO cloudinaryDTO = imageApplicationImp.getFile(id);
         return ResponseEntity.ok(cloudinaryDTO);
     }
 }

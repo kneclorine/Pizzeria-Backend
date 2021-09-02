@@ -44,8 +44,9 @@ public class ImageApplicationImp extends ApplicationBase<ImageEntity, UUID> impl
         return modelMapper.map(imageEntity, ImageDTO.class);
     }
 
-    public CloudinaryDTO getFile(UUID id) {
-        return modelMapper.map(this.findById(id),CloudinaryDTO.class);
+    public BytesDTO getFile(UUID id) {
+        BytesDTO bytesDTO = modelMapper.map(this.findById(id),BytesDTO.class);
+        return bytesDTO;
     }
 
 }
