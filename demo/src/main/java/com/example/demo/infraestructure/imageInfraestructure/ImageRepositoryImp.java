@@ -1,7 +1,6 @@
 package com.example.demo.infraestructure.imageInfraestructure;
 
 import java.time.Duration;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -30,12 +29,11 @@ public class ImageRepositoryImp implements ImageRepository {
     }
 
     @Override
-    public String add(ImageEntity imageEntity) {
+    public void add(ImageEntity imageEntity) {
         
         try{
             redisTemplate.opsForValue().set(imageEntity.getId().toString(),imageEntity.getData(),Duration.ofDays(1));
-            Map result = cloudinary.uploader().upload(imageEntity.getData(), ObjectUtils.emptyMap());
-            return (String) result.get("public_id");
+            cloudinary.uploader().upload(imageEntity.getData(), ObjectUtils.asMap("public_id",imageEntity.getId()));
         }catch(Exception e){
             throw new InternalServerErrorException(InternalServerErrorEnum.REDIRECT);
         }finally{

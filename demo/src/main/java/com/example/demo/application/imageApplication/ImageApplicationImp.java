@@ -38,11 +38,10 @@ public class ImageApplicationImp extends ApplicationBase<ImageEntity, UUID> impl
         imageEntity.setId(UUID.randomUUID());
         imageEntity.setData(dto.getData());
         imageEntity.validate();
-        ImageDTO imageDTO = modelMapper.map(imageEntity, ImageDTO.class);
-        String cloudId = imageRepository.add(imageEntity);
-        imageDTO.setCloudId(cloudId);
+        imageRepository.add(imageEntity);
         this.logger.info(serializeObject(imageEntity, "added"));
-        return imageDTO;
+        
+        return modelMapper.map(imageEntity, ImageDTO.class);
     }
 
     public CloudinaryDTO getFile(UUID id) {
