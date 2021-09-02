@@ -33,7 +33,7 @@ public class ImageRepositoryImp implements ImageRepository {
         
         try{
             redisTemplate.opsForValue().set(imageEntity.getId().toString(),imageEntity.getData(),Duration.ofDays(1));
-            cloudinary.uploader().upload(imageEntity.getData(), ObjectUtils.asMap("public_id",imageEntity.getId()));
+            cloudinary.uploader().upload(imageEntity.getData(), ObjectUtils.asMap("public_id",imageEntity.getId().toString()));
         }catch(Exception e){
             throw new InternalServerErrorException(InternalServerErrorEnum.REDIRECT);
         }finally{
