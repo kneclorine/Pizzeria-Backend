@@ -17,6 +17,8 @@ public @Getter @Setter @NoArgsConstructor class PizzaDTO {
     
     private String name;
 
+    private UUID image;
+
     private BigDecimal price;
 
     private Set<Ingredient> Ingredients = new HashSet<Ingredient>();

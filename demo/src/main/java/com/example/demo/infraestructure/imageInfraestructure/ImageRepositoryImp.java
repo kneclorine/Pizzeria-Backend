@@ -9,7 +9,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.core.configurationBeans.CloudinaryConfiguration;
 import com.example.demo.core.exceptions.InternalServerErrorEnum;
 import com.example.demo.core.exceptions.InternalServerErrorException;
-import com.example.demo.domain.imageDomain.ImageEntity;
+import com.example.demo.domain.imageDomain.Image;
 import com.example.demo.domain.imageDomain.ImageRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +29,11 @@ public class ImageRepositoryImp implements ImageRepository {
     }
 
     @Override
-    public void add(ImageEntity imageEntity) {
+    public void add(Image imageEntity) {
         
         try{
-            redisTemplate.opsForValue().set(imageEntity.getId().toString(),imageEntity.getData(),Duration.ofDays(1));
-            cloudinary.uploader().upload(imageEntity.getData(), ObjectUtils.asMap("public_id",imageEntity.getId().toString()));
+            redisTemplate.opsForValue().set(imageEntity.getId().toString(),imageEntity.getImage(),Duration.ofDays(1));
+            //cloudinary.uploader().upload(imageEntity.getImage(), ObjectUtils.asMap("public_id",imageEntity.getId().toString()));
         }catch(Exception e){
             throw new InternalServerErrorException(InternalServerErrorEnum.REDIRECT);
         }finally{
@@ -44,14 +44,14 @@ public class ImageRepositoryImp implements ImageRepository {
     }
 
     @Override
-    public Optional<ImageEntity> get(UUID id) {
+    public Optional<Image> get(UUID id) {
         try{
             byte[] bytes = this.redisTemplate.opsForValue().get(id.toString());
             if(bytes==null){
                 return Optional.of(null);
             }
-            ImageEntity image = new ImageEntity();
-            image.setData(bytes);
+            Image image = new Image();
+            image.setImage(bytes);
             image.setId(id);
 
             return Optional.of(image);

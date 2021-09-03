@@ -2,8 +2,10 @@ package com.example.demo.application.pizzaApplication;
 
 import java.util.UUID;
 
+import com.example.demo.application.imageApplication.ImageApplicationImp;
 import com.example.demo.application.ingredientApplication.IngredientApplicationImp;
 import com.example.demo.core.ApplicationBase;
+import com.example.demo.domain.imageDomain.Image;
 import com.example.demo.domain.ingredientDomain.Ingredient;
 import com.example.demo.domain.pizzaDomain.Pizza;
 import com.example.demo.domain.pizzaDomain.PizzaWriteRepository;
@@ -18,17 +20,19 @@ public class PizzaApplicationImp extends ApplicationBase<Pizza, UUID> implements
 
     private final PizzaWriteRepository pizzaWriteRepository;
     private final IngredientApplicationImp ingredientApplicationImp;
+    private final ImageApplicationImp imageApplicationImp;
     private final ModelMapper modelMapper = new ModelMapper();
     private final Logger logger;
 
     @Autowired
     public PizzaApplicationImp(final PizzaWriteRepository pizzaWriteRepository,
-            final IngredientApplicationImp ingredientApplicationImp, final Logger logger) {
+            final IngredientApplicationImp ingredientApplicationImp, final ImageApplicationImp imageApplicationImp, final Logger logger) {
 
         super((id) -> pizzaWriteRepository.findById(id));
 
         this.pizzaWriteRepository = pizzaWriteRepository;
         this.ingredientApplicationImp = ingredientApplicationImp;
+        this.imageApplicationImp = imageApplicationImp;
         this.logger = logger;
     }
 
@@ -43,6 +47,9 @@ public class PizzaApplicationImp extends ApplicationBase<Pizza, UUID> implements
             pizza.addIngredient(ingredient);
         }
         pizza.setPrice(pizza.calculatePrice());
+
+        Image image = modelMapper.map(this.imageApplicationImp.get(dto.getImage()), Image.class);
+        pizza.setImage(image.getId());
 
         pizza.validate("name", pizza.getName(), (name) -> this.pizzaWriteRepository.exists(name));
 

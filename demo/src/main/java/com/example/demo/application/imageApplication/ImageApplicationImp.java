@@ -3,7 +3,7 @@ package com.example.demo.application.imageApplication;
 import java.io.IOException;
 import java.util.UUID;
 
-import com.example.demo.domain.imageDomain.ImageEntity;
+import com.example.demo.domain.imageDomain.Image;
 import com.example.demo.domain.imageDomain.ImageRepository;
 import com.example.demo.core.ApplicationBase;
 
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class ImageApplicationImp extends ApplicationBase<ImageEntity, UUID> implements ImageApplication{
+public class ImageApplicationImp extends ApplicationBase<Image, UUID> implements ImageApplication{
 
     private final ImageRepository imageRepository;
     private final Logger logger;
@@ -27,6 +27,7 @@ public class ImageApplicationImp extends ApplicationBase<ImageEntity, UUID> impl
     public ImageApplicationImp(final ImageRepository imageRepository,
                                 final ModelMapper modelMapper,
                                 final Logger logger) {
+
         super((id) -> imageRepository.get(id));
         this.imageRepository = imageRepository;
         this.logger = logger;
@@ -34,9 +35,10 @@ public class ImageApplicationImp extends ApplicationBase<ImageEntity, UUID> impl
     }
 
     public ImageDTO save(CreateOrUpdateImageDTO dto) throws IOException {
-        ImageEntity imageEntity = new ImageEntity();
+
+        Image imageEntity = modelMapper.map(dto, Image.class);
         imageEntity.setId(UUID.randomUUID());
-        imageEntity.setData(dto.getData());
+
         imageEntity.validate();
         imageRepository.add(imageEntity);
         this.logger.info(serializeObject(imageEntity, "added"));
@@ -44,7 +46,8 @@ public class ImageApplicationImp extends ApplicationBase<ImageEntity, UUID> impl
         return modelMapper.map(imageEntity, ImageDTO.class);
     }
 
-    public BytesDTO getFile(UUID id) {
+    public BytesDTO get(UUID id) {
+
         BytesDTO bytesDTO = modelMapper.map(this.findById(id),BytesDTO.class);
         return bytesDTO;
     }

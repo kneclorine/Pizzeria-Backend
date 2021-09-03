@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,7 @@ import com.example.demo.application.imageApplication.ImageDTO;
 @RestController
 @RequestMapping("/api/v1/images")
 public class ImageController {
+
     private final ImageApplicationImp imageApplicationImp;
 
     @Autowired
@@ -34,14 +37,17 @@ public class ImageController {
     public ResponseEntity<?> upload(@RequestParam("image") MultipartFile file) throws IOException {
 
         CreateOrUpdateImageDTO dto = new CreateOrUpdateImageDTO();
-        dto.setData(file.getBytes());
+        dto.setImage(file.getBytes());
+
         ImageDTO imageDTO = imageApplicationImp.save(dto);
+
         return ResponseEntity.status(201).body(imageDTO);
     }
     
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
-    public ResponseEntity<?> getData(@PathVariable UUID id) {
-        BytesDTO cloudinaryDTO = imageApplicationImp.getFile(id);
+    public ResponseEntity<?> getData(@Valid @PathVariable UUID id) {
+        BytesDTO cloudinaryDTO = imageApplicationImp.get(id);
+        
         return ResponseEntity.ok(cloudinaryDTO);
     }
 }
