@@ -3,15 +3,15 @@ package com.example.demo.core;
 import com.example.demo.core.exceptions.NotFoundException;
 import com.example.demo.core.functionalInterfaces.FindById;
 
+import reactor.core.publisher.Mono;
+
 public abstract class ApplicationBase<T, ID> {
 
     private FindById<T, ID> getById;
 
-    protected T findById(ID id){
-        T t = this.getById.findById(id).orElseThrow(()->{
-            throw new NotFoundException();
-        });
-        return t;
+    protected Mono<T> findById(ID id){
+        
+        return this.getById.findById(id).switchIfEmpty(Mono.error(new NotFoundException()));
     }
 
     protected ApplicationBase(FindById<T, ID> getById){

@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import reactor.core.publisher.Mono;
+
 @Service
 public class PizzaApplicationImp extends ApplicationBase<Pizza, UUID> implements PizzaApplication {
 
@@ -37,7 +39,7 @@ public class PizzaApplicationImp extends ApplicationBase<Pizza, UUID> implements
     }
 
     @Override
-    public PizzaDTO add(CreateOrUpdatePizzaDTO dto) {
+    public Mono<PizzaDTO> add(CreateOrUpdatePizzaDTO dto) {
 
         Pizza pizza = this.modelMapper.map(dto, Pizza.class);
         pizza.setId(UUID.randomUUID());
@@ -56,13 +58,13 @@ public class PizzaApplicationImp extends ApplicationBase<Pizza, UUID> implements
         this.pizzaWriteRepository.add(pizza);
         logger.info(this.serializeObject(pizza, "added"));
 
-        return this.modelMapper.map(pizza, PizzaDTO.class);
+        return Mono.just(this.modelMapper.map(pizza, PizzaDTO.class));
     }
 
     @Override
-    public PizzaDTO get(UUID id) {
+    public Mono<PizzaDTO> get(UUID id) {
         
-        Pizza pizza = this.findById(id);
-        return this.modelMapper.map(pizza, PizzaDTO.class);
+        Pizza pizza = this.findById(id).block();
+        return Mono.just(this.modelMapper.map(pizza, PizzaDTO.class));
     }
 }

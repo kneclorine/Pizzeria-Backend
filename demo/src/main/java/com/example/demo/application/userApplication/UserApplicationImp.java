@@ -1,6 +1,5 @@
 package com.example.demo.application.userApplication;
 
-import java.util.List;
 import java.util.UUID;
 
 import com.example.demo.core.ApplicationBase;
@@ -14,6 +13,9 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class UserApplicationImp extends ApplicationBase<User, UUID> implements UserApplication {
@@ -36,7 +38,7 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
     }
 
     @Override
-    public UserDTO add(CreateUserDTO dto) {
+    public Mono<UserDTO> add(CreateUserDTO dto) {
 
         User user = modelMapper.map(dto, User.class);
         user.setId(UUID.randomUUID());
@@ -46,20 +48,20 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
         this.userWriteRepository.add(user);
         logger.info(this.serializeObject(user, "added"));
 
-        return modelMapper.map(user, UserDTO.class);
+        return Mono.just(modelMapper.map(user, UserDTO.class));
     }
 
     @Override
-    public UserDTO get(UUID id) {
+    public Mono<UserDTO> get(UUID id) {
 
-        User user = this.findById(id);
-        return this.modelMapper.map(user, UserDTO.class);
+        User user = this.findById(id).block();
+        return Mono.just(this.modelMapper.map(user, UserDTO.class));
     }
 
     @Override
-    public UserDTO update(UUID id, UpdateUserDTO dto) {
+    public Mono<UserDTO> update(UUID id, UpdateUserDTO dto) {
 
-        User user = this.findById(id);
+        User user = this.findById(id).block();
         User userUpdated = this.modelMapper.map(dto, User.class);
         userUpdated.setId(user.getId());
         userUpdated.setEmail(user.getEmail());
@@ -75,19 +77,19 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
         this.userWriteRepository.update(userUpdated);
         logger.info(this.serializeObject(userUpdated, "updated"));
 
-        return modelMapper.map(userUpdated, UserDTO.class);
+        return Mono.just(modelMapper.map(userUpdated, UserDTO.class));
     }
 
     @Override
     public void delete(UUID id) {
 
-        User user = this.findById(id);
+        User user = this.findById(id).block();
         this.userWriteRepository.delete(user);
         logger.info(this.serializeObject(user, "deleted"));
     }
 
     @Override
-    public List<UserProjection> getAll(String email, int page, int size) {
+    public Flux<UserProjection> getAll(String email, int page, int size) {
         return this.userReadRepository.getAll(email, page, size);
     }
 }

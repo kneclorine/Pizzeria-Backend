@@ -1,6 +1,5 @@
 package com.example.demo.application.ingredientApplication;
 
-import java.util.List;
 import java.util.UUID;
 
 import com.example.demo.core.ApplicationBase;
@@ -13,6 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> implements IngredientApplication {
@@ -36,7 +38,7 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
     }
 
     @Override
-    public IngredientDTO add(CreateOrUpdateIngredientDTO dto) {
+    public Mono<IngredientDTO> add(CreateOrUpdateIngredientDTO dto) {
 
         Ingredient ingredient = modelMapper.map(dto, Ingredient.class);
         ingredient.setId(UUID.randomUUID());
@@ -45,20 +47,22 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
         this.ingredientWriteRepository.add(ingredient);
         logger.info(this.serializeObject(ingredient, "added"));
 
-        return modelMapper.map(ingredient, IngredientDTO.class);
+        return Mono.just(modelMapper.map(ingredient, IngredientDTO.class));
     }
 
     @Override
-    public IngredientDTO get(UUID id) {
+    public Mono<IngredientDTO> get(UUID id) {
 
-        Ingredient ingredient = this.findById(id);
-        return this.modelMapper.map(ingredient, IngredientDTO.class);
+        //TODO: Esto no se si esta bien
+        Ingredient ingredient = this.findById(id).block();
+        return Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class));
     }
 
     @Override
-    public IngredientDTO update(UUID id, CreateOrUpdateIngredientDTO dto) {
+    public Mono<IngredientDTO> update(UUID id, CreateOrUpdateIngredientDTO dto) {
 
-        Ingredient ingredient = this.findById(id);
+        //TODO: Esto no se si esta bien
+        Ingredient ingredient = this.findById(id).block();
         
         if (ingredient.getName().equals(dto.getName())){
             this.modelMapper.map(dto, ingredient);
@@ -70,19 +74,19 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
         this.ingredientWriteRepository.update(ingredient);
         logger.info(this.serializeObject(ingredient, "updated"));
 
-        return this.modelMapper.map(ingredient, IngredientDTO.class);
+        return Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class));
     }
 
     @Override
-    public void delete(UUID id) {
-
-        Ingredient ingredient = this.findById(id);
-        this.ingredientWriteRepository.delete(ingredient);
-        logger.info(this.serializeObject(ingredient, "deleted"));
+    public Mono<IngredientDTO> delete(UUID id) {
+        logger.info("Ingredient with id: "+id+" deleted."); 
+        return this.findById(id)
+        .flatMap(ingredient -> this.ingredientWriteRepository.delete(ingredient)
+        .then(Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class))));
     }
 
     @Override
-    public List<IngredientProjection> getAll(String name, int page, int size) {
+    public Flux<IngredientProjection> getAll(String name, int page, int size) {
         return this.ingredientReadRepository.getAll(name, page, size);
     }
 }

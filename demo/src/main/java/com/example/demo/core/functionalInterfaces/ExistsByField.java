@@ -1,5 +1,7 @@
 package com.example.demo.core.functionalInterfaces;
 
+import reactor.core.publisher.Mono;
+
 public interface ExistsByField {
-    boolean exists(String field);
+    Mono<Boolean> exists(String field);
 }

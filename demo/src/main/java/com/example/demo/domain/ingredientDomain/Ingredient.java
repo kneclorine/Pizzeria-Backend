@@ -11,11 +11,14 @@ import javax.validation.constraints.NotNull;
 
 import com.example.demo.core.EntityBase;
 
+import org.springframework.data.relational.core.mapping.Table;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table("ingredient")
 public @NoArgsConstructor @Getter @Setter class Ingredient extends EntityBase{
 
     @NotBlank

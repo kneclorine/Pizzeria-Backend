@@ -1,7 +1,6 @@
 package com.example.demo.infraestructure.imageInfraestructure;
 
 import java.time.Duration;
-import java.util.Optional;
 import java.util.UUID;
 
 import com.cloudinary.Cloudinary;
@@ -15,6 +14,8 @@ import com.example.demo.domain.imageDomain.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
+
+import reactor.core.publisher.Mono;
 
 @Repository
 public class ImageRepositoryImp implements ImageRepository {
@@ -44,17 +45,17 @@ public class ImageRepositoryImp implements ImageRepository {
     }
 
     @Override
-    public Optional<Image> get(UUID id) {
+    public Mono<Image> get(UUID id) {
         try{
             byte[] bytes = this.redisTemplate.opsForValue().get(id.toString());
             if(bytes==null){
-                return Optional.of(null);
+                return Mono.empty();
             }
             Image image = new Image();
             image.setImage(bytes);
             image.setId(id);
 
-            return Optional.of(image);
+            return Mono.just(image);
         }catch(Exception e){
             throw new InternalServerErrorException(InternalServerErrorEnum.REDIRECT);
         }finally{

@@ -14,18 +14,17 @@ import javax.validation.ValidatorFactory;
 import com.example.demo.core.exceptions.BadRequestException;
 import com.example.demo.core.functionalInterfaces.ExistsByField;
 
-import org.hibernate.annotations.Type;
 import org.springframework.validation.annotation.Validated;
 
 import lombok.Getter;
 import lombok.Setter;
+import reactor.core.publisher.Mono;
 
 @Validated
 @MappedSuperclass
 public @Getter @Setter abstract class EntityBase {
     
     @Id
-    @Type(type = "uuid-binary")
     @Column(columnDefinition = "binary(16)")
     private UUID id;
 
@@ -48,7 +47,7 @@ public @Getter @Setter abstract class EntityBase {
     public void validate(String key, String value, ExistsByField existsByField){
         
         this.validate();
-        if(existsByField.exists(value)){
+        if(existsByField.exists(value).equals(Mono.just(true))){
             BadRequestException badRequestException = new BadRequestException();
             badRequestException.addException(key, String.format("Value %s for key %s is duplicated.", value, key));
             throw badRequestException;

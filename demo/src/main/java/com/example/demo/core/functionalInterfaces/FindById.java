@@ -1,7 +1,7 @@
 package com.example.demo.core.functionalInterfaces;
 
-import java.util.Optional;
+import reactor.core.publisher.Mono;
 
 public interface FindById<T, ID> {
-    public Optional<T> findById(ID id);
+    public Mono<T> findById(ID id);
 }

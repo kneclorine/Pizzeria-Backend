@@ -8,11 +8,14 @@ import javax.validation.constraints.NotNull;
 
 import com.example.demo.core.EntityBase;
 
+import org.springframework.data.relational.core.mapping.Table;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table("user")
 public @NoArgsConstructor @Getter @Setter class User extends EntityBase {
 
     @NotBlank

@@ -1,8 +1,8 @@
 package com.example.demo.domain.userDomain;
 
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 public interface UserReadRepository {
 
-    public List<UserProjection> getAll(String name, int page, int size);   
+    public Flux<UserProjection> getAll(String name, int page, int size);   
 }

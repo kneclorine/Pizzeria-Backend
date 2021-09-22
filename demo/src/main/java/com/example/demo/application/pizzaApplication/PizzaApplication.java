@@ -2,8 +2,10 @@ package com.example.demo.application.pizzaApplication;
 
 import java.util.UUID;
 
+import reactor.core.publisher.Mono;
+
 public interface PizzaApplication {
     
-    public PizzaDTO add(CreateOrUpdatePizzaDTO dto);
-    public PizzaDTO get(UUID id);
+    public Mono<PizzaDTO> add(CreateOrUpdatePizzaDTO dto);
+    public Mono<PizzaDTO> get(UUID id);
 }

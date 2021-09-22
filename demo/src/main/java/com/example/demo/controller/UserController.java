@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -44,22 +45,22 @@ public class UserController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@Valid @RequestBody CreateUserDTO dto){
-        UserDTO userDTO = this.userApplication.add(dto);
+        Mono<UserDTO> userDTO = this.userApplication.add(dto);
 
-        return ResponseEntity.status(201).body(getJWTToken(userDTO.getName()));
+        return ResponseEntity.status(201).body(getJWTToken(userDTO.block().getName()));
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,  path = "/{id}")
-    public ResponseEntity<?> get(@Valid @PathVariable UUID id) {
-        UserDTO userDTO = this.userApplication.get(id);
-        return ResponseEntity.ok(userDTO);
+    public Mono<UserDTO> get(@Valid @PathVariable UUID id) {
+        Mono<UserDTO> userDTO = this.userApplication.get(id);
+        return userDTO;
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
-    public ResponseEntity<?> update(@Valid @PathVariable UUID id, @Valid @RequestBody UpdateUserDTO dto) {
-        UserDTO userDTO = this.userApplication.update(id, dto);
-        return ResponseEntity.ok(userDTO);
+    public Mono<UserDTO> update(@Valid @PathVariable UUID id, @Valid @RequestBody UpdateUserDTO dto) {
+        Mono<UserDTO> userDTO = this.userApplication.update(id, dto);
+        return userDTO;
     }
 
     @DeleteMapping(path = "/{id}")

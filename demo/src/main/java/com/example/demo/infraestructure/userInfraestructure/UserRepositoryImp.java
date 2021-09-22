@@ -1,17 +1,18 @@
 package com.example.demo.infraestructure.userInfraestructure;
 
+import java.util.UUID;
+
 import com.example.demo.domain.userDomain.User;
 import com.example.demo.domain.userDomain.UserProjection;
 import com.example.demo.domain.userDomain.UserReadRepository;
 import com.example.demo.domain.userDomain.UserWriteRepository;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Repository
 public class UserRepositoryImp implements UserWriteRepository, UserReadRepository{
@@ -29,7 +30,7 @@ public class UserRepositoryImp implements UserWriteRepository, UserReadRepositor
     }
 
     @Override
-    public Optional<User>findById(UUID id) {
+    public Mono<User>findById(UUID id) {
         return this.userJPARepository.findById(id);
     }
 
@@ -44,14 +45,14 @@ public class UserRepositoryImp implements UserWriteRepository, UserReadRepositor
     }
 
     @Override
-    public List<UserProjection> getAll(String email, int page, int size) {
-        return this.userJPARepository.findByCriteria(
+    public Flux<UserProjection> getAll(String email, int page, int size) {
+        return this.userJPARepository.findByEmail(
             email,
             PageRequest.of(page, size));
     }
 
     @Override
-    public boolean exists(String email) {
-        return this.userJPARepository.exists(email);
+    public Mono<Boolean> exists(String email) {
+        return this.userJPARepository.existsByEmail(email);
     }
 }

@@ -4,14 +4,15 @@ import java.util.UUID;
 
 import com.example.demo.domain.ingredientDomain.IngredientProjection;
 
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 
 public interface IngredientApplication {
     
-    public IngredientDTO add(CreateOrUpdateIngredientDTO dto);
-    public IngredientDTO get(UUID id);
-    public IngredientDTO update(UUID id, CreateOrUpdateIngredientDTO dto);
-    public void delete(UUID id);
-    public List<IngredientProjection> getAll(String name,  int page, int size);
+    public Mono<IngredientDTO> add(CreateOrUpdateIngredientDTO dto);
+    public Mono<IngredientDTO> get(UUID id);
+    public Mono<IngredientDTO> update(UUID id, CreateOrUpdateIngredientDTO dto);
+    public Mono<IngredientDTO> delete(UUID id);
+    public Flux<IngredientProjection> getAll(String name,  int page, int size);
 }

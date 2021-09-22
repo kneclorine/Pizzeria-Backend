@@ -1,7 +1,5 @@
 package com.example.demo.infraestructure.ingredientInfraestructure;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import com.example.demo.domain.ingredientDomain.Ingredient;
@@ -12,6 +10,9 @@ import com.example.demo.domain.ingredientDomain.IngredientWriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Repository
 public class IngredientRepositoryImp implements IngredientWriteRepository, IngredientReadRepository {
@@ -29,7 +30,7 @@ public class IngredientRepositoryImp implements IngredientWriteRepository, Ingre
     }
 
     @Override
-    public Optional<Ingredient>findById(UUID id) {
+    public Mono<Ingredient>findById(UUID id) {
         return this.ingredientJPARepository.findById(id);
     }
 
@@ -39,18 +40,18 @@ public class IngredientRepositoryImp implements IngredientWriteRepository, Ingre
     }
 
     @Override
-    public void delete(Ingredient ingredient) {
-        this.ingredientJPARepository.delete(ingredient);
+    public Mono<Void> delete(Ingredient ingredient) {
+        return this.ingredientJPARepository.delete(ingredient);
     }
 
     @Override
-    public List<IngredientProjection> getAll(String name, int page, int size) {
-        return this.ingredientJPARepository.findByCriteria(name,
+    public Flux<IngredientProjection> getAll(String name, int page, int size) {
+        return this.ingredientJPARepository.findByName(name,
         PageRequest.of(page, size));
     }
 
     @Override
-    public boolean exists(String name) {
-        return this.ingredientJPARepository.exists(name);
+    public Mono<Boolean> exists(String name) {
+        return this.ingredientJPARepository.existsByName(name);
     }
 }

@@ -1,6 +1,5 @@
 package com.example.demo.infraestructure.pizzaInfraestructure;
 
-import java.util.Optional;
 import java.util.UUID;
 
 import com.example.demo.domain.pizzaDomain.Pizza;
@@ -8,6 +7,8 @@ import com.example.demo.domain.pizzaDomain.PizzaWriteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import reactor.core.publisher.Mono;
 
 @Repository
 public class PizzaRepositoryImp implements PizzaWriteRepository {
@@ -25,12 +26,12 @@ public class PizzaRepositoryImp implements PizzaWriteRepository {
     }
 
     @Override
-    public Optional<Pizza> findById(UUID id) {
+    public Mono<Pizza> findById(UUID id) {
         return this.pizzaJPARepository.findById(id);
     }
 
     @Override
-    public boolean exists(String name) {
-        return this.pizzaJPARepository.exists(name);
+    public Mono<Boolean> exists(String name) {
+        return this.pizzaJPARepository.existsByName(name);
     }
 }

@@ -1,9 +1,9 @@
 package com.example.demo.domain.pizzaDomain;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.UUID;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,12 +18,15 @@ import javax.validation.constraints.NotNull;
 import com.example.demo.core.EntityBase;
 import com.example.demo.domain.ingredientDomain.Ingredient;
 
+import org.springframework.data.relational.core.mapping.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table("pizza")
 public @NoArgsConstructor @AllArgsConstructor @Getter @Setter class Pizza extends EntityBase{
 
     @NotBlank
