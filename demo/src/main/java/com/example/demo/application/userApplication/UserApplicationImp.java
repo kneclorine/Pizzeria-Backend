@@ -43,6 +43,7 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
         User user = modelMapper.map(dto, User.class);
         user.setId(UUID.randomUUID());
         user.setPassword(BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt()));
+        user.setThisNew(true);
         user.validate("email", user.getEmail(), (email) -> this.userWriteRepository.exists(email));
 
         return this.userWriteRepository.add(user).flatMap( dbUser -> {

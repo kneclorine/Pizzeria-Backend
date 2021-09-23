@@ -37,7 +37,6 @@ public @NoArgsConstructor @Getter @Setter class Ingredient extends EntityBase{
 
     @Override
     public boolean isNew() {
-        // TODO Auto-generated method stub
-        return false;
+        return this.isThisNew();
     }
 }

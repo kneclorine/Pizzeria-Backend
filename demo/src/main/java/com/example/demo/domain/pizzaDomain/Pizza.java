@@ -72,7 +72,6 @@ public @NoArgsConstructor @AllArgsConstructor @Getter @Setter class Pizza extend
 
     @Override
     public boolean isNew() {
-        // TODO Auto-generated method stub
-        return false;
+        return this.isThisNew();
     }
 }

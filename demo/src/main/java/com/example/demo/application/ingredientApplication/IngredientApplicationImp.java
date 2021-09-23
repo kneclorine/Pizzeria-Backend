@@ -42,6 +42,7 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
 
         Ingredient ingredient = modelMapper.map(dto, Ingredient.class);
         ingredient.setId(UUID.randomUUID());
+        ingredient.setThisNew(true);
         ingredient.validate("name", ingredient.getName(), (name) -> this.ingredientWriteRepository.exists(name));
 
         logger.info(this.serializeObject(ingredient, "added"));

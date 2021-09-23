@@ -56,6 +56,7 @@ public class PizzaApplicationImp extends ApplicationBase<Pizza, UUID> implements
         Image image = modelMapper.map(this.imageApplicationImp.get(dto.getImage()), Image.class);
         pizza.setImage(image.getId());
 
+        pizza.setThisNew(true);
         pizza.validate("name", pizza.getName(), (name) -> this.pizzaWriteRepository.exists(name));
 
         return this.pizzaWriteRepository.add(pizza).flatMap(monoPizza -> {

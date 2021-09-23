@@ -38,6 +38,7 @@ public class ImageApplicationImp extends ApplicationBase<Image, UUID> implements
 
         Image imageEntity = modelMapper.map(dto, Image.class);
         imageEntity.setId(UUID.randomUUID());
+        imageEntity.setThisNew(true);
 
         imageEntity.validate();
         imageRepository.add(imageEntity);

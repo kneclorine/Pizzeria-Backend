@@ -48,6 +48,6 @@ public @NoArgsConstructor @Getter @Setter class User extends EntityBase {
 
     @Override
     public boolean isNew() {
-        return true;
+        return this.isThisNew();
     }
 }

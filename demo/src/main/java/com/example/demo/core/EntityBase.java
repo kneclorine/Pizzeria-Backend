@@ -14,6 +14,7 @@ import com.example.demo.core.exceptions.BadRequestException;
 import com.example.demo.core.functionalInterfaces.ExistsByField;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.domain.Persistable;
 import org.springframework.validation.annotation.Validated;
 
@@ -28,6 +29,9 @@ public @Getter @Setter abstract class EntityBase implements Persistable<UUID>{
     @Id
     @Column(columnDefinition = "binary(16)")
     private UUID id;
+
+    @Transient
+    private boolean isThisNew = false;
 
     public void validate(){
         
