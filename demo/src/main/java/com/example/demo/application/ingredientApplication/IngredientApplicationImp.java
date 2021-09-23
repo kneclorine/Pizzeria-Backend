@@ -44,45 +44,39 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
         ingredient.setId(UUID.randomUUID());
         ingredient.validate("name", ingredient.getName(), (name) -> this.ingredientWriteRepository.exists(name));
 
-        this.ingredientWriteRepository.add(ingredient);
         logger.info(this.serializeObject(ingredient, "added"));
-
-        return Mono.just(modelMapper.map(ingredient, IngredientDTO.class));
+        return this.ingredientWriteRepository.add(ingredient).flatMap( monoIngredient -> Mono.just(this.modelMapper.map(monoIngredient, IngredientDTO.class)));
     }
 
     @Override
     public Mono<IngredientDTO> get(UUID id) {
 
-        //TODO: Esto no se si esta bien
-        Ingredient ingredient = this.findById(id).block();
-        return Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class));
+        return this.findById(id).flatMap( dbingredient -> Mono.just(this.modelMapper.map(dbingredient, IngredientDTO.class)));
     }
 
     @Override
     public Mono<IngredientDTO> update(UUID id, CreateOrUpdateIngredientDTO dto) {
 
-        //TODO: Esto no se si esta bien
-        Ingredient ingredient = this.findById(id).block();
-        
-        if (ingredient.getName().equals(dto.getName())){
-            this.modelMapper.map(dto, ingredient);
-            ingredient.validate();
-        } else {
-            this.modelMapper.map(dto, ingredient);
-            ingredient.validate("name", ingredient.getName(), (name) -> this.ingredientWriteRepository.exists(name));
-        }
-        this.ingredientWriteRepository.update(ingredient);
-        logger.info(this.serializeObject(ingredient, "updated"));
-
-        return Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class));
+        return this.findById(id).flatMap( dbIngredient -> {
+            if(dbIngredient.getName().equals(dto.getName())){
+                this.modelMapper.map(dto, dbIngredient);
+                dbIngredient.validate();
+                return this.ingredientWriteRepository.update(dbIngredient).flatMap(ingredient -> Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class)));
+            } else{
+                this.modelMapper.map(dto, dbIngredient);
+                dbIngredient.validate("name", dbIngredient.getName(), (name) -> this.ingredientWriteRepository.exists(name));
+                return this.ingredientWriteRepository.update(dbIngredient).flatMap(ingredient -> Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class)));
+            }   
+        });
     }
 
     @Override
     public Mono<IngredientDTO> delete(UUID id) {
-        logger.info("Ingredient with id: "+id+" deleted."); 
-        return this.findById(id)
-        .flatMap(ingredient -> this.ingredientWriteRepository.delete(ingredient)
-        .then(Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class))));
+        
+        return this.findById(id).flatMap(ingredient -> {
+            logger.info(this.serializeObject(ingredient, "deleted")); 
+            return this.ingredientWriteRepository.delete(ingredient).then(Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class)));}
+        );
     }
 
     @Override

@@ -25,8 +25,8 @@ public class IngredientRepositoryImp implements IngredientWriteRepository, Ingre
     }
 
     @Override
-    public void add(Ingredient ingredient) {
-        this.ingredientJPARepository.save(ingredient);
+    public Mono<Ingredient> add(Ingredient ingredient) {
+        return this.ingredientJPARepository.save(ingredient);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class IngredientRepositoryImp implements IngredientWriteRepository, Ingre
     }
 
     @Override
-    public void update(Ingredient ingredient) {
-        this.ingredientJPARepository.save(ingredient);
+    public Mono<Ingredient> update(Ingredient ingredient) {
+        return this.ingredientJPARepository.save(ingredient);
     }
 
     @Override
