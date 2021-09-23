@@ -21,4 +21,10 @@ public @NoArgsConstructor @Getter @Setter class Image extends EntityBase{
 
     @NotEmpty
     private byte[] image;
+
+    @Override
+    public boolean isNew() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }

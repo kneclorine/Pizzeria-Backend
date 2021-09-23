@@ -45,4 +45,9 @@ public @NoArgsConstructor @Getter @Setter class User extends EntityBase {
         return String.format("User {id: %s, name: %s, lastName: %s, email: %s, rol: %s}", this.getId(), this.getName(),
                 this.getLastName(), this.getEmail(), this.getRol());
     }
+
+    @Override
+    public boolean isNew() {
+        return true;
+    }
 }

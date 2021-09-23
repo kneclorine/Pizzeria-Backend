@@ -34,4 +34,10 @@ public @NoArgsConstructor @Getter @Setter class Ingredient extends EntityBase{
 
         return String.format("Ingredient {id: %s, name: %s, price: %s}", this.getId(), this.getName(), this.getPrice());
     }
+
+    @Override
+    public boolean isNew() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }

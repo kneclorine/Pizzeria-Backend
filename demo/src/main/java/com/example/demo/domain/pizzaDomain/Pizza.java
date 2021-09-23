@@ -69,4 +69,10 @@ public @NoArgsConstructor @AllArgsConstructor @Getter @Setter class Pizza extend
     public String toString() {
         return String.format("Pizza {id: %s, name: %s, price: %s, with ingredients:[%s]}", this.getId(), this.getName(), this.getPrice(), this.getIngredients().toString());
     }
+
+    @Override
+    public boolean isNew() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }

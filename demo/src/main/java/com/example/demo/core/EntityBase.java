@@ -4,7 +4,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -14,6 +13,8 @@ import javax.validation.ValidatorFactory;
 import com.example.demo.core.exceptions.BadRequestException;
 import com.example.demo.core.functionalInterfaces.ExistsByField;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Persistable;
 import org.springframework.validation.annotation.Validated;
 
 import lombok.Getter;
@@ -22,7 +23,7 @@ import reactor.core.publisher.Mono;
 
 @Validated
 @MappedSuperclass
-public @Getter @Setter abstract class EntityBase {
+public @Getter @Setter abstract class EntityBase implements Persistable<UUID>{
     
     @Id
     @Column(columnDefinition = "binary(16)")
@@ -52,7 +53,7 @@ public @Getter @Setter abstract class EntityBase {
             badRequestException.addException(key, String.format("Value %s for key %s is duplicated.", value, key));
             throw badRequestException;
         }
-    }   
+    }
 
     @Override
     public boolean equals (Object obj) {
