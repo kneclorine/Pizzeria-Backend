@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -41,12 +43,13 @@ public class UserController {
     public UserController(final UserApplication userApplication){
         this.userApplication = userApplication;
     }
-
+    @PreAuthorize("hasRole('ROLE_VIEWER')")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@Valid @RequestBody CreateUserDTO dto){
         UserDTO userDTO = this.userApplication.add(dto);
-
-        return ResponseEntity.status(201).body(getJWTToken(userDTO.getName()));
+        userDTO.setType("Bearer");
+        userDTO.setToken(getJWTToken(userDTO.getName()));
+        return ResponseEntity.status(201).body(userDTO);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -94,6 +97,6 @@ public class UserController {
 				.signWith(SignatureAlgorithm.HS512,
 						secretKey.getBytes()).compact();
 
-		return "Bearer " + token;
+		return  token;
 	}
 }
