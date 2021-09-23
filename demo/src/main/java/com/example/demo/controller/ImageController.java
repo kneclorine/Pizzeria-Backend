@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import reactor.core.publisher.Mono;
+
 import com.example.demo.application.imageApplication.BytesDTO;
 import com.example.demo.application.imageApplication.CreateOrUpdateImageDTO;
 import com.example.demo.application.imageApplication.ImageApplicationImp;
@@ -45,9 +47,8 @@ public class ImageController {
     }
     
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
-    public ResponseEntity<?> getData(@Valid @PathVariable UUID id) {
-        BytesDTO cloudinaryDTO = imageApplicationImp.get(id);
+    public Mono<ResponseEntity<BytesDTO>> getData(@Valid @PathVariable UUID id) {
         
-        return ResponseEntity.ok(cloudinaryDTO);
+        return this.imageApplicationImp.get(id).flatMap( bytesDTO -> Mono.just(ResponseEntity.ok(bytesDTO)));
     }
 }
