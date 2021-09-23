@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import com.example.demo.application.ingredientApplication.CreateOrUpdateIngredientDTO;
 import com.example.demo.application.ingredientApplication.IngredientApplication;
 import com.example.demo.application.ingredientApplication.IngredientDTO;
+import com.example.demo.domain.ingredientDomain.IngredientProjection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
@@ -63,11 +65,11 @@ public class IngredientController{
     }
     
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getAll(
+    public Flux<IngredientProjection> getAll(
         @RequestParam(required = false) String name,
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "10") int size
     ){
-        return ResponseEntity.status(200).body(this.ingredientApplication.getAll(name, page, size));
+        return this.ingredientApplication.getAll(name, page, size);
     }
 }

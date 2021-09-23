@@ -29,6 +29,7 @@ public class DemoApplication{
 				.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
 				.anyRequest().authenticated();
+				http.cors();
 		}
 	}
 }

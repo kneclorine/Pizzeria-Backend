@@ -11,6 +11,7 @@ import com.example.demo.application.userApplication.CreateUserDTO;
 import com.example.demo.application.userApplication.UpdateUserDTO;
 import com.example.demo.application.userApplication.UserApplication;
 import com.example.demo.application.userApplication.UserDTO;
+import com.example.demo.domain.userDomain.UserProjection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -43,11 +45,16 @@ public class UserController {
         this.userApplication = userApplication;
     }
 
+    @PreAuthorize("hasRole('ROLE_VIEWER')")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@Valid @RequestBody CreateUserDTO dto){
+    public Mono<ResponseEntity<UserDTO>> create(@Valid @RequestBody CreateUserDTO dto){
         Mono<UserDTO> userDTO = this.userApplication.add(dto);
 
-        return ResponseEntity.status(201).body(getJWTToken(userDTO.block().getName()));
+        return userDTO.flatMap( user -> {
+            user.setType("Bearer");
+            user.setToken(getJWTToken(user.getName()));
+            return Mono.just(ResponseEntity.status(201).body(user));
+        });
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -69,12 +76,12 @@ public class UserController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getAll(
+    public Flux<UserProjection> getAll(
         @RequestParam(required = false) String email,
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "10") int size
     ){
-        return ResponseEntity.status(200).body(this.userApplication.getAll(email, page, size));
+        return this.userApplication.getAll(email, page, size);
     }
 
     private String getJWTToken(String username) {
@@ -95,6 +102,6 @@ public class UserController {
 				.signWith(SignatureAlgorithm.HS512,
 						secretKey.getBytes()).compact();
 
-		return "Bearer " + token;
+		return token;
 	}
 }

@@ -19,4 +19,8 @@ public @NoArgsConstructor @Getter @Setter class UserDTO {
     private String email;
 
     private Rol rol;
+
+    private String type;
+
+    private String token;
 }
