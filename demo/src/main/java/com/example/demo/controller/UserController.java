@@ -52,20 +52,20 @@ public class UserController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,  path = "/{id}")
-    public Mono<UserDTO> get(@Valid @PathVariable UUID id) {
+    public Mono<ResponseEntity<UserDTO>> get(@Valid @PathVariable UUID id) {
         Mono<UserDTO> userDTO = this.userApplication.get(id);
-        return userDTO;
+        return userDTO.map(user -> ResponseEntity.ok(user)).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
-    public Mono<UserDTO> update(@Valid @PathVariable UUID id, @Valid @RequestBody UpdateUserDTO dto) {
+    public Mono<ResponseEntity<UserDTO>> update(@Valid @PathVariable UUID id, @Valid @RequestBody UpdateUserDTO dto) {
         Mono<UserDTO> userDTO = this.userApplication.update(id, dto);
-        return userDTO;
+        return userDTO.map(user -> ResponseEntity.ok(user)).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping(path = "/{id}")
-    void delete(@Valid @PathVariable UUID id) {
-        this.userApplication.delete(id);
+    public Mono<ResponseEntity<Void>> delete(@Valid @PathVariable UUID id) {
+        return this.userApplication.delete(id).map( r -> ResponseEntity.ok().<Void>build()).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)

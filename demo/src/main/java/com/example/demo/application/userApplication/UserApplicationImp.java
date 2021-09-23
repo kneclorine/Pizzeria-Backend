@@ -45,47 +45,47 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
         user.setPassword(BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt()));
         user.validate("email", user.getEmail(), (email) -> this.userWriteRepository.exists(email));
 
-        this.userWriteRepository.add(user);
-        logger.info(this.serializeObject(user, "added"));
-
-        return Mono.just(modelMapper.map(user, UserDTO.class));
+        return this.userWriteRepository.add(user).flatMap( dbUser -> {
+            logger.info(this.serializeObject(dbUser, "added"));
+            return Mono.just(modelMapper.map(dbUser, UserDTO.class));
+        }); 
     }
 
     @Override
     public Mono<UserDTO> get(UUID id) {
 
-        User user = this.findById(id).block();
-        return Mono.just(this.modelMapper.map(user, UserDTO.class));
+        return this.findById(id).flatMap(user -> Mono.just(this.modelMapper.map(user, UserDTO.class)));
     }
 
     @Override
     public Mono<UserDTO> update(UUID id, UpdateUserDTO dto) {
-
-        User user = this.findById(id).block();
-        User userUpdated = this.modelMapper.map(dto, User.class);
-        userUpdated.setId(user.getId());
-        userUpdated.setEmail(user.getEmail());
-        userUpdated.setRol(user.getRol());
-    
-        if(BCrypt.checkpw(dto.getNewPassword(), user.getPassword()) && BCrypt.checkpw(userUpdated.getPassword(), user.getPassword())) {
-            userUpdated.setPassword(user.getPassword());
-        } else {
-            userUpdated.setPassword(BCrypt.hashpw(dto.getNewPassword(), BCrypt.gensalt()));
-        }
-        userUpdated.validate();
         
-        this.userWriteRepository.update(userUpdated);
-        logger.info(this.serializeObject(userUpdated, "updated"));
+        return this.findById(id).flatMap(dbUser -> {
 
-        return Mono.just(modelMapper.map(userUpdated, UserDTO.class));
+            User userUpdated = this.modelMapper.map(dto, User.class);
+            userUpdated.setId(dbUser.getId());
+            userUpdated.setEmail(dbUser.getEmail());
+            userUpdated.setRol(dbUser.getRol());
+
+            if(BCrypt.checkpw(dto.getNewPassword(), dbUser.getPassword()) && BCrypt.checkpw(userUpdated.getPassword(), dbUser.getPassword())) {
+                userUpdated.setPassword(dbUser.getPassword());
+            } else {
+                userUpdated.setPassword(BCrypt.hashpw(dto.getNewPassword(), BCrypt.gensalt()));
+            }
+            userUpdated.validate();
+
+            logger.info(this.serializeObject(userUpdated, "updated"));
+            return this.userWriteRepository.update(dbUser).flatMap(user -> Mono.just(this.modelMapper.map(user, UserDTO.class)));
+        });
     }
 
     @Override
-    public void delete(UUID id) {
+    public Mono<UserDTO> delete(UUID id) {
 
-        User user = this.findById(id).block();
-        this.userWriteRepository.delete(user);
-        logger.info(this.serializeObject(user, "deleted"));
+        return this.findById(id).flatMap(user -> {
+            logger.info(this.serializeObject(user, "deleted"));
+            return this.userWriteRepository.delete(user).then(Mono.just(this.modelMapper.map(user, UserDTO.class)));
+        });
     }
 
     @Override

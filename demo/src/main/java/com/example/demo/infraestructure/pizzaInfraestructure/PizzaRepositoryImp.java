@@ -21,8 +21,8 @@ public class PizzaRepositoryImp implements PizzaWriteRepository {
     }
 
     @Override
-    public void add(Pizza pizza) {
-        this.pizzaJPARepository.save(pizza);
+    public Mono<Pizza> add(Pizza pizza) {
+        return this.pizzaJPARepository.save(pizza);
     }
 
     @Override

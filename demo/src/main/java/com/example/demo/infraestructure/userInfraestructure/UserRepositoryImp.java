@@ -25,8 +25,8 @@ public class UserRepositoryImp implements UserWriteRepository, UserReadRepositor
     }   
 
     @Override
-    public void add(User user) {
-        this.userJPARepository.save(user);
+    public Mono<User> add(User user) {
+        return this.userJPARepository.save(user);
     }
 
     @Override
@@ -35,13 +35,13 @@ public class UserRepositoryImp implements UserWriteRepository, UserReadRepositor
     }
 
     @Override
-    public void update(User user) {
-        this.userJPARepository.save(user);
+    public Mono<User> update(User user) {
+        return this.userJPARepository.save(user);
     }
 
     @Override
-    public void delete(User user) {
-        this.userJPARepository.delete(user);
+    public Mono<Void> delete(User user) {
+        return this.userJPARepository.delete(user);
     }
 
     @Override

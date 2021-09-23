@@ -45,8 +45,11 @@ public class PizzaApplicationImp extends ApplicationBase<Pizza, UUID> implements
         pizza.setId(UUID.randomUUID());
         for (UUID ingredientId : dto.getIngredients()) {
 
-            Ingredient ingredient = this.modelMapper.map(ingredientApplicationImp.get(ingredientId), Ingredient.class);
-            pizza.addIngredient(ingredient);
+            ingredientApplicationImp.get(ingredientId).flatMap(dbIngredient ->{
+                Ingredient ingredient = this.modelMapper.map(dbIngredient, Ingredient.class);
+                pizza.addIngredient(ingredient);
+                return Mono.just(ingredient);
+            });            
         }
         pizza.setPrice(pizza.calculatePrice());
 
@@ -55,16 +58,15 @@ public class PizzaApplicationImp extends ApplicationBase<Pizza, UUID> implements
 
         pizza.validate("name", pizza.getName(), (name) -> this.pizzaWriteRepository.exists(name));
 
-        this.pizzaWriteRepository.add(pizza);
-        logger.info(this.serializeObject(pizza, "added"));
-
-        return Mono.just(this.modelMapper.map(pizza, PizzaDTO.class));
+        return this.pizzaWriteRepository.add(pizza).flatMap(monoPizza -> {
+            logger.info(this.serializeObject(pizza, "added"));
+            return Mono.just(this.modelMapper.map(pizza, PizzaDTO.class));
+        });
     }
 
     @Override
     public Mono<PizzaDTO> get(UUID id) {
         
-        Pizza pizza = this.findById(id).block();
-        return Mono.just(this.modelMapper.map(pizza, PizzaDTO.class));
+        return this.findById(id).flatMap( pizza -> Mono.just(this.modelMapper.map(pizza, PizzaDTO.class)));
     }
 }

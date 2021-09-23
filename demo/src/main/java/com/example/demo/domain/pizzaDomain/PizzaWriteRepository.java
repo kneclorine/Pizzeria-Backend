@@ -5,7 +5,9 @@ import java.util.UUID;
 import com.example.demo.core.functionalInterfaces.ExistsByField;
 import com.example.demo.core.functionalInterfaces.FindById;
 
+import reactor.core.publisher.Mono;
+
 public interface PizzaWriteRepository extends FindById<Pizza, UUID>, ExistsByField{
 
-    public void add(Pizza pizza);
+    public Mono<Pizza> add(Pizza pizza);
 }
