@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public interface UserJPARepository extends ReactiveCrudRepository<User, UUID>{
 
@@ -18,5 +19,5 @@ public interface UserJPARepository extends ReactiveCrudRepository<User, UUID>{
     Flux<UserProjection> findByEmail(@Param("email") String email, Pageable pageable);
 
     @Query("SELECT CASE WHEN COUNT(u)>0 THEN true ELSE false END FROM User u WHERE u.email = :email")
-    boolean existsByEmail(@Param("email") String email);
+    Mono<Boolean> existsByEmail(@Param("email") String email);
 }
