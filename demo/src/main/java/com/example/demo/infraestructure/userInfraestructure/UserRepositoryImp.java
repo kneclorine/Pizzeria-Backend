@@ -53,6 +53,6 @@ public class UserRepositoryImp implements UserWriteRepository, UserReadRepositor
 
     @Override
     public Mono<Boolean> exists(String email) {
-        return Mono.just(this.userJPARepository.existsByEmail(email));
+        return this.userJPARepository.existsByEmail(email);
     }
 }
