@@ -75,8 +75,10 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
             }
             userUpdated.validate();
 
-            logger.info(this.serializeObject(userUpdated, "updated"));
-            return this.userWriteRepository.update(dbUser).flatMap(user -> Mono.just(this.modelMapper.map(user, UserDTO.class)));
+            return this.userWriteRepository.update(dbUser).flatMap(user -> {
+                logger.info(this.serializeObject(user, "updated"));
+                return Mono.just(this.modelMapper.map(user, UserDTO.class));
+            });
         });
     }
 

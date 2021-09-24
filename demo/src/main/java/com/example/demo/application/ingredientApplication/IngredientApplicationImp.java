@@ -45,8 +45,10 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
         ingredient.setThisNew(true);
         ingredient.validate("name", ingredient.getName(), (name) -> this.ingredientWriteRepository.exists(name));
 
-        logger.info(this.serializeObject(ingredient, "added"));
-        return this.ingredientWriteRepository.add(ingredient).flatMap( monoIngredient -> Mono.just(this.modelMapper.map(monoIngredient, IngredientDTO.class)));
+        return this.ingredientWriteRepository.add(ingredient).flatMap( monoIngredient -> {
+            logger.info(this.serializeObject(monoIngredient, "added"));
+            return Mono.just(this.modelMapper.map(monoIngredient, IngredientDTO.class));
+        });
     }
 
     @Override
@@ -66,7 +68,10 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
             } else{
                 this.modelMapper.map(dto, dbIngredient);
                 dbIngredient.validate("name", dbIngredient.getName(), (name) -> this.ingredientWriteRepository.exists(name));
-                return this.ingredientWriteRepository.update(dbIngredient).flatMap(ingredient -> Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class)));
+                return this.ingredientWriteRepository.update(dbIngredient).flatMap(ingredient -> {
+                    logger.info(this.serializeObject(dbIngredient, "updated"));
+                    return Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class));
+                });
             }   
         });
     }
