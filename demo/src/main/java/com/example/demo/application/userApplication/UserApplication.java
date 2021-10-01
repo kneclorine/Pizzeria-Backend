@@ -8,6 +8,7 @@ import com.example.demo.domain.userDomain.UserProjection;
 public interface UserApplication {
 
     public UserDTO add(CreateUserDTO dto);
+    public UserDTO login(LoginUserDTO dto);
     public UserDTO get(UUID id);
     public UserDTO update(UUID id, UpdateUserDTO dto);
     public void delete(UUID id);

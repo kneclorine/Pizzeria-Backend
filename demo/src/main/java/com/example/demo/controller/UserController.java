@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import com.example.demo.application.userApplication.CreateUserDTO;
+import com.example.demo.application.userApplication.LoginUserDTO;
 import com.example.demo.application.userApplication.UpdateUserDTO;
 import com.example.demo.application.userApplication.UserApplication;
 import com.example.demo.application.userApplication.UserDTO;
@@ -15,7 +16,6 @@ import com.example.demo.application.userApplication.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -43,7 +43,6 @@ public class UserController {
     public UserController(final UserApplication userApplication){
         this.userApplication = userApplication;
     }
-    @PreAuthorize("hasRole('ROLE_VIEWER')")
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@Valid @RequestBody CreateUserDTO dto){
         UserDTO userDTO = this.userApplication.add(dto);
@@ -52,7 +51,14 @@ public class UserController {
         return ResponseEntity.status(201).body(userDTO);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path="/login")
+    public ResponseEntity<?> login(@RequestBody LoginUserDTO dto){
+        UserDTO userDTO = this.userApplication.login(dto);
+        userDTO.setType("Bearer");
+        userDTO.setToken(getJWTToken(userDTO.getName()));
+        return ResponseEntity.status(200).body(userDTO);
+    }
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,  path = "/{id}")
     public ResponseEntity<?> get(@Valid @PathVariable UUID id) {
         UserDTO userDTO = this.userApplication.get(id);

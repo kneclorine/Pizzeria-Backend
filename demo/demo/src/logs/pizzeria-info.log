@@ -1,0 +1,1153 @@
+2021.09.30 09:36:33 CEST HV000001: Hibernate Validator 6.2.0.Final
+2021.09.30 09:36:33 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 16596 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 09:36:33 CEST No active profile set, falling back to default profiles: default
+2021.09.30 09:36:33 CEST Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021.09.30 09:36:33 CEST For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021.09.30 09:36:36 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:36:36 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 09:36:36 CEST Finished Spring Data repository scanning in 208 ms. Found 3 JPA repository interfaces.
+2021.09.30 09:36:36 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:36:36 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 09:36:36 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:36:36 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:36:36 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:36:36 CEST Finished Spring Data repository scanning in 57 ms. Found 0 Redis repository interfaces.
+2021.09.30 09:36:38 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 09:36:38 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 09:36:38 CEST Starting service [Tomcat]
+2021.09.30 09:36:38 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 09:36:39 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 09:36:39 CEST Root WebApplicationContext: initialization completed in 5259 ms
+2021.09.30 09:36:40 CEST HHH000412: Hibernate ORM core version 5.4.32.Final
+2021.09.30 09:36:40 CEST HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021.09.30 09:36:40 CEST HikariPool-1 - Starting...
+2021.09.30 09:36:41 CEST HikariPool-1 - Start completed.
+2021.09.30 09:36:41 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 09:36:44 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 09:36:44 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:36:46 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 09:36:47 CEST 
+
+Using generated security password: fc78515b-3a95-4d41-b63a-5b49e14cb30e
+
+2021.09.30 09:36:47 CEST Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'userController' method 
+com.example.demo.controller.UserController#login(LoginUserDTO)
+to {POST [/api/v1/users], consumes [application/json], produces [application/json]}: There is already 'userController' bean method
+com.example.demo.controller.UserController#create(CreateUserDTO) mapped.
+Related cause: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jsonSchemaConverter' defined in class path resource [org/springframework/data/rest/webmvc/config/RepositoryRestMvcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.rest.webmvc.json.PersistentEntityToJsonSchemaConverter]: Factory method 'jsonSchemaConverter' threw exception; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'linkCollector' defined in class path resource [org/springframework/data/rest/webmvc/config/RepositoryRestMvcConfiguration.class]: Unsatisfied dependency expressed through method 'linkCollector' parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'selfLinkProvider' defined in class path resource [org/springframework/data/rest/webmvc/config/RepositoryRestMvcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.rest.core.support.SelfLinkProvider]: Factory method 'selfLinkProvider' threw exception; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'mvcConversionService': Requested bean is currently in creation: Is there an unresolvable circular reference?
+2021.09.30 09:36:47 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:36:47 CEST HikariPool-1 - Shutdown initiated...
+2021.09.30 09:36:47 CEST HikariPool-1 - Shutdown completed.
+2021.09.30 09:36:47 CEST Stopping service [Tomcat]
+2021.09.30 09:38:19 CEST HV000001: Hibernate Validator 6.2.0.Final
+2021.09.30 09:38:19 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 15348 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 09:38:19 CEST No active profile set, falling back to default profiles: default
+2021.09.30 09:38:20 CEST Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021.09.30 09:38:20 CEST For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021.09.30 09:38:22 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:38:22 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 09:38:22 CEST Finished Spring Data repository scanning in 189 ms. Found 3 JPA repository interfaces.
+2021.09.30 09:38:22 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:38:22 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 09:38:22 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:38:22 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:38:22 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:38:22 CEST Finished Spring Data repository scanning in 54 ms. Found 0 Redis repository interfaces.
+2021.09.30 09:38:24 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 09:38:24 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 09:38:24 CEST Starting service [Tomcat]
+2021.09.30 09:38:24 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 09:38:25 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 09:38:25 CEST Root WebApplicationContext: initialization completed in 4957 ms
+2021.09.30 09:38:26 CEST HHH000412: Hibernate ORM core version 5.4.32.Final
+2021.09.30 09:38:26 CEST HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021.09.30 09:38:26 CEST HikariPool-1 - Starting...
+2021.09.30 09:38:27 CEST HikariPool-1 - Start completed.
+2021.09.30 09:38:27 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 09:38:29 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 09:38:29 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:38:32 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 09:38:33 CEST 
+
+Using generated security password: c0fd3118-75a1-4622-8f27-173e84bd76db
+
+2021.09.30 09:38:34 CEST Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'userController' method 
+com.example.demo.controller.UserController#login(LoginUserDTO)
+to {POST [/api/v1/users], consumes [application/json], produces [application/json]}: There is already 'userController' bean method
+com.example.demo.controller.UserController#create(CreateUserDTO) mapped.
+Related cause: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jsonSchemaConverter' defined in class path resource [org/springframework/data/rest/webmvc/config/RepositoryRestMvcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.rest.webmvc.json.PersistentEntityToJsonSchemaConverter]: Factory method 'jsonSchemaConverter' threw exception; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'linkCollector' defined in class path resource [org/springframework/data/rest/webmvc/config/RepositoryRestMvcConfiguration.class]: Unsatisfied dependency expressed through method 'linkCollector' parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'selfLinkProvider' defined in class path resource [org/springframework/data/rest/webmvc/config/RepositoryRestMvcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.rest.core.support.SelfLinkProvider]: Factory method 'selfLinkProvider' threw exception; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'mvcConversionService': Requested bean is currently in creation: Is there an unresolvable circular reference?
+2021.09.30 09:38:34 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:38:34 CEST HikariPool-1 - Shutdown initiated...
+2021.09.30 09:38:34 CEST HikariPool-1 - Shutdown completed.
+2021.09.30 09:38:34 CEST Stopping service [Tomcat]
+2021.09.30 09:39:04 CEST HV000001: Hibernate Validator 6.2.0.Final
+2021.09.30 09:39:04 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 13232 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 09:39:04 CEST No active profile set, falling back to default profiles: default
+2021.09.30 09:39:04 CEST Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021.09.30 09:39:04 CEST For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021.09.30 09:39:07 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:39:07 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 09:39:07 CEST Finished Spring Data repository scanning in 243 ms. Found 3 JPA repository interfaces.
+2021.09.30 09:39:07 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:39:07 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 09:39:07 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:39:07 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:39:07 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:39:07 CEST Finished Spring Data repository scanning in 56 ms. Found 0 Redis repository interfaces.
+2021.09.30 09:39:09 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 09:39:09 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 09:39:09 CEST Starting service [Tomcat]
+2021.09.30 09:39:09 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 09:39:09 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 09:39:09 CEST Root WebApplicationContext: initialization completed in 4640 ms
+2021.09.30 09:39:10 CEST HHH000412: Hibernate ORM core version 5.4.32.Final
+2021.09.30 09:39:10 CEST HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021.09.30 09:39:11 CEST HikariPool-1 - Starting...
+2021.09.30 09:39:11 CEST HikariPool-1 - Start completed.
+2021.09.30 09:39:11 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 09:39:13 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 09:39:13 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:39:16 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 09:39:16 CEST 
+
+Using generated security password: b7d74e02-3315-4db4-9a0f-ea536734eff5
+
+2021.09.30 09:39:17 CEST Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'userController' method 
+com.example.demo.controller.UserController#login(LoginUserDTO)
+to {POST [/api/v1/users], consumes [application/json], produces [application/json]}: There is already 'userController' bean method
+com.example.demo.controller.UserController#create(CreateUserDTO) mapped.
+Related cause: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jsonSchemaConverter' defined in class path resource [org/springframework/data/rest/webmvc/config/RepositoryRestMvcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.rest.webmvc.json.PersistentEntityToJsonSchemaConverter]: Factory method 'jsonSchemaConverter' threw exception; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'linkCollector' defined in class path resource [org/springframework/data/rest/webmvc/config/RepositoryRestMvcConfiguration.class]: Unsatisfied dependency expressed through method 'linkCollector' parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'selfLinkProvider' defined in class path resource [org/springframework/data/rest/webmvc/config/RepositoryRestMvcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.rest.core.support.SelfLinkProvider]: Factory method 'selfLinkProvider' threw exception; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'mvcConversionService': Requested bean is currently in creation: Is there an unresolvable circular reference?
+2021.09.30 09:39:17 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:39:17 CEST HikariPool-1 - Shutdown initiated...
+2021.09.30 09:39:17 CEST HikariPool-1 - Shutdown completed.
+2021.09.30 09:39:17 CEST Stopping service [Tomcat]
+2021.09.30 09:41:29 CEST HV000001: Hibernate Validator 6.2.0.Final
+2021.09.30 09:41:29 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 09:41:29 CEST No active profile set, falling back to default profiles: default
+2021.09.30 09:41:30 CEST Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021.09.30 09:41:30 CEST For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021.09.30 09:41:32 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:41:32 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 09:41:32 CEST Finished Spring Data repository scanning in 199 ms. Found 3 JPA repository interfaces.
+2021.09.30 09:41:32 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:41:32 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 09:41:32 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:41:32 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:41:32 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:41:32 CEST Finished Spring Data repository scanning in 51 ms. Found 0 Redis repository interfaces.
+2021.09.30 09:41:34 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 09:41:34 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 09:41:34 CEST Starting service [Tomcat]
+2021.09.30 09:41:34 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 09:41:34 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 09:41:34 CEST Root WebApplicationContext: initialization completed in 4803 ms
+2021.09.30 09:41:35 CEST HHH000412: Hibernate ORM core version 5.4.32.Final
+2021.09.30 09:41:36 CEST HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021.09.30 09:41:36 CEST HikariPool-1 - Starting...
+2021.09.30 09:41:37 CEST HikariPool-1 - Start completed.
+2021.09.30 09:41:37 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 09:41:40 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 09:41:40 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:41:42 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 09:41:43 CEST 
+
+Using generated security password: 31a69cb7-146d-4647-ad44-e92f823fcdca
+
+2021.09.30 09:41:45 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@69d46864, org.springframework.security.web.context.SecurityContextPersistenceFilter@21ef1517, org.springframework.security.web.header.HeaderWriterFilter@3ef93f3e, org.springframework.web.filter.CorsFilter@5a5b2430, org.springframework.security.web.authentication.logout.LogoutFilter@6983e8bd, com.example.demo.security.JWTAuthorizationFilter@d1a82da, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e9b5a9a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@73beca05, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@21cdc913, org.springframework.security.web.session.SessionManagementFilter@70d98e03, org.springframework.security.web.access.ExceptionTranslationFilter@83d3d39, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4c42926a]
+2021.09.30 09:41:47 CEST LiveReload server is running on port 35729
+2021.09.30 09:41:47 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 09:41:47 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 09:41:47 CEST Started DemoApplication in 18.372 seconds (JVM running for 20.997)
+2021.09.30 09:42:04 CEST Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021.09.30 09:42:04 CEST Initializing Servlet 'dispatcherServlet'
+2021.09.30 09:42:04 CEST Completed initialization in 4 ms
+2021.09.30 09:42:05 CEST User {id: a3fda002-c02d-462f-ad0d-d4d6a3361513, name: Carlos, lastName: Castillo, email: carlos.castillo@gmail.com, rol: USER} added succesfully.
+2021.09.30 09:43:25 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:43:25 CEST HikariPool-1 - Shutdown initiated...
+2021.09.30 09:43:25 CEST HikariPool-1 - Shutdown completed.
+2021.09.30 09:43:25 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 09:43:25 CEST No active profile set, falling back to default profiles: default
+2021.09.30 09:43:26 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:43:26 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 09:43:27 CEST Finished Spring Data repository scanning in 204 ms. Found 3 JPA repository interfaces.
+2021.09.30 09:43:27 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:43:27 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 09:43:27 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:43:27 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:43:27 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:43:27 CEST Finished Spring Data repository scanning in 59 ms. Found 0 Redis repository interfaces.
+2021.09.30 09:43:27 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 09:43:27 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 09:43:27 CEST Starting service [Tomcat]
+2021.09.30 09:43:27 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 09:43:27 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 09:43:27 CEST Root WebApplicationContext: initialization completed in 1772 ms
+2021.09.30 09:43:27 CEST HikariPool-2 - Starting...
+2021.09.30 09:43:28 CEST HikariPool-2 - Start completed.
+2021.09.30 09:43:28 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 09:43:28 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 09:43:28 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:43:29 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 09:43:29 CEST 
+
+Using generated security password: 3bd75f95-99a6-4043-b513-f4bee741ddbe
+
+2021.09.30 09:43:29 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@42c83408, org.springframework.security.web.context.SecurityContextPersistenceFilter@2608e2a3, org.springframework.security.web.header.HeaderWriterFilter@c5c4339, org.springframework.web.filter.CorsFilter@72e7d975, org.springframework.security.web.authentication.logout.LogoutFilter@6739d5b, com.example.demo.security.JWTAuthorizationFilter@6cf06cb0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@407eb27f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2ed564c2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@324a2960, org.springframework.security.web.session.SessionManagementFilter@6a746cef, org.springframework.security.web.access.ExceptionTranslationFilter@56f60cd9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1335e7c]
+2021.09.30 09:43:29 CEST LiveReload server is running on port 35729
+2021.09.30 09:43:29 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 09:43:29 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 09:43:29 CEST Started DemoApplication in 4.154 seconds (JVM running for 123.325)
+2021.09.30 09:43:29 CEST Condition evaluation unchanged
+2021.09.30 09:43:41 CEST Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021.09.30 09:43:41 CEST Initializing Servlet 'dispatcherServlet'
+2021.09.30 09:43:41 CEST Completed initialization in 4 ms
+2021.09.30 09:50:37 CEST Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [136] milliseconds.
+2021.09.30 09:58:50 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:58:50 CEST HikariPool-2 - Shutdown initiated...
+2021.09.30 09:58:50 CEST HikariPool-2 - Shutdown completed.
+2021.09.30 09:58:50 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 09:58:50 CEST No active profile set, falling back to default profiles: default
+2021.09.30 09:58:51 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:58:51 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 09:58:52 CEST Finished Spring Data repository scanning in 160 ms. Found 3 JPA repository interfaces.
+2021.09.30 09:58:52 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:58:52 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 09:58:52 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:58:52 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:58:52 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:58:52 CEST Finished Spring Data repository scanning in 86 ms. Found 0 Redis repository interfaces.
+2021.09.30 09:58:53 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 09:58:53 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 09:58:53 CEST Starting service [Tomcat]
+2021.09.30 09:58:53 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 09:58:53 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 09:58:53 CEST Root WebApplicationContext: initialization completed in 2619 ms
+2021.09.30 09:58:53 CEST HikariPool-3 - Starting...
+2021.09.30 09:58:53 CEST HikariPool-3 - Start completed.
+2021.09.30 09:58:53 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 09:58:54 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 09:58:54 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:58:55 CEST Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userApplicationImp' defined in file [C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes\com\example\demo\application\userApplication\UserApplicationImp.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userRepositoryImp' defined in file [C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes\com\example\demo\infraestructure\userInfraestructure\UserRepositoryImp.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userJPARepository' defined in com.example.demo.infraestructure.userInfraestructure.UserJPARepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract com.example.demo.domain.userDomain.User com.example.demo.infraestructure.userInfraestructure.UserJPARepository.login(java.lang.String)! Reason: Validation failed for query for method public abstract com.example.demo.domain.userDomain.User com.example.demo.infraestructure.userInfraestructure.UserJPARepository.login(java.lang.String)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract com.example.demo.domain.userDomain.User com.example.demo.infraestructure.userInfraestructure.UserJPARepository.login(java.lang.String)!
+2021.09.30 09:58:55 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:58:55 CEST HikariPool-3 - Shutdown initiated...
+2021.09.30 09:58:55 CEST HikariPool-3 - Shutdown completed.
+2021.09.30 09:58:55 CEST Stopping service [Tomcat]
+2021.09.30 09:59:28 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 09:59:28 CEST No active profile set, falling back to default profiles: default
+2021.09.30 09:59:28 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:59:28 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 09:59:28 CEST Finished Spring Data repository scanning in 101 ms. Found 3 JPA repository interfaces.
+2021.09.30 09:59:28 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 09:59:28 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 09:59:28 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:59:28 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:59:28 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 09:59:28 CEST Finished Spring Data repository scanning in 46 ms. Found 0 Redis repository interfaces.
+2021.09.30 09:59:29 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 09:59:29 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 09:59:29 CEST Starting service [Tomcat]
+2021.09.30 09:59:29 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 09:59:29 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 09:59:29 CEST Root WebApplicationContext: initialization completed in 1352 ms
+2021.09.30 09:59:29 CEST HikariPool-4 - Starting...
+2021.09.30 09:59:29 CEST HikariPool-4 - Start completed.
+2021.09.30 09:59:29 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 09:59:30 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 09:59:30 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 09:59:30 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 09:59:30 CEST 
+
+Using generated security password: 1a919bdc-3a3e-4fc4-b380-ce3b0c84e841
+
+2021.09.30 09:59:31 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1d81db3a, org.springframework.security.web.context.SecurityContextPersistenceFilter@18ef91ab, org.springframework.security.web.header.HeaderWriterFilter@607e6fcc, org.springframework.web.filter.CorsFilter@34e56ebb, org.springframework.security.web.authentication.logout.LogoutFilter@5cb95d55, com.example.demo.security.JWTAuthorizationFilter@762dd744, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@26cff897, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@355cf38d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6dbd6b89, org.springframework.security.web.session.SessionManagementFilter@41b98aec, org.springframework.security.web.access.ExceptionTranslationFilter@58fcdc55, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@46c27832]
+2021.09.30 09:59:31 CEST LiveReload server is running on port 35729
+2021.09.30 09:59:31 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 09:59:31 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 09:59:31 CEST Started DemoApplication in 3.532 seconds (JVM running for 1084.796)
+2021.09.30 09:59:31 CEST Condition evaluation unchanged
+2021.09.30 09:59:46 CEST Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021.09.30 09:59:46 CEST Initializing Servlet 'dispatcherServlet'
+2021.09.30 09:59:46 CEST Completed initialization in 4 ms
+2021.09.30 10:00:37 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:00:37 CEST HikariPool-4 - Shutdown initiated...
+2021.09.30 10:00:37 CEST HikariPool-4 - Shutdown completed.
+2021.09.30 10:00:38 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 10:00:38 CEST No active profile set, falling back to default profiles: default
+2021.09.30 10:00:39 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:00:39 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 10:00:39 CEST Finished Spring Data repository scanning in 145 ms. Found 3 JPA repository interfaces.
+2021.09.30 10:00:39 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:00:39 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 10:00:39 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:00:39 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:00:39 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:00:39 CEST Finished Spring Data repository scanning in 47 ms. Found 0 Redis repository interfaces.
+2021.09.30 10:00:39 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 10:00:39 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:00:39 CEST Starting service [Tomcat]
+2021.09.30 10:00:39 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 10:00:39 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 10:00:39 CEST Root WebApplicationContext: initialization completed in 1614 ms
+2021.09.30 10:00:40 CEST HikariPool-5 - Starting...
+2021.09.30 10:00:40 CEST HikariPool-5 - Start completed.
+2021.09.30 10:00:40 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 10:00:41 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 10:00:41 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:00:42 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 10:00:42 CEST 
+
+Using generated security password: d19545ca-696a-4c08-b7d1-49016c6b3d82
+
+2021.09.30 10:00:42 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3bddcf41, org.springframework.security.web.context.SecurityContextPersistenceFilter@4eceb9db, org.springframework.security.web.header.HeaderWriterFilter@4194cfd, org.springframework.web.filter.CorsFilter@344f0bfd, org.springframework.security.web.authentication.logout.LogoutFilter@56e07e5f, com.example.demo.security.JWTAuthorizationFilter@42f7fd0f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5d28e145, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@131830b9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1bdd3922, org.springframework.security.web.session.SessionManagementFilter@74915589, org.springframework.security.web.access.ExceptionTranslationFilter@2616ac73, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@572cdeec]
+2021.09.30 10:00:43 CEST LiveReload server is running on port 35729
+2021.09.30 10:00:43 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:00:43 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 10:00:43 CEST Started DemoApplication in 5.054 seconds (JVM running for 1156.549)
+2021.09.30 10:00:43 CEST Condition evaluation unchanged
+2021.09.30 10:01:26 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:01:26 CEST HikariPool-5 - Shutdown initiated...
+2021.09.30 10:01:26 CEST HikariPool-5 - Shutdown completed.
+2021.09.30 10:01:26 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 10:01:26 CEST No active profile set, falling back to default profiles: default
+2021.09.30 10:01:26 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:01:26 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 10:01:27 CEST Finished Spring Data repository scanning in 116 ms. Found 3 JPA repository interfaces.
+2021.09.30 10:01:27 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:01:27 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 10:01:27 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:01:27 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:01:27 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:01:27 CEST Finished Spring Data repository scanning in 48 ms. Found 0 Redis repository interfaces.
+2021.09.30 10:01:27 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 10:01:27 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:01:27 CEST Starting service [Tomcat]
+2021.09.30 10:01:27 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 10:01:27 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 10:01:27 CEST Root WebApplicationContext: initialization completed in 1319 ms
+2021.09.30 10:01:27 CEST HikariPool-6 - Starting...
+2021.09.30 10:01:27 CEST HikariPool-6 - Start completed.
+2021.09.30 10:01:27 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 10:01:28 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 10:01:28 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:01:28 CEST Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userApplicationImp' defined in file [C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes\com\example\demo\application\userApplication\UserApplicationImp.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepositoryImp': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.example.demo.infraestructure.userInfraestructure.UserRepositoryImp] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@1141799b]
+2021.09.30 10:01:28 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:01:28 CEST HikariPool-6 - Shutdown initiated...
+2021.09.30 10:01:28 CEST HikariPool-6 - Shutdown completed.
+2021.09.30 10:01:28 CEST Stopping service [Tomcat]
+2021.09.30 10:01:42 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 10:01:42 CEST No active profile set, falling back to default profiles: default
+2021.09.30 10:01:43 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:01:43 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 10:01:44 CEST Finished Spring Data repository scanning in 413 ms. Found 3 JPA repository interfaces.
+2021.09.30 10:01:44 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:01:44 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 10:01:44 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:01:44 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:01:44 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:01:44 CEST Finished Spring Data repository scanning in 139 ms. Found 0 Redis repository interfaces.
+2021.09.30 10:01:44 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 10:01:44 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:01:44 CEST Starting service [Tomcat]
+2021.09.30 10:01:44 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 10:01:45 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 10:01:45 CEST Root WebApplicationContext: initialization completed in 2260 ms
+2021.09.30 10:01:45 CEST HikariPool-7 - Starting...
+2021.09.30 10:01:45 CEST HikariPool-7 - Start completed.
+2021.09.30 10:01:45 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 10:01:45 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 10:01:45 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:01:46 CEST Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userApplicationImp' defined in file [C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes\com\example\demo\application\userApplication\UserApplicationImp.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepositoryImp': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.example.demo.infraestructure.userInfraestructure.UserRepositoryImp] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@700c383]
+2021.09.30 10:01:46 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:01:46 CEST HikariPool-7 - Shutdown initiated...
+2021.09.30 10:01:46 CEST HikariPool-7 - Shutdown completed.
+2021.09.30 10:01:46 CEST Stopping service [Tomcat]
+2021.09.30 10:01:54 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 10:01:54 CEST No active profile set, falling back to default profiles: default
+2021.09.30 10:01:55 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:01:55 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 10:01:55 CEST Finished Spring Data repository scanning in 96 ms. Found 3 JPA repository interfaces.
+2021.09.30 10:01:55 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:01:55 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 10:01:55 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:01:55 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:01:55 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:01:55 CEST Finished Spring Data repository scanning in 39 ms. Found 0 Redis repository interfaces.
+2021.09.30 10:01:55 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 10:01:55 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:01:55 CEST Starting service [Tomcat]
+2021.09.30 10:01:55 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 10:01:56 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 10:01:56 CEST Root WebApplicationContext: initialization completed in 1160 ms
+2021.09.30 10:01:56 CEST HikariPool-8 - Starting...
+2021.09.30 10:01:56 CEST HikariPool-8 - Start completed.
+2021.09.30 10:01:56 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 10:01:57 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 10:01:57 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:01:58 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 10:01:58 CEST 
+
+Using generated security password: 69c6e5b8-c39d-4292-ae68-fea30ca69692
+
+2021.09.30 10:01:58 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a7d67cf, org.springframework.security.web.context.SecurityContextPersistenceFilter@27518230, org.springframework.security.web.header.HeaderWriterFilter@2b5cff5f, org.springframework.web.filter.CorsFilter@5c2f7e24, org.springframework.security.web.authentication.logout.LogoutFilter@62409353, com.example.demo.security.JWTAuthorizationFilter@584fc882, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@d623f27, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@41089fd3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1d30b3e9, org.springframework.security.web.session.SessionManagementFilter@4789e442, org.springframework.security.web.access.ExceptionTranslationFilter@505f58cd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@106f2a6d]
+2021.09.30 10:01:58 CEST LiveReload server is running on port 35729
+2021.09.30 10:01:58 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:01:58 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 10:01:58 CEST Started DemoApplication in 3.954 seconds (JVM running for 1232.086)
+2021.09.30 10:01:58 CEST Condition evaluation unchanged
+2021.09.30 10:02:03 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:02:03 CEST HikariPool-8 - Shutdown initiated...
+2021.09.30 10:02:03 CEST HikariPool-8 - Shutdown completed.
+2021.09.30 10:02:03 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 10:02:03 CEST No active profile set, falling back to default profiles: default
+2021.09.30 10:02:04 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:02:04 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 10:02:04 CEST Finished Spring Data repository scanning in 100 ms. Found 3 JPA repository interfaces.
+2021.09.30 10:02:04 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:02:04 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 10:02:04 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:02:04 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:02:04 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:02:04 CEST Finished Spring Data repository scanning in 44 ms. Found 0 Redis repository interfaces.
+2021.09.30 10:02:04 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 10:02:04 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:02:04 CEST Starting service [Tomcat]
+2021.09.30 10:02:04 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 10:02:04 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 10:02:04 CEST Root WebApplicationContext: initialization completed in 992 ms
+2021.09.30 10:02:04 CEST HikariPool-9 - Starting...
+2021.09.30 10:02:04 CEST HikariPool-9 - Start completed.
+2021.09.30 10:02:04 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 10:02:05 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 10:02:05 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:02:05 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 10:02:05 CEST 
+
+Using generated security password: 62d41ae0-4e43-4e3e-8636-89a88b86e90a
+
+2021.09.30 10:02:06 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5d98d972, org.springframework.security.web.context.SecurityContextPersistenceFilter@cdd2eab, org.springframework.security.web.header.HeaderWriterFilter@61cc1fd7, org.springframework.web.filter.CorsFilter@779bd5b, org.springframework.security.web.authentication.logout.LogoutFilter@60b34203, com.example.demo.security.JWTAuthorizationFilter@787909dc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7291de2f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@73a2550d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2a261dfd, org.springframework.security.web.session.SessionManagementFilter@5c0545f5, org.springframework.security.web.access.ExceptionTranslationFilter@3ba8a35c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4e070c10]
+2021.09.30 10:02:06 CEST LiveReload server is running on port 35729
+2021.09.30 10:02:06 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:02:06 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 10:02:06 CEST Started DemoApplication in 2.837 seconds (JVM running for 1239.823)
+2021.09.30 10:02:06 CEST Condition evaluation unchanged
+2021.09.30 10:02:36 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:02:36 CEST HikariPool-9 - Shutdown initiated...
+2021.09.30 10:02:36 CEST HikariPool-9 - Shutdown completed.
+2021.09.30 10:02:36 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 10:02:36 CEST No active profile set, falling back to default profiles: default
+2021.09.30 10:02:37 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:02:37 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 10:02:37 CEST Finished Spring Data repository scanning in 179 ms. Found 3 JPA repository interfaces.
+2021.09.30 10:02:37 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:02:37 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 10:02:37 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:02:37 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:02:37 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:02:37 CEST Finished Spring Data repository scanning in 47 ms. Found 0 Redis repository interfaces.
+2021.09.30 10:02:37 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 10:02:37 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:02:37 CEST Starting service [Tomcat]
+2021.09.30 10:02:37 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 10:02:38 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 10:02:38 CEST Root WebApplicationContext: initialization completed in 1438 ms
+2021.09.30 10:02:38 CEST HikariPool-10 - Starting...
+2021.09.30 10:02:38 CEST HikariPool-10 - Start completed.
+2021.09.30 10:02:38 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 10:02:38 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 10:02:38 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:02:39 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 10:02:39 CEST 
+
+Using generated security password: a65e2fc5-af20-4619-af99-6ea723de19d1
+
+2021.09.30 10:02:40 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@22641154, org.springframework.security.web.context.SecurityContextPersistenceFilter@617dbad6, org.springframework.security.web.header.HeaderWriterFilter@46348eda, org.springframework.web.filter.CorsFilter@3a4baf6e, org.springframework.security.web.authentication.logout.LogoutFilter@35132f0b, com.example.demo.security.JWTAuthorizationFilter@65197228, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39e89fa7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b48941e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6d77622e, org.springframework.security.web.session.SessionManagementFilter@315a688e, org.springframework.security.web.access.ExceptionTranslationFilter@1de8a4aa, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@45529822]
+2021.09.30 10:02:40 CEST LiveReload server is running on port 35729
+2021.09.30 10:02:40 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:02:40 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 10:02:40 CEST Started DemoApplication in 4.089 seconds (JVM running for 1273.991)
+2021.09.30 10:02:40 CEST Condition evaluation unchanged
+2021.09.30 10:02:51 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:02:51 CEST HikariPool-10 - Shutdown initiated...
+2021.09.30 10:02:51 CEST HikariPool-10 - Shutdown completed.
+2021.09.30 10:02:52 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 10:02:52 CEST No active profile set, falling back to default profiles: default
+2021.09.30 10:02:52 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:02:52 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 10:02:52 CEST Finished Spring Data repository scanning in 176 ms. Found 3 JPA repository interfaces.
+2021.09.30 10:02:52 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:02:52 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 10:02:53 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:02:53 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:02:53 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:02:53 CEST Finished Spring Data repository scanning in 84 ms. Found 0 Redis repository interfaces.
+2021.09.30 10:02:53 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 10:02:53 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:02:53 CEST Starting service [Tomcat]
+2021.09.30 10:02:53 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 10:02:53 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 10:02:53 CEST Root WebApplicationContext: initialization completed in 1751 ms
+2021.09.30 10:02:54 CEST HikariPool-11 - Starting...
+2021.09.30 10:02:54 CEST HikariPool-11 - Start completed.
+2021.09.30 10:02:54 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 10:02:54 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 10:02:54 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:02:55 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 10:02:55 CEST 
+
+Using generated security password: 129c000b-06f9-438b-aa68-3e08f979bd31
+
+2021.09.30 10:02:55 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6a5db3f, org.springframework.security.web.context.SecurityContextPersistenceFilter@21744b9a, org.springframework.security.web.header.HeaderWriterFilter@6a6f9bd6, org.springframework.web.filter.CorsFilter@1a99dc1e, org.springframework.security.web.authentication.logout.LogoutFilter@18200fc7, com.example.demo.security.JWTAuthorizationFilter@7950dac2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@79197fab, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f3efa75, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6e7ba1b9, org.springframework.security.web.session.SessionManagementFilter@3308e93c, org.springframework.security.web.access.ExceptionTranslationFilter@321d450a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@59e6a2b9]
+2021.09.30 10:02:56 CEST LiveReload server is running on port 35729
+2021.09.30 10:02:56 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:02:56 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 10:02:56 CEST Started DemoApplication in 4.361 seconds (JVM running for 1289.679)
+2021.09.30 10:02:56 CEST Condition evaluation unchanged
+2021.09.30 10:58:23 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:58:23 CEST HikariPool-11 - Shutdown initiated...
+2021.09.30 10:58:23 CEST HikariPool-11 - Shutdown completed.
+2021.09.30 10:58:23 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 10:58:23 CEST No active profile set, falling back to default profiles: default
+2021.09.30 10:58:24 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:58:24 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 10:58:24 CEST Finished Spring Data repository scanning in 125 ms. Found 3 JPA repository interfaces.
+2021.09.30 10:58:24 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 10:58:24 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 10:58:24 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:58:24 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:58:24 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 10:58:24 CEST Finished Spring Data repository scanning in 71 ms. Found 0 Redis repository interfaces.
+2021.09.30 10:58:24 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 10:58:24 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:58:24 CEST Starting service [Tomcat]
+2021.09.30 10:58:24 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 10:58:24 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 10:58:24 CEST Root WebApplicationContext: initialization completed in 1179 ms
+2021.09.30 10:58:24 CEST HikariPool-12 - Starting...
+2021.09.30 10:58:24 CEST HikariPool-12 - Start completed.
+2021.09.30 10:58:24 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 10:58:25 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 10:58:25 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 10:58:28 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 10:58:29 CEST 
+
+Using generated security password: d6e426e6-2b2f-4cdd-b877-9c462d3cc3f7
+
+2021.09.30 10:58:29 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5dfc1e6f, org.springframework.security.web.context.SecurityContextPersistenceFilter@5e8b8303, org.springframework.security.web.header.HeaderWriterFilter@60ebe553, org.springframework.web.filter.CorsFilter@dc09c8c, org.springframework.security.web.authentication.logout.LogoutFilter@3962d279, com.example.demo.security.JWTAuthorizationFilter@66a6b870, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e62ed84, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@219c4266, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@76367e7b, org.springframework.security.web.session.SessionManagementFilter@3c84de24, org.springframework.security.web.access.ExceptionTranslationFilter@2ccd8c8a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5d7d9450]
+2021.09.30 10:58:29 CEST LiveReload server is running on port 35729
+2021.09.30 10:58:29 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 10:58:29 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 10:58:29 CEST Started DemoApplication in 6.513 seconds (JVM running for 4623.235)
+2021.09.30 10:58:29 CEST Condition evaluation unchanged
+2021.09.30 11:00:20 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:00:20 CEST HikariPool-12 - Shutdown initiated...
+2021.09.30 11:00:20 CEST HikariPool-12 - Shutdown completed.
+2021.09.30 11:00:20 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:00:20 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:00:21 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:00:21 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:00:21 CEST Finished Spring Data repository scanning in 82 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:00:21 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:00:21 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:00:21 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:00:21 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:00:21 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:00:21 CEST Finished Spring Data repository scanning in 49 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:00:21 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:00:21 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:00:21 CEST Starting service [Tomcat]
+2021.09.30 11:00:21 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:00:21 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:00:21 CEST Root WebApplicationContext: initialization completed in 937 ms
+2021.09.30 11:00:21 CEST HikariPool-13 - Starting...
+2021.09.30 11:00:21 CEST HikariPool-13 - Start completed.
+2021.09.30 11:00:21 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:00:22 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:00:22 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:00:26 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:00:26 CEST 
+
+Using generated security password: 1878b4f9-46ee-4e28-834d-2b9427c21680
+
+2021.09.30 11:00:26 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4412932, org.springframework.security.web.context.SecurityContextPersistenceFilter@38cd3cde, org.springframework.security.web.header.HeaderWriterFilter@6de6b2de, org.springframework.web.filter.CorsFilter@59a83541, org.springframework.security.web.authentication.logout.LogoutFilter@259d2dbd, com.example.demo.security.JWTAuthorizationFilter@40cfb527, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5eb155ab, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6196ce1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7b77a21, org.springframework.security.web.session.SessionManagementFilter@3e698ca5, org.springframework.security.web.access.ExceptionTranslationFilter@13bea488, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6f957b1b]
+2021.09.30 11:00:26 CEST LiveReload server is running on port 35729
+2021.09.30 11:00:26 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:00:26 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:00:26 CEST Started DemoApplication in 6.229 seconds (JVM running for 4740.181)
+2021.09.30 11:00:26 CEST Condition evaluation unchanged
+2021.09.30 11:00:50 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:00:50 CEST HikariPool-13 - Shutdown initiated...
+2021.09.30 11:00:50 CEST HikariPool-13 - Shutdown completed.
+2021.09.30 11:00:51 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:00:51 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:00:51 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:00:51 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:00:52 CEST Finished Spring Data repository scanning in 148 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:00:52 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:00:52 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:00:52 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:00:52 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:00:52 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:00:52 CEST Finished Spring Data repository scanning in 46 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:00:52 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:00:52 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:00:52 CEST Starting service [Tomcat]
+2021.09.30 11:00:52 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:00:52 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:00:52 CEST Root WebApplicationContext: initialization completed in 1140 ms
+2021.09.30 11:00:52 CEST HikariPool-14 - Starting...
+2021.09.30 11:00:52 CEST HikariPool-14 - Start completed.
+2021.09.30 11:00:52 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:00:52 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:00:52 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:00:54 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:00:54 CEST 
+
+Using generated security password: 2b80d197-55ad-44fe-9423-2e156f5f21a5
+
+2021.09.30 11:00:54 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@42547daf, org.springframework.security.web.context.SecurityContextPersistenceFilter@49b69639, org.springframework.security.web.header.HeaderWriterFilter@6c101e37, org.springframework.web.filter.CorsFilter@51c4b3a, org.springframework.security.web.authentication.logout.LogoutFilter@63c38355, com.example.demo.security.JWTAuthorizationFilter@2fa20f8a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4c1be897, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2016b685, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@53cc1e64, org.springframework.security.web.session.SessionManagementFilter@17c52a98, org.springframework.security.web.access.ExceptionTranslationFilter@361667c7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@66b399f6]
+2021.09.30 11:00:55 CEST LiveReload server is running on port 35729
+2021.09.30 11:00:55 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:00:55 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:00:55 CEST Started DemoApplication in 4.206 seconds (JVM running for 4768.636)
+2021.09.30 11:00:55 CEST Condition evaluation unchanged
+2021.09.30 11:01:01 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:01:01 CEST HikariPool-14 - Shutdown initiated...
+2021.09.30 11:01:01 CEST HikariPool-14 - Shutdown completed.
+2021.09.30 11:01:01 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:01:01 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:01:02 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:01:02 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:01:02 CEST Finished Spring Data repository scanning in 100 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:01:02 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:01:02 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:01:02 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:01:02 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:01:02 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:01:02 CEST Finished Spring Data repository scanning in 71 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:01:02 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:01:02 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:01:02 CEST Starting service [Tomcat]
+2021.09.30 11:01:02 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:01:02 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:01:02 CEST Root WebApplicationContext: initialization completed in 1195 ms
+2021.09.30 11:01:03 CEST HikariPool-15 - Starting...
+2021.09.30 11:01:03 CEST HikariPool-15 - Start completed.
+2021.09.30 11:01:03 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:01:03 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:01:03 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:01:04 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:01:04 CEST 
+
+Using generated security password: 2493e0b8-f3ca-4588-a4fb-22f7e6292c91
+
+2021.09.30 11:01:04 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6f51e540, org.springframework.security.web.context.SecurityContextPersistenceFilter@64c17fff, org.springframework.security.web.header.HeaderWriterFilter@52787896, org.springframework.web.filter.CorsFilter@40eb9303, org.springframework.security.web.authentication.logout.LogoutFilter@13d14f4a, com.example.demo.security.JWTAuthorizationFilter@59ad5f6b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@20230035, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@310e606f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@601af2b3, org.springframework.security.web.session.SessionManagementFilter@7ba6ccb0, org.springframework.security.web.access.ExceptionTranslationFilter@174a7d97, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@31f5f905]
+2021.09.30 11:01:04 CEST LiveReload server is running on port 35729
+2021.09.30 11:01:04 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:01:04 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:01:04 CEST Started DemoApplication in 3.098 seconds (JVM running for 4777.937)
+2021.09.30 11:01:04 CEST Condition evaluation unchanged
+2021.09.30 11:01:14 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:01:14 CEST HikariPool-15 - Shutdown initiated...
+2021.09.30 11:01:14 CEST HikariPool-15 - Shutdown completed.
+2021.09.30 11:01:14 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:01:14 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:01:15 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:01:15 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:01:15 CEST Finished Spring Data repository scanning in 84 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:01:15 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:01:15 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:01:15 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:01:15 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:01:15 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:01:15 CEST Finished Spring Data repository scanning in 28 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:01:15 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:01:15 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:01:15 CEST Starting service [Tomcat]
+2021.09.30 11:01:15 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:01:15 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:01:15 CEST Root WebApplicationContext: initialization completed in 779 ms
+2021.09.30 11:01:15 CEST HikariPool-16 - Starting...
+2021.09.30 11:01:15 CEST HikariPool-16 - Start completed.
+2021.09.30 11:01:15 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:01:16 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:01:16 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:01:16 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:01:16 CEST 
+
+Using generated security password: d0d86193-9a5f-4002-8b8f-ac75ee4c6389
+
+2021.09.30 11:01:16 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5d67cee, org.springframework.security.web.context.SecurityContextPersistenceFilter@533334aa, org.springframework.security.web.header.HeaderWriterFilter@6160e1ab, org.springframework.web.filter.CorsFilter@26aea1d3, org.springframework.security.web.authentication.logout.LogoutFilter@21f86f12, com.example.demo.security.JWTAuthorizationFilter@389e325, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@182aab25, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7ea16c32, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@35042261, org.springframework.security.web.session.SessionManagementFilter@59c98b3d, org.springframework.security.web.access.ExceptionTranslationFilter@126b273e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@681c886a]
+2021.09.30 11:01:17 CEST LiveReload server is running on port 35729
+2021.09.30 11:01:17 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:01:17 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:01:17 CEST Started DemoApplication in 2.287 seconds (JVM running for 4790.499)
+2021.09.30 11:01:17 CEST Condition evaluation unchanged
+2021.09.30 11:01:31 CEST Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021.09.30 11:01:31 CEST Initializing Servlet 'dispatcherServlet'
+2021.09.30 11:01:31 CEST Completed initialization in 3 ms
+2021.09.30 11:05:00 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:05:00 CEST HikariPool-16 - Shutdown initiated...
+2021.09.30 11:05:00 CEST HikariPool-16 - Shutdown completed.
+2021.09.30 11:05:00 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:05:00 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:05:01 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:05:01 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:05:01 CEST Finished Spring Data repository scanning in 69 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:05:01 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:05:01 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:05:01 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:05:01 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:05:01 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:05:01 CEST Finished Spring Data repository scanning in 29 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:05:01 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:05:01 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:05:01 CEST Starting service [Tomcat]
+2021.09.30 11:05:01 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:05:01 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:05:01 CEST Root WebApplicationContext: initialization completed in 798 ms
+2021.09.30 11:05:01 CEST HikariPool-17 - Starting...
+2021.09.30 11:05:01 CEST HikariPool-17 - Start completed.
+2021.09.30 11:05:01 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:05:01 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:05:01 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:05:02 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:05:02 CEST 
+
+Using generated security password: 1da67c29-0ce8-48eb-b7fc-5e0c86a8be2a
+
+2021.09.30 11:05:02 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1d13996c, org.springframework.security.web.context.SecurityContextPersistenceFilter@3f8149f8, org.springframework.security.web.header.HeaderWriterFilter@5be19bc2, org.springframework.web.filter.CorsFilter@1e5eef6b, org.springframework.security.web.authentication.logout.LogoutFilter@524beb11, com.example.demo.security.JWTAuthorizationFilter@301dd935, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@73257bdd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@244dc1f0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@d1fc1ae, org.springframework.security.web.session.SessionManagementFilter@58e37ba4, org.springframework.security.web.access.ExceptionTranslationFilter@68048d98, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@253db787]
+2021.09.30 11:05:02 CEST LiveReload server is running on port 35729
+2021.09.30 11:05:02 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:05:02 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:05:02 CEST Started DemoApplication in 2.147 seconds (JVM running for 5016.173)
+2021.09.30 11:05:02 CEST Condition evaluation unchanged
+2021.09.30 11:05:17 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:05:17 CEST HikariPool-17 - Shutdown initiated...
+2021.09.30 11:05:17 CEST HikariPool-17 - Shutdown completed.
+2021.09.30 11:05:17 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:05:17 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:05:18 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:05:18 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:05:18 CEST Finished Spring Data repository scanning in 93 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:05:18 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:05:18 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:05:18 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:05:18 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:05:18 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:05:18 CEST Finished Spring Data repository scanning in 30 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:05:18 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:05:18 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:05:18 CEST Starting service [Tomcat]
+2021.09.30 11:05:18 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:05:18 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:05:18 CEST Root WebApplicationContext: initialization completed in 1033 ms
+2021.09.30 11:05:19 CEST HikariPool-18 - Starting...
+2021.09.30 11:05:19 CEST HikariPool-18 - Start completed.
+2021.09.30 11:05:19 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:05:19 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:05:19 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:05:20 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:05:20 CEST 
+
+Using generated security password: 27fdbea2-879e-4c41-b7ee-1e0bfa7ab84e
+
+2021.09.30 11:05:20 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7d66c368, org.springframework.security.web.context.SecurityContextPersistenceFilter@62eec675, org.springframework.security.web.header.HeaderWriterFilter@5342d4aa, org.springframework.web.filter.CorsFilter@814a927, org.springframework.security.web.authentication.logout.LogoutFilter@47a6268a, com.example.demo.security.JWTAuthorizationFilter@5b205afd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@46a19c54, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@303e7ae, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@65c9a2e4, org.springframework.security.web.session.SessionManagementFilter@2f9ff476, org.springframework.security.web.access.ExceptionTranslationFilter@945b5c1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4139c72c]
+2021.09.30 11:05:21 CEST LiveReload server is running on port 35729
+2021.09.30 11:05:21 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:05:21 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:05:21 CEST Started DemoApplication in 3.447 seconds (JVM running for 5034.483)
+2021.09.30 11:05:21 CEST Condition evaluation unchanged
+2021.09.30 11:05:22 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:05:22 CEST HikariPool-18 - Shutdown initiated...
+2021.09.30 11:05:22 CEST HikariPool-18 - Shutdown completed.
+2021.09.30 11:05:22 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:05:23 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:05:23 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:05:23 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:05:23 CEST Finished Spring Data repository scanning in 93 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:05:23 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:05:23 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:05:23 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:05:23 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:05:23 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:05:23 CEST Finished Spring Data repository scanning in 32 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:05:23 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:05:23 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:05:23 CEST Starting service [Tomcat]
+2021.09.30 11:05:23 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:05:24 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:05:24 CEST Root WebApplicationContext: initialization completed in 1027 ms
+2021.09.30 11:05:24 CEST HikariPool-19 - Starting...
+2021.09.30 11:05:24 CEST HikariPool-19 - Start completed.
+2021.09.30 11:05:24 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:05:24 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:05:24 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:05:25 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:05:25 CEST 
+
+Using generated security password: 2204cd47-7af1-4dff-b7e7-ba725aca0c83
+
+2021.09.30 11:05:25 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6f949378, org.springframework.security.web.context.SecurityContextPersistenceFilter@47366f9b, org.springframework.security.web.header.HeaderWriterFilter@76afa27f, org.springframework.web.filter.CorsFilter@6d18535d, org.springframework.security.web.authentication.logout.LogoutFilter@3fbc85be, com.example.demo.security.JWTAuthorizationFilter@550a5021, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2f9611b7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2421e260, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25d8037a, org.springframework.security.web.session.SessionManagementFilter@5ad6a35d, org.springframework.security.web.access.ExceptionTranslationFilter@14bf9ef4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6de6bac2]
+2021.09.30 11:05:25 CEST LiveReload server is running on port 35729
+2021.09.30 11:05:25 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:05:25 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:05:25 CEST Started DemoApplication in 2.944 seconds (JVM running for 5039.197)
+2021.09.30 11:05:25 CEST Condition evaluation unchanged
+2021.09.30 11:05:33 CEST Illegal access: this web application instance has been stopped already. Could not load [jdk.internal.reflect.GeneratedMethodAccessor331]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access. java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [jdk.internal.reflect.GeneratedMethodAccessor331]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1427) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1415) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.catalina.loader.WebappClassLoaderBase.findClass(WebappClassLoaderBase.java:837) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedWebappClassLoader.findClassIgnoringNotFound(TomcatEmbeddedWebappClassLoader.java:123) [spring-boot-2.5.3.jar:2.5.3]
+	at org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedWebappClassLoader.doLoadClass(TomcatEmbeddedWebappClassLoader.java:88) [spring-boot-2.5.3.jar:2.5.3]
+	at org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedWebappClassLoader.loadClass(TomcatEmbeddedWebappClassLoader.java:70) [spring-boot-2.5.3.jar:2.5.3]
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1215) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.logging.log4j.util.LoaderUtil.loadClass(LoaderUtil.java:167) [log4j-api-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.impl.ThrowableProxyHelper.loadClass(ThrowableProxyHelper.java:216) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.impl.ThrowableProxyHelper.toExtendedStackTrace(ThrowableProxyHelper.java:114) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.impl.ThrowableProxy.<init>(ThrowableProxy.java:110) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.impl.ThrowableProxy.<init>(ThrowableProxy.java:94) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.impl.Log4jLogEvent.getThrownProxy(Log4jLogEvent.java:629) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.pattern.ExtendedThrowablePatternConverter.format(ExtendedThrowablePatternConverter.java:63) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.pattern.PatternFormatter.format(PatternFormatter.java:38) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.layout.PatternLayout$PatternSerializer.toSerializable(PatternLayout.java:344) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.layout.PatternLayout.toText(PatternLayout.java:244) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.layout.PatternLayout.encode(PatternLayout.java:229) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.layout.PatternLayout.encode(PatternLayout.java:59) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.appender.AbstractOutputStreamAppender.directEncodeEvent(AbstractOutputStreamAppender.java:197) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.appender.AbstractOutputStreamAppender.tryAppend(AbstractOutputStreamAppender.java:190) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.appender.AbstractOutputStreamAppender.append(AbstractOutputStreamAppender.java:181) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.config.AppenderControl.tryCallAppender(AppenderControl.java:156) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.config.AppenderControl.callAppender0(AppenderControl.java:129) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.config.AppenderControl.callAppenderPreventRecursion(AppenderControl.java:120) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.config.AppenderControl.callAppender(AppenderControl.java:84) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.config.LoggerConfig.callAppenders(LoggerConfig.java:540) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.config.LoggerConfig.processLogEvent(LoggerConfig.java:498) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.config.LoggerConfig.log(LoggerConfig.java:481) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.config.LoggerConfig.log(LoggerConfig.java:410) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.config.AwaitCompletionReliabilityStrategy.log(AwaitCompletionReliabilityStrategy.java:63) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.log4j.core.Logger.logMessage(Logger.java:153) [log4j-core-2.14.1.jar:2.14.1]
+	at org.apache.logging.slf4j.Log4jLogger.log(Log4jLogger.java:376) [log4j-slf4j-impl-2.14.1.jar:2.14.1]
+	at org.slf4j.bridge.SLF4JBridgeHandler.callLocationAwareLogger(SLF4JBridgeHandler.java:221) [jul-to-slf4j-1.7.32.jar:1.7.32]
+	at org.slf4j.bridge.SLF4JBridgeHandler.publish(SLF4JBridgeHandler.java:303) [jul-to-slf4j-1.7.32.jar:1.7.32]
+	at java.util.logging.Logger.log(Logger.java:979) [?:?]
+	at java.util.logging.Logger.doLog(Logger.java:1006) [?:?]
+	at java.util.logging.Logger.logp(Logger.java:1283) [?:?]
+	at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:175) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.juli.logging.DirectJDKLog.error(DirectJDKLog.java:141) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:244) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1723) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at java.lang.Thread.run(Thread.java:831) [?:?]
+
+2021.09.30 11:05:33 CEST Exception while attempting to add an entry to the access log java.lang.NullPointerException: Cannot invoke "org.apache.catalina.Service.getContainer()" because the return value of "org.apache.catalina.connector.Connector.getService()" is null
+	at org.apache.catalina.connector.CoyoteAdapter.log(CoyoteAdapter.java:504) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:412) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1723) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at java.lang.Thread.run(Thread.java:831) [?:?]
+
+2021.09.30 11:05:36 CEST Exception while attempting to add an entry to the access log java.lang.NullPointerException: Cannot invoke "org.apache.catalina.Service.getContainer()" because the return value of "org.apache.catalina.connector.Connector.getService()" is null
+	at org.apache.catalina.connector.CoyoteAdapter.log(CoyoteAdapter.java:504) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:412) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1723) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.50.jar:9.0.50]
+	at java.lang.Thread.run(Thread.java:831) [?:?]
+
+2021.09.30 11:05:41 CEST Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021.09.30 11:05:41 CEST Initializing Servlet 'dispatcherServlet'
+2021.09.30 11:05:41 CEST Completed initialization in 3 ms
+2021.09.30 11:07:57 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:07:57 CEST HikariPool-19 - Shutdown initiated...
+2021.09.30 11:07:57 CEST HikariPool-19 - Shutdown completed.
+2021.09.30 11:07:58 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:07:58 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:07:58 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:07:58 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:07:58 CEST Finished Spring Data repository scanning in 83 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:07:59 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:07:59 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:07:59 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:07:59 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:07:59 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:07:59 CEST Finished Spring Data repository scanning in 38 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:07:59 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:07:59 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:07:59 CEST Starting service [Tomcat]
+2021.09.30 11:07:59 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:07:59 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:07:59 CEST Root WebApplicationContext: initialization completed in 1442 ms
+2021.09.30 11:07:59 CEST HikariPool-20 - Starting...
+2021.09.30 11:07:59 CEST HikariPool-20 - Start completed.
+2021.09.30 11:07:59 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:08:00 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:08:00 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:08:01 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:08:01 CEST 
+
+Using generated security password: 44d051cd-0c90-4243-8be2-380a8c2e099c
+
+2021.09.30 11:08:01 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@797033be, org.springframework.security.web.context.SecurityContextPersistenceFilter@4448ba87, org.springframework.security.web.header.HeaderWriterFilter@e086cda, org.springframework.web.filter.CorsFilter@405ae3aa, org.springframework.security.web.authentication.logout.LogoutFilter@570dabc9, com.example.demo.security.JWTAuthorizationFilter@4ec8d54c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1d311acd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5012cb0d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@626fefc7, org.springframework.security.web.session.SessionManagementFilter@3b17a27b, org.springframework.security.web.access.ExceptionTranslationFilter@6fa6c0db, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4c03358e]
+2021.09.30 11:08:01 CEST LiveReload server is running on port 35729
+2021.09.30 11:08:01 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:08:01 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:08:01 CEST Started DemoApplication in 3.454 seconds (JVM running for 5194.873)
+2021.09.30 11:08:01 CEST Condition evaluation unchanged
+2021.09.30 11:08:01 CEST Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021.09.30 11:08:01 CEST Initializing Servlet 'dispatcherServlet'
+2021.09.30 11:08:01 CEST Completed initialization in 3 ms
+2021.09.30 11:08:28 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:08:28 CEST HikariPool-20 - Shutdown initiated...
+2021.09.30 11:08:28 CEST HikariPool-20 - Shutdown completed.
+2021.09.30 11:08:28 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:08:28 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:08:29 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:08:29 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:08:29 CEST Finished Spring Data repository scanning in 123 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:08:29 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:08:29 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:08:29 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:08:29 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:08:29 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:08:29 CEST Finished Spring Data repository scanning in 50 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:08:30 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:08:30 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:08:30 CEST Starting service [Tomcat]
+2021.09.30 11:08:30 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:08:30 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:08:30 CEST Root WebApplicationContext: initialization completed in 1196 ms
+2021.09.30 11:08:30 CEST HikariPool-21 - Starting...
+2021.09.30 11:08:30 CEST HikariPool-21 - Start completed.
+2021.09.30 11:08:30 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:08:30 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:08:30 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:08:31 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:08:31 CEST 
+
+Using generated security password: 0c09c37e-4776-4c82-9e32-0fae180152f1
+
+2021.09.30 11:08:31 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@274b9ae1, org.springframework.security.web.context.SecurityContextPersistenceFilter@6c374f4d, org.springframework.security.web.header.HeaderWriterFilter@534283e3, org.springframework.web.filter.CorsFilter@795f1d08, org.springframework.security.web.authentication.logout.LogoutFilter@3effc31e, com.example.demo.security.JWTAuthorizationFilter@50c5d582, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@729efd2a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@35843501, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e3e5baf, org.springframework.security.web.session.SessionManagementFilter@2cae3273, org.springframework.security.web.access.ExceptionTranslationFilter@3cb45079, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@764618dd]
+2021.09.30 11:08:31 CEST LiveReload server is running on port 35729
+2021.09.30 11:08:31 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:08:31 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:08:31 CEST Started DemoApplication in 2.722 seconds (JVM running for 5224.864)
+2021.09.30 11:08:31 CEST Condition evaluation unchanged
+2021.09.30 11:08:37 CEST Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021.09.30 11:08:37 CEST Initializing Servlet 'dispatcherServlet'
+2021.09.30 11:08:37 CEST Completed initialization in 2 ms
+2021.09.30 11:16:43 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:16:43 CEST HikariPool-21 - Shutdown initiated...
+2021.09.30 11:16:43 CEST HikariPool-21 - Shutdown completed.
+2021.09.30 11:16:43 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:16:43 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:16:44 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:16:44 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:16:44 CEST Finished Spring Data repository scanning in 76 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:16:44 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:16:44 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:16:44 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:16:44 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:16:44 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:16:44 CEST Finished Spring Data repository scanning in 27 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:16:44 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:16:44 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:16:44 CEST Starting service [Tomcat]
+2021.09.30 11:16:44 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:16:44 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:16:44 CEST Root WebApplicationContext: initialization completed in 754 ms
+2021.09.30 11:16:44 CEST HikariPool-22 - Starting...
+2021.09.30 11:16:44 CEST HikariPool-22 - Start completed.
+2021.09.30 11:16:44 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:16:44 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:16:44 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:16:45 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:16:45 CEST 
+
+Using generated security password: cda89c5a-1d25-4735-b996-e1d108f9af81
+
+2021.09.30 11:16:45 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58ddd0c9, org.springframework.security.web.context.SecurityContextPersistenceFilter@1c70e799, org.springframework.security.web.header.HeaderWriterFilter@472e0d0a, org.springframework.web.filter.CorsFilter@7e04997d, org.springframework.security.web.authentication.logout.LogoutFilter@147fecec, com.example.demo.security.JWTAuthorizationFilter@7b95edb3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4f644d82, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@78954f39, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@b72cac5, org.springframework.security.web.session.SessionManagementFilter@236a8400, org.springframework.security.web.access.ExceptionTranslationFilter@5670b6fb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2a7a7a76]
+2021.09.30 11:16:45 CEST LiveReload server is running on port 35729
+2021.09.30 11:16:45 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:16:45 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:16:45 CEST Started DemoApplication in 1.888 seconds (JVM running for 5718.838)
+2021.09.30 11:16:45 CEST Condition evaluation unchanged
+2021.09.30 11:17:03 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:17:03 CEST HikariPool-22 - Shutdown initiated...
+2021.09.30 11:17:03 CEST HikariPool-22 - Shutdown completed.
+2021.09.30 11:17:03 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:17:03 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:17:04 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:17:04 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:17:04 CEST Finished Spring Data repository scanning in 102 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:17:04 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:17:04 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:17:04 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:17:04 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:17:04 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:17:04 CEST Finished Spring Data repository scanning in 41 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:17:04 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:17:04 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:17:04 CEST Starting service [Tomcat]
+2021.09.30 11:17:04 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:17:04 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:17:04 CEST Root WebApplicationContext: initialization completed in 1238 ms
+2021.09.30 11:17:05 CEST HikariPool-23 - Starting...
+2021.09.30 11:17:05 CEST HikariPool-23 - Start completed.
+2021.09.30 11:17:05 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:17:05 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:17:05 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:17:05 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:17:05 CEST 
+
+Using generated security password: b44cdf56-a71d-4dac-a650-3638ceab0cad
+
+2021.09.30 11:17:06 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@83f6b26, org.springframework.security.web.context.SecurityContextPersistenceFilter@2bd37ee3, org.springframework.security.web.header.HeaderWriterFilter@17d09efe, org.springframework.web.filter.CorsFilter@288afa83, org.springframework.security.web.authentication.logout.LogoutFilter@6a9ae3b, com.example.demo.security.JWTAuthorizationFilter@b23a9ff, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7f732726, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6c477158, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@407ea3e8, org.springframework.security.web.session.SessionManagementFilter@78545e8f, org.springframework.security.web.access.ExceptionTranslationFilter@50f09097, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2122d6bd]
+2021.09.30 11:17:06 CEST LiveReload server is running on port 35729
+2021.09.30 11:17:06 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:17:06 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:17:06 CEST Started DemoApplication in 2.746 seconds (JVM running for 5739.755)
+2021.09.30 11:17:06 CEST Condition evaluation unchanged
+2021.09.30 11:17:06 CEST Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021.09.30 11:17:06 CEST Initializing Servlet 'dispatcherServlet'
+2021.09.30 11:17:06 CEST Completed initialization in 4 ms
+2021.09.30 11:20:28 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:20:28 CEST HikariPool-23 - Shutdown initiated...
+2021.09.30 11:20:28 CEST HikariPool-23 - Shutdown completed.
+2021.09.30 11:20:29 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:20:29 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:20:29 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:20:29 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:20:29 CEST Finished Spring Data repository scanning in 98 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:20:29 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:20:29 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:20:29 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:20:29 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:20:29 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:20:29 CEST Finished Spring Data repository scanning in 59 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:20:30 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:20:30 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:20:30 CEST Starting service [Tomcat]
+2021.09.30 11:20:30 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:20:30 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:20:30 CEST Root WebApplicationContext: initialization completed in 1177 ms
+2021.09.30 11:20:30 CEST HikariPool-24 - Starting...
+2021.09.30 11:20:30 CEST HikariPool-24 - Start completed.
+2021.09.30 11:20:30 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:20:30 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:20:30 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:20:31 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:20:31 CEST 
+
+Using generated security password: c8b69610-78b4-4517-8818-ee9d4b62d682
+
+2021.09.30 11:20:31 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5fca4670, org.springframework.security.web.context.SecurityContextPersistenceFilter@32e197bf, org.springframework.security.web.header.HeaderWriterFilter@6d72f805, org.springframework.web.filter.CorsFilter@4fd22adc, org.springframework.security.web.authentication.logout.LogoutFilter@27ecc89c, com.example.demo.security.JWTAuthorizationFilter@33b8d79f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@bb83e5f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@71704dfd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3669c77d, org.springframework.security.web.session.SessionManagementFilter@39ba2583, org.springframework.security.web.access.ExceptionTranslationFilter@675bc763, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@270fea16]
+2021.09.30 11:20:32 CEST LiveReload server is running on port 35729
+2021.09.30 11:20:32 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:20:32 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:20:32 CEST Started DemoApplication in 3.004 seconds (JVM running for 5945.418)
+2021.09.30 11:20:32 CEST Condition evaluation unchanged
+2021.09.30 11:20:48 CEST Closing JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:20:48 CEST HikariPool-24 - Shutdown initiated...
+2021.09.30 11:20:48 CEST HikariPool-24 - Shutdown completed.
+2021.09.30 11:20:48 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 19260 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 11:20:48 CEST No active profile set, falling back to default profiles: default
+2021.09.30 11:20:49 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:20:49 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 11:20:49 CEST Finished Spring Data repository scanning in 99 ms. Found 3 JPA repository interfaces.
+2021.09.30 11:20:49 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 11:20:49 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 11:20:49 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:20:49 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:20:49 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 11:20:49 CEST Finished Spring Data repository scanning in 46 ms. Found 0 Redis repository interfaces.
+2021.09.30 11:20:49 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 11:20:49 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:20:49 CEST Starting service [Tomcat]
+2021.09.30 11:20:49 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 11:20:49 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 11:20:49 CEST Root WebApplicationContext: initialization completed in 1274 ms
+2021.09.30 11:20:49 CEST HikariPool-25 - Starting...
+2021.09.30 11:20:49 CEST HikariPool-25 - Start completed.
+2021.09.30 11:20:49 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 11:20:50 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 11:20:50 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 11:20:50 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 11:20:50 CEST 
+
+Using generated security password: 0db7a176-47d1-41f2-be6e-5a714ad45e02
+
+2021.09.30 11:20:51 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@55dfe2b3, org.springframework.security.web.context.SecurityContextPersistenceFilter@3e3efb43, org.springframework.security.web.header.HeaderWriterFilter@27842281, org.springframework.web.filter.CorsFilter@1c6c2fa, org.springframework.security.web.authentication.logout.LogoutFilter@1bcdd662, com.example.demo.security.JWTAuthorizationFilter@379a6bbe, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d287589, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7bbed087, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4da7a5d2, org.springframework.security.web.session.SessionManagementFilter@75ab8b8d, org.springframework.security.web.access.ExceptionTranslationFilter@7d77d451, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3a11c3bc]
+2021.09.30 11:20:51 CEST LiveReload server is running on port 35729
+2021.09.30 11:20:51 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 11:20:51 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 11:20:51 CEST Started DemoApplication in 3.165 seconds (JVM running for 5964.806)
+2021.09.30 11:20:51 CEST Condition evaluation unchanged
+2021.09.30 11:20:51 CEST Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021.09.30 11:20:51 CEST Initializing Servlet 'dispatcherServlet'
+2021.09.30 11:20:51 CEST Completed initialization in 2 ms
+2021.09.30 18:25:17 CEST HV000001: Hibernate Validator 6.2.0.Final
+2021.09.30 18:25:17 CEST Starting DemoApplication using Java 16.0.2 on LES010281 with PID 20120 (C:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo\target\classes started by ccastill in c:\Users\ccastill\Desktop\Bootcamp\Proyectos\Pizzeria\Pizzeria-Backend\demo)
+2021.09.30 18:25:17 CEST No active profile set, falling back to default profiles: default
+2021.09.30 18:25:18 CEST Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021.09.30 18:25:18 CEST For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021.09.30 18:25:20 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 18:25:20 CEST Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021.09.30 18:25:21 CEST Finished Spring Data repository scanning in 253 ms. Found 3 JPA repository interfaces.
+2021.09.30 18:25:21 CEST Multiple Spring Data modules found, entering strict repository configuration mode!
+2021.09.30 18:25:21 CEST Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021.09.30 18:25:21 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.ingredientInfraestructure.IngredientJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 18:25:21 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.pizzaInfraestructure.PizzaJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 18:25:21 CEST Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.infraestructure.userInfraestructure.UserJPARepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021.09.30 18:25:21 CEST Finished Spring Data repository scanning in 80 ms. Found 0 Redis repository interfaces.
+2021.09.30 18:25:23 CEST Tomcat initialized with port(s): 9999 (http)
+2021.09.30 18:25:23 CEST Initializing ProtocolHandler ["http-nio-9999"]
+2021.09.30 18:25:23 CEST Starting service [Tomcat]
+2021.09.30 18:25:23 CEST Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021.09.30 18:25:24 CEST Initializing Spring embedded WebApplicationContext
+2021.09.30 18:25:24 CEST Root WebApplicationContext: initialization completed in 5990 ms
+2021.09.30 18:25:25 CEST HHH000412: Hibernate ORM core version 5.4.32.Final
+2021.09.30 18:25:25 CEST HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021.09.30 18:25:25 CEST HikariPool-1 - Starting...
+2021.09.30 18:25:26 CEST HikariPool-1 - Start completed.
+2021.09.30 18:25:27 CEST HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021.09.30 18:25:29 CEST HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021.09.30 18:25:29 CEST Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021.09.30 18:25:31 CEST spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021.09.30 18:25:32 CEST 
+
+Using generated security password: f94f20b7-6f10-422c-b018-11c65163c883
+
+2021.09.30 18:25:33 CEST Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f8bcccb, org.springframework.security.web.context.SecurityContextPersistenceFilter@6e5c2ac6, org.springframework.security.web.header.HeaderWriterFilter@77fbd93a, org.springframework.web.filter.CorsFilter@1dbd8573, org.springframework.security.web.authentication.logout.LogoutFilter@20aedc50, com.example.demo.security.JWTAuthorizationFilter@1f8dc173, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@453e8350, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57c90932, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2ea5d15a, org.springframework.security.web.session.SessionManagementFilter@41a1b778, org.springframework.security.web.access.ExceptionTranslationFilter@50022d9e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@30988552]
+2021.09.30 18:25:35 CEST LiveReload server is running on port 35729
+2021.09.30 18:25:35 CEST Starting ProtocolHandler ["http-nio-9999"]
+2021.09.30 18:25:35 CEST Tomcat started on port(s): 9999 (http) with context path ''
+2021.09.30 18:25:35 CEST Started DemoApplication in 18.667 seconds (JVM running for 21.749)
+2021.09.30 18:25:56 CEST Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021.09.30 18:25:56 CEST Initializing Servlet 'dispatcherServlet'
+2021.09.30 18:25:56 CEST Completed initialization in 6 ms
+2021.09.30 18:25:57 CEST User {id: 55f27214-bb5d-4244-bde0-cca488b125cc, name: Carlos, lastName: Castillo, email: carlos.c@gmail.com, rol: USER} added succesfully.
+2021.09.30 18:28:55 CEST Bad Request , StackTrace: [Ljava.lang.StackTraceElement;@48b79ae2
+2021.09.30 18:28:55 CEST Resolved [com.example.demo.core.exceptions.BadRequestException: Bad Request]
+2021.09.30 18:30:41 CEST Bad Request , StackTrace: [Ljava.lang.StackTraceElement;@3ff475bd
+2021.09.30 18:30:41 CEST Resolved [com.example.demo.core.exceptions.BadRequestException: Bad Request]

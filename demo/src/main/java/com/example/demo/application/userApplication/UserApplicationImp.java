@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.example.demo.core.ApplicationBase;
+import com.example.demo.core.exceptions.BadRequestException;
 import com.example.demo.domain.userDomain.User;
 import com.example.demo.domain.userDomain.UserProjection;
 import com.example.demo.domain.userDomain.UserReadRepository;
@@ -37,7 +38,6 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
 
     @Override
     public UserDTO add(CreateUserDTO dto) {
-
         User user = modelMapper.map(dto, User.class);
         user.setId(UUID.randomUUID());
         user.setPassword(BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt()));
@@ -50,15 +50,24 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
     }
 
     @Override
-    public UserDTO get(UUID id) {
+    public UserDTO login(LoginUserDTO dto) {   
+        if(this.userWriteRepository.exists(dto.getEmail())){
+            User user = this.userReadRepository.findByEmail(dto.getEmail());
+            if(BCrypt.checkpw(dto.getPassword(), user.getPassword())){
+                return this.modelMapper.map(user, UserDTO.class);
+            }
+        }
+        throw new BadRequestException();
+    }
 
+    @Override
+    public UserDTO get(UUID id) {
         User user = this.findById(id);
         return this.modelMapper.map(user, UserDTO.class);
     }
 
     @Override
     public UserDTO update(UUID id, UpdateUserDTO dto) {
-
         User user = this.findById(id);
         User userUpdated = this.modelMapper.map(dto, User.class);
         userUpdated.setId(user.getId());
@@ -90,4 +99,6 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
     public List<UserProjection> getAll(String email, int page, int size) {
         return this.userReadRepository.getAll(email, page, size);
     }
+
+    
 }

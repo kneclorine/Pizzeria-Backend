@@ -32,6 +32,10 @@ public class UserRepositoryImp implements UserWriteRepository, UserReadRepositor
     public Optional<User>findById(UUID id) {
         return this.userJPARepository.findById(id);
     }
+    @Override
+    public User findByEmail(String email) {
+        return this.userJPARepository.findByEmail(email);
+    }
 
     @Override
     public void update(User user) {
@@ -54,4 +58,6 @@ public class UserRepositoryImp implements UserWriteRepository, UserReadRepositor
     public boolean exists(String email) {
         return this.userJPARepository.exists(email);
     }
+
+    
 }
